@@ -138,12 +138,28 @@ de ne publier que l'hébergeur : l'entreprise est active, porte le nom Shinkatô
 démarche des marques pour des partenariats. Le régime allégé n'aurait pas tenu, et l'écart
 de sanction est de 1 an d'emprisonnement et 75 000 € d'amende.
 
-🟠 **Deux données sensibles y figurent, parce que la loi les impose :**
-l'adresse du siège — qui est le **domicile personnel** de l'éditeur — et un **numéro de
-mobile personnel**. Les deux sont déjà publics via l'INSEE (diffusion commerciale activée),
-mais les publier sur un site les rend indexables par les moteurs de recherche.
-Alternatives si cela pose problème : une société de domiciliation pour l'adresse, un second
-numéro dédié pour le téléphone. À trancher **avant** de rendre le dépôt public.
+L'adresse publiée est celle de l'**établissement au répertoire SIRENE** — « Shinkatô,
+Village, 32490 Castillon-Savès » — et non la forme « Le Village » du dossier de création :
+elle se présente comme une adresse d'entreprise, ce qu'elle est.
+
+🟠 Le **numéro de téléphone reste un mobile personnel**. La loi l'impose pour une personne
+physique professionnelle (LCEN art. 6-III-1). Un second numéro dédié règle la question si
+le démarchage devient gênant — à voir après quelques semaines de mise en ligne.
+
+**Sections couvertes** — mentions légales : éditeur, directeur de publication, hébergeur,
+accès au site, propriété intellectuelle, données personnelles, responsabilité, liens
+hypertextes, cookies, crédits, droit applicable et litiges.
+Confidentialité : responsable du traitement, données collectées (volontaires **et** journaux
+techniques de l'hébergeur), finalités/base légale/durées en tableau, destinataires et
+transferts hors UE, droits, **mineurs**, sécurité, modifications.
+
+⚠️ La clause de litiges ne désigne **pas** un tribunal précis : une clause attributive de
+juridiction est réputée non écrite face à un consommateur. Le texte rappelle au contraire
+qu'un consommateur peut saisir la juridiction de son lieu de résidence.
+
+⚠️ La section **Mineurs** existe parce que Shinkatô est un jeu : l'âge du consentement
+numérique est de 15 ans en France. Beaucoup de sites l'oublient — y compris ceux pris en
+référence.
 
 L'hébergeur est déjà renseigné : GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco.
 
