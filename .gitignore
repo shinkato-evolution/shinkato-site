@@ -16,3 +16,5 @@ desktop.ini
 # la moitié des assets (vidéo de fond, animations, visuels de combat) n'étaient pas suivis
 # par git, et un déploiement aurait donné une page trouée.
 # Après toute modification : `node _audit.js` doit afficher « aucune référence cassée ».
+_preview.html
+_apercu.png
