@@ -34,12 +34,25 @@
     var cue   = byId('hero-cue');
     if (!video) { return; }
 
-    /* Trois modes. On ne devine JAMAIS d'après la largeur d'écran : un téléphone
-       capable de scrubber doit scrubber. On MESURE ce que le navigateur sait faire.
-         'wait'  — la vidéo tourne en boucle en attendant d'être prête
-         'scrub' — le scroll est la tête de lecture (l'objectif)
-         'loop'  — repli définitif : ce navigateur ne sait pas se positionner
+    /* ⚠️ DÉCISION 16/08/2026 — LA VIDÉO TOURNE EN BOUCLE, le scroll ne la pilote plus.
+       Le pilotage au scroll existait et fonctionnait, mais il a été abandonné après test :
+
+         · à l'ARRIVÉE sur la page, il donne une image FIGÉE — or c'est le moment qui
+           décide si le visiteur reste. Un jeu ne doit pas paraître immobile là ;
+         · il exige que la vidéo soit ENTIÈREMENT chargée (`fullyBuffered`) : en 4G, les
+           5,3 Mo mettent du temps, et pendant ce temps c'était la boucle de toute façon ;
+         · sur mobile on scrolle vite, l'effet passait en un éclair ;
+         · il fallait une consigne à l'écran pour que le visiteur comprenne qu'il le
+           pilotait — un effet qui s'explique a déjà perdu.
+
+       Le code des trois modes est CONSERVÉ intact : repasser au pilotage au scroll ne
+       demande que de remettre `PILOTAGE_AU_SCROLL` à true.
+
+         'wait'  — état initial, la vidéo tourne en boucle
+         'scrub' — le scroll est la tête de lecture (désactivé, voir ci-dessus)
+         'loop'  — mode retenu
        Reduced-motion : image figée, aucun mouvement de fond. */
+    var PILOTAGE_AU_SCROLL = false;
     var mode = 'wait';
     var duration = 0;
     var target = 0;
@@ -123,6 +136,9 @@
 
     var tryUpgrade = function () {
       if (probed || mode === 'scrub' || prefersReduced.matches) { return; }
+      // Pilotage au scroll désactivé : on reste en boucle, sans même sonder le navigateur.
+      // (Le sondage `probeSeek` coûtait un positionnement + une attente pour rien.)
+      if (!PILOTAGE_AU_SCROLL) { probed = true; enterLoop(); return; }
       if (!video.duration || !fullyBuffered()) { return; }
       probed = true;
       // Une lecture doit avoir eu lieu avant de se positionner (prérequis iOS Safari) :
@@ -163,6 +179,16 @@
     document.addEventListener('touchstart', kick, { once: true, passive: true });
     document.addEventListener('pointerdown', kick, { once: true });
     window.addEventListener('load', function () { applyMode(); tryUpgrade(); }, { once: true });
+
+    /* Onglet masqué → on met la vidéo en pause. Elle est en `position: fixed` et reste
+       donc visible sur TOUTE la page : la mettre en pause au scroll figerait le décor.
+       Mais la lire pendant que le visiteur est sur un autre onglet ne sert à personne et
+       consomme batterie et processeur — sur mobile, ça se sent. */
+    document.addEventListener('visibilitychange', function () {
+      if (mode === 'reduced') { return; }
+      if (document.hidden) { video.pause(); }
+      else if (mode === 'loop' || mode === 'wait') { play(); }
+    });
 
     applyMode();
     onScroll();
