@@ -1928,6 +1928,30 @@ a { color: inherit; }
 .partners-form .cta-input { width: 100%; }
 .partners-form .btn { margin-top: 22px; align-self: center; cursor: pointer; }
 
+/* Confirmation affichée EN PLACE du formulaire : le visiteur ne quitte pas la page. */
+.form-ok {
+  border: 2px solid var(--jaune);
+  border-radius: 4px;
+  background: rgba(242, 205, 15, 0.07);
+  padding: 22px 24px;
+  color: var(--blanc);
+  line-height: 1.6;
+  text-align: center;
+}
+.form-ok b { color: var(--jaune); font-size: 1.1rem; }
+
+/* Échec d'envoi : jamais silencieux, et on laisse toujours une porte de sortie. */
+.form-erreur {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--rouge);
+  background: rgba(173, 25, 25, 0.12);
+  color: var(--blanc);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.form-erreur a { color: var(--jaune); }
+
 .cta-form-note {
   margin-top: 14px;
   font-size: 0.86rem;

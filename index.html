@@ -358,29 +358,10 @@
       Sois parmi les premiers héros à commencer ton histoire.
     </p>
     <!-- Inscription à l'annonce de sortie.
-         Pourquoi un formulaire et plus un simple `mailto:` : le lien mailto ouvre le
-         logiciel de messagerie du visiteur. Sur ordinateur, une grande part des gens
-         utilisent un webmail sans client configuré — pour eux, le bouton ne faisait
-         tout simplement rien. Ici, trois secondes et l'adresse part.
-
-         Le site étant hébergé en statique (GitHub Pages), aucun code ne tourne côté
-         serveur : l'envoi passe par FormSubmit, qui relaie vers la boîte Shinkatô.
-         ⚠️ La toute PREMIÈRE soumission déclenche un mail de confirmation à
-         shinkato.contact@gmail.com — il faut cliquer son lien une fois pour activer
-         le formulaire. Tant que ce n'est pas fait, rien n'arrive. -->
-    <form class="cta-form" action="https://formsubmit.co/shinkato.contact@gmail.com" method="POST">
-      <!-- Objet FIXE, identique au libellé du bouton : c'est ce qui permet de retrouver
-           toutes les inscriptions d'un seul filtre dans la boîte de réception. -->
-      <input type="hidden" name="_subject" value="Être prévenu au lancement">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <!-- Piège à robots : invisible pour un humain, rempli par les robots → message rejeté.
-           Remplace le captcha, qu'on ne veut pas imposer à un visiteur. -->
+         L'envoi part vers Supabase (voir js/contact.js) : pas de rechargement de page,
+         pas de service tiers, et la liste reste dans ta propre base. -->
+    <form class="cta-form" >
       <input type="text" name="_honey" class="cta-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <!-- ⚠️ À AJOUTER LE JOUR DE LA MISE EN LIGNE, une fois le domaine connu — sinon
-           FormSubmit affiche sa propre page de confirmation au lieu de la nôtre :
-           <input type="hidden" name="_next" value="https://TON-DOMAINE/merci.html"> -->
-
       <label class="cta-form-label" for="email-lancement">Ton adresse e-mail</label>
       <div class="cta-form-row">
         <input class="cta-input" type="email" id="email-lancement" name="email"
@@ -412,17 +393,9 @@
           bord dédié suit vos quêtes, vos trophées et vos retombées.
         </p>
         <div class="partners-actions">
-          <!-- Même raison que le formulaire de lancement : le `mailto:` d'avant ne
-               déclenchait RIEN chez un visiteur sans logiciel de messagerie configuré —
-               cas très courant sur ordinateur. Un partenaire perdu ne revient pas. -->
-          <form class="partners-form" action="https://formsubmit.co/shinkato.contact@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Devenir partenaire">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
+          <!-- Même envoi que le formulaire de lancement (js/contact.js). -->
+          <form class="partners-form">
             <input type="text" name="_honey" class="cta-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <!-- ⚠️ Le jour de la mise en ligne, ajouter comme sur l'autre formulaire :
-                 <input type="hidden" name="_next" value="https://TON-DOMAINE/merci.html"> -->
-
             <label class="cta-form-label" for="partenaire-marque">Votre marque</label>
             <input class="cta-input" type="text" id="partenaire-marque" name="marque"
                    placeholder="Nom de votre marque" required autocomplete="organization">
@@ -505,5 +478,6 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
 </body>
 </html>
