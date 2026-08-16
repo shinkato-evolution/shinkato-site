@@ -217,10 +217,16 @@ ne manque. À supprimer quand tu auras confirmé qu'aucune évolution prévue ne
 
 ## 8. Avant d'activer GitHub Pages
 
-- [ ] **ACTIVER LE FORMULAIRE** — indispensable, sinon les inscriptions partent au néant.
-      La toute première soumission déclenche un mail de confirmation de FormSubmit à
-      `shinkato.contact@gmail.com` : **cliquer son lien une fois**. Tant que ce n'est pas
-      fait, aucune inscription n'arrive. Faire un essai avec sa propre adresse.
+- [x] ~~**ACTIVER LE FORMULAIRE**~~ — ✅ **fait le 16/08/2026.** L'activation a été
+      déclenchée depuis `http://127.0.0.1:8080` et confirmée par mail. Elle ne se refait pas.
+      ⚠️ Piège rencontré : ouvrir `index.html` en **`file://`** donne toujours
+      « Unable to submit form » — FormSubmit refuse les envois sans origine web valide.
+      Pour tester en local, servir le site : `python -m http.server 8080`.
+- [ ] 🔴 **RETESTER LE FORMULAIRE UNE FOIS SUR LE VRAI DOMAINE.** FormSubmit associe en
+      principe l'activation à l'ADRESSE E-MAIL et non au domaine, donc ça devrait marcher
+      d'emblée — mais ce n'est **pas vérifié** : leur service est derrière Cloudflare, une
+      requête automatisée n'atteint pas le formulaire. Deux minutes de test le jour J
+      évitent de découvrir trois mois plus tard qu'on a perdu toutes les inscriptions.
 - [ ] **Brancher la page de remerciement** : une fois le domaine connu, décommenter dans
       `index.html` la ligne `_next` et y mettre `https://TON-DOMAINE/merci.html`. Sans
       elle, le visiteur atterrit sur la page générique de FormSubmit.
