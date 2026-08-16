@@ -92,33 +92,74 @@ assets/anim/scroll_1..5.png      ramasser un parchemin
 Une recherche de texte simple ne les trouve pas — ne jamais les supprimer en se fiant à
 une recherche du nom complet.
 
-## 4 bis. Inscription à l'annonce de sortie
+## 4 bis. Formulaires de contact
 
-Le bouton « Être prévenu au lancement » est un **vrai formulaire** (`#telecharger`), pas un
-lien `mailto:`. Raison : un `mailto:` ouvre le logiciel de messagerie du visiteur — sur
-ordinateur, une grande part des gens utilisent un webmail sans client configuré, et pour
-eux le bouton ne faisait tout simplement rien.
+Deux formulaires : **inscription au lancement** (`#telecharger`) et **demande de
+partenariat** (`#partenaires`). Tous deux enregistrent dans **Supabase**, table
+`public.site_leads`, via `js/contact.js`.
 
-Le site étant statique, l'envoi passe par **FormSubmit** (`formsubmit.co`), qui relaie vers
-`shinkato.contact@gmail.com`. Aucun compte, aucune clé, rien à héberger.
+### Pourquoi pas un `mailto:`, pourquoi pas un service tiers
 
-| Champ caché | Rôle |
+Un lien `mailto:` ouvre le logiciel de messagerie du visiteur. Sur ordinateur, une grande
+part des gens utilisent un webmail sans client configuré : pour eux le bouton **ne fait
+rien du tout**, et on perd le contact sans jamais le savoir.
+
+Un service de formulaire tiers (FormSubmit) a été essayé le 16/08/2026 et **abandonné** :
+« Unable to submit form » systématique malgré une activation confirmée, et surtout
+impossible à diagnostiquer — le service est derrière Cloudflare, chaque essai demandait
+une manipulation manuelle à l'aveugle.
+
+Supabase était déjà là, et **se teste**. Tout a été vérifié avant livraison.
+
+### Le chemin d'une inscription
+
+```
+Visiteur remplit le formulaire
+        │  (js/contact.js, fetch)
+        ▼
+  table site_leads            ← la liste, elle ne dépend de rien d'autre
+        │  (déclencheur trg_notifier_nouveau_lead, ASYNCHRONE)
+        ▼
+  fonction notifier-lead      ← Edge Function Supabase
+        │  (API Resend)
+        ▼
+  shinkato.contact@gmail.com
+```
+
+⚠️ **La collecte et la notification sont volontairement séparées.** Le déclencheur est
+`after insert`, asynchrone, et son corps est enveloppé dans un `exception when others` :
+si Resend tombe, si le jeton est faux, si le réseau coupe — **l'inscription est quand même
+enregistrée**. Un premier jet sans cette protection faisait échouer l'insertion (HTTP 400)
+et perdait le contact. Ne jamais retirer ce garde-fou.
+
+### Sécurité
+
+| Élément | Où | Public ? |
+|---|---|---|
+| Clé Supabase « publishable » | `js/contact.js` | **Oui, et c'est normal** |
+| Clé API Resend | Secret Edge Function `RESEND_API_KEY` | Non |
+| Jeton du déclencheur | Table `prive.config` + secret `SHINKATO_HOOK_TOKEN` | Non |
+
+La clé du site est publique **par conception**. Ce qui protège les adresses collectées,
+c'est la politique RLS de `site_leads` : **une seule politique, INSERT**. Pas de SELECT,
+pas d'UPDATE, pas de DELETE. Vérifié — une lecture avec la clé publique renvoie HTTP 401.
+
+Le schéma `prive` n'est pas exposé par PostgREST : le jeton y est hors d'atteinte de l'API.
+
+### Tests passés le 16/08/2026
+
+| Test | Résultat |
 |---|---|
-| `_subject` | **`Être prévenu au lancement`** — objet FIXE, identique au libellé du bouton. C'est lui qui permet de retrouver toutes les inscriptions d'un seul filtre dans Gmail, et donc de constituer la liste de lancement. |
-| `_template=table` | Mail lisible plutôt qu'un bloc brut |
-| `_captcha=false` | Pas de captcha imposé au visiteur |
-| `_honey` | Piège à robots : champ invisible, hors écran, inatteignable au clavier. Rempli → message rejeté. |
-| `_next` | **À renseigner le jour de la mise en ligne** → `merci.html` |
+| Insertion avec la clé publique | ✅ 201 |
+| Lecture avec la clé publique | ✅ 401 refusée |
+| E-mail invalide | ✅ 400 contrainte |
+| Notification lancement | ✅ mail reçu |
+| Notification partenariat | ✅ mail reçu |
 
-⚠️ **Le formulaire doit être activé une fois** : la première soumission envoie un mail de
-confirmation à la boîte Shinkatô, dont il faut cliquer le lien. Avant ça, rien n'arrive.
+### Consulter la liste
 
-⚠️ Les adresses transitent par un tiers (FormSubmit). Une mention l'indique sous le champ.
-Pour tout garder chez soi, l'alternative serait une table Supabase en écriture seule.
-
-Le bouton **« Devenir partenaire »** (section `#partenaires`) reste un `mailto:` avec l'objet
-`Devenir partenaire` — volume attendu faible, et un échange par mail est de toute façon
-la suite naturelle. Même logique d'objet fixe pour le tri.
+Supabase → **Table Editor** → `site_leads`. Export CSV depuis la même page.
+La table a été vidée de ses lignes de test le 16/08/2026.
 
 ## 4 ter. Pages légales
 
@@ -217,19 +258,10 @@ ne manque. À supprimer quand tu auras confirmé qu'aucune évolution prévue ne
 
 ## 8. Avant d'activer GitHub Pages
 
-- [x] ~~**ACTIVER LE FORMULAIRE**~~ — ✅ **fait le 16/08/2026.** L'activation a été
-      déclenchée depuis `http://127.0.0.1:8080` et confirmée par mail. Elle ne se refait pas.
-      ⚠️ Piège rencontré : ouvrir `index.html` en **`file://`** donne toujours
-      « Unable to submit form » — FormSubmit refuse les envois sans origine web valide.
-      Pour tester en local, servir le site : `python -m http.server 8080`.
-- [ ] 🔴 **RETESTER LE FORMULAIRE UNE FOIS SUR LE VRAI DOMAINE.** FormSubmit associe en
-      principe l'activation à l'ADRESSE E-MAIL et non au domaine, donc ça devrait marcher
-      d'emblée — mais ce n'est **pas vérifié** : leur service est derrière Cloudflare, une
-      requête automatisée n'atteint pas le formulaire. Deux minutes de test le jour J
-      évitent de découvrir trois mois plus tard qu'on a perdu toutes les inscriptions.
-- [ ] **Brancher la page de remerciement** : une fois le domaine connu, décommenter dans
-      `index.html` la ligne `_next` et y mettre `https://TON-DOMAINE/merci.html`. Sans
-      elle, le visiteur atterrit sur la page générique de FormSubmit.
+- [x] ~~**Formulaires**~~ — ✅ **faits et testés le 16/08/2026** (Supabase + Resend).
+      Rien à activer, rien à reconfigurer au changement de domaine : l'envoi ne dépend
+      ni de l'origine de la page ni du domaine. ⚠️ Refaire malgré tout **un** essai
+      après la mise en ligne, par principe.
 - [ ] **Renseigner les liens des stores** dans `#telecharger` (`index.html` ~ligne 353).
       Le texte dit « arrive bientôt sur Google Play et l'App Store ». À reprendre au lancement.
 - [ ] **Confirmer l'adresse et le téléphone publiés** dans les mentions légales : ce sont
