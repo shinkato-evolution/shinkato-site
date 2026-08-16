@@ -92,6 +92,34 @@ assets/anim/scroll_1..5.png      ramasser un parchemin
 Une recherche de texte simple ne les trouve pas — ne jamais les supprimer en se fiant à
 une recherche du nom complet.
 
+## 4 bis. Inscription à l'annonce de sortie
+
+Le bouton « Être prévenu au lancement » est un **vrai formulaire** (`#telecharger`), pas un
+lien `mailto:`. Raison : un `mailto:` ouvre le logiciel de messagerie du visiteur — sur
+ordinateur, une grande part des gens utilisent un webmail sans client configuré, et pour
+eux le bouton ne faisait tout simplement rien.
+
+Le site étant statique, l'envoi passe par **FormSubmit** (`formsubmit.co`), qui relaie vers
+`shinkato.contact@gmail.com`. Aucun compte, aucune clé, rien à héberger.
+
+| Champ caché | Rôle |
+|---|---|
+| `_subject` | **`Être prévenu au lancement`** — objet FIXE, identique au libellé du bouton. C'est lui qui permet de retrouver toutes les inscriptions d'un seul filtre dans Gmail, et donc de constituer la liste de lancement. |
+| `_template=table` | Mail lisible plutôt qu'un bloc brut |
+| `_captcha=false` | Pas de captcha imposé au visiteur |
+| `_honey` | Piège à robots : champ invisible, hors écran, inatteignable au clavier. Rempli → message rejeté. |
+| `_next` | **À renseigner le jour de la mise en ligne** → `merci.html` |
+
+⚠️ **Le formulaire doit être activé une fois** : la première soumission envoie un mail de
+confirmation à la boîte Shinkatô, dont il faut cliquer le lien. Avant ça, rien n'arrive.
+
+⚠️ Les adresses transitent par un tiers (FormSubmit). Une mention l'indique sous le champ.
+Pour tout garder chez soi, l'alternative serait une table Supabase en écriture seule.
+
+Le bouton **« Devenir partenaire »** (section `#partenaires`) reste un `mailto:` avec l'objet
+`Devenir partenaire` — volume attendu faible, et un échange par mail est de toute façon
+la suite naturelle. Même logique d'objet fixe pour le tri.
+
 ## 5. Dépendances externes
 
 **Une seule** : les polices Google Fonts, chargées dans `index.html` —
@@ -146,9 +174,15 @@ ne manque. À supprimer quand tu auras confirmé qu'aucune évolution prévue ne
 
 ## 8. Avant d'activer GitHub Pages
 
-- [ ] **Renseigner les liens des stores** dans `#telecharger` (`index.html` ~ligne 350).
-      Aujourd'hui le bouton est un `mailto:` « Être prévenu au lancement », et le texte dit
-      « arrive bientôt sur Google Play et l'App Store ». À reprendre au lancement.
+- [ ] **ACTIVER LE FORMULAIRE** — indispensable, sinon les inscriptions partent au néant.
+      La toute première soumission déclenche un mail de confirmation de FormSubmit à
+      `shinkato.contact@gmail.com` : **cliquer son lien une fois**. Tant que ce n'est pas
+      fait, aucune inscription n'arrive. Faire un essai avec sa propre adresse.
+- [ ] **Brancher la page de remerciement** : une fois le domaine connu, décommenter dans
+      `index.html` la ligne `_next` et y mettre `https://TON-DOMAINE/merci.html`. Sans
+      elle, le visiteur atterrit sur la page générique de FormSubmit.
+- [ ] **Renseigner les liens des stores** dans `#telecharger` (`index.html` ~ligne 353).
+      Le texte dit « arrive bientôt sur Google Play et l'App Store ». À reprendre au lancement.
 - [ ] Décider pour les polices (section 5).
 - [ ] Vérifier le lien du tableau de bord partenaire (section `#partenaires`).
 - [ ] Ajouter les métadonnées de partage (`og:image`, `og:title`) — un des panneaux de

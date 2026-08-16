@@ -1839,6 +1839,68 @@ a { color: inherit; }
 
 .cta-actions { margin-top: 36px; }
 
+/* ---------- Formulaire « Être prévenu au lancement » ---------- */
+
+.cta-form { margin: 36px auto 0; max-width: 620px; }
+
+.cta-form-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  margin-bottom: 12px;
+}
+
+/* Champ + bouton sur une ligne, qui passe en colonne sous 560px (cf. responsive). */
+.cta-form-row { display: flex; gap: 12px; align-items: stretch; }
+
+.cta-input {
+  flex: 1 1 auto;
+  min-width: 0;                       /* sinon le champ refuse de se réduire en flex */
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: var(--blanc);
+  background: rgba(20, 16, 10, 0.72);
+  border: 1px solid var(--bordure);
+  border-radius: 4px;
+  padding: 15px 18px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-input::placeholder { color: rgba(240, 238, 238, 0.34); }
+
+.cta-input:focus {
+  outline: none;
+  border-color: var(--jaune);
+  box-shadow: 0 0 0 3px rgba(242, 205, 15, 0.18);
+}
+
+/* Le navigateur colore en rouge dès la saisie du premier caractère si on cible
+   :invalid seul — on n'alerte donc qu'une fois le champ quitté ou le formulaire soumis. */
+.cta-input:not(:placeholder-shown):not(:focus):invalid { border-color: var(--rouge); }
+
+.cta-form .btn { flex: 0 0 auto; cursor: pointer; }
+
+/* Piège à robots : hors écran, jamais lu par un lecteur d'écran, jamais atteint au clavier. */
+.cta-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cta-form-note {
+  margin-top: 14px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--blanc-60);
+}
+
 .cta-characters {
   display: flex;
   justify-content: center;
@@ -1937,6 +1999,11 @@ a { color: inherit; }
   .kaen-wrap { grid-template-columns: 1fr; gap: 36px; text-align: center; }
   .dialogue-card .panel-title { left: 50%; transform: translateX(-50%) skewX(-25deg); }
   .tanto-band { grid-template-columns: 1fr; gap: 32px; }
+}
+
+@media (max-width: 560px) {
+  .cta-form-row { flex-direction: column; }
+  .cta-form .btn { width: 100%; }
 }
 
 @media (max-width: 860px) {
