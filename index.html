@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shinkatô — Deviens le héros de ton évolution</title>
+  <meta name="description" content="Shinkatô transforme ta vraie vie en RPG : tes habitudes te renforcent, ton territoire s'étend case par case, et tes obstacles prennent forme pour être affrontés.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ====== FOND VIDÉO GLOBAL — la tête de lecture, c'est le scroll de la page ====== -->
+  <div class="filmbg" aria-hidden="true">
+    <video
+      class="filmbg-video"
+      id="filmbg-video"
+      src="assets/video/shinkato_scroll.mp4"
+      poster="assets/video/shinkato_scroll_poster.jpg"
+      muted playsinline loop preload="auto" disablepictureinpicture></video>
+    <div class="filmbg-veil"></div>
+  </div>
+  <div class="filmbg-progress" aria-hidden="true"><div class="filmbg-progressfill" id="filmbg-progressfill"></div></div>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav">
+    <a class="nav-brand" href="#hero">
+      <img src="assets/logo_blanc.png" alt="Emblème Shinkatô" class="nav-logo">
+      <span class="nav-wordmark">SHINKATÔ</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#voies">Les trois voies</a>
+      <a href="#territoire">Territoire</a>
+      <a href="#combat">Combat</a>
+      <a href="#partenaires">Partenaires</a>
+    </nav>
+    <a href="#telecharger" class="btn btn-yellow btn-small">Rejoindre l'aventure</a>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">進化 SHINKA — ÉVOLUTION &nbsp;·&nbsp; 刀 TÔ — LAME</p>
+      <h1 class="hero-title">
+        Deviens le héros<br>
+        <span class="hero-title-accent">de ton évolution</span>
+      </h1>
+      <p class="hero-sub">
+        Shinkatô transforme ta vraie vie en RPG. Tes habitudes te renforcent jour après jour,
+        ton territoire s'étend case après case, et tes obstacles prennent forme — pour être affrontés.
+      </p>
+      <div class="hero-ctas">
+        <a href="#territoire" class="btn btn-yellow">Essayer maintenant</a>
+        <a href="#voies" class="btn btn-ghost">Découvrir le jeu</a>
+      </div>
+      <p class="hero-note">Pas de punition. Pas de série perdue. Chaque pas en avant reste acquis.</p>
+    </div>
+    <p class="hero-cue" id="hero-cue" aria-hidden="true">Descends — la scène se joue au scroll</p>
+  </section>
+
+  <!-- ===================== LES 3 VOIES ===================== -->
+  <section class="section" id="voies">
+    <div class="section-head">
+      <div class="plate plate-yellow"><span>Les trois voies</span></div>
+      <p class="section-lead">
+        La vie ne se résume pas à cocher des cases. Elle se construit, elle s'étend, elle s'affronte.
+        Shinkatô repose sur trois piliers indissociables — et tu peux les essayer ici même.
+      </p>
+    </div>
+
+    <div class="voies-grid">
+      <article class="voie-card reveal">
+        <div class="hex voie-visual"><img src="assets/PM.png" alt="Point de Maîtrise"></div>
+        <h3 class="voie-title">Se renforcer</h3>
+        <p class="voie-body">
+          De petites habitudes, répétées sans pression, forgent de grandes transformations.
+          Chaque habitude validée dans la vraie vie te rapporte des <b>Points de Maîtrise</b> —
+          la seule monnaie du jeu.
+        </p>
+        <p class="voie-tag">Habitudes · Kaizen</p>
+      </article>
+      <article class="voie-card reveal">
+        <div class="hex voie-visual"><img src="assets/game/hex_grass.png" alt="Hexagone de territoire"></div>
+        <h3 class="voie-title">Étendre son territoire</h3>
+        <p class="voie-body">
+          Ta carte est une terre inconnue en nid d'abeilles. Tu investis tes PM sur un hexagone
+          voisin pour l'arracher à l'ombre — et découvrir ce qu'il cachait : coffre, parchemin,
+          relique… ou écho.
+        </p>
+        <p class="voie-tag">Territoire · Expansion</p>
+      </article>
+      <article class="voie-card reveal">
+        <div class="hex voie-visual"><img src="assets/game/echo.png" alt="Écho, créature d'ombre"></div>
+        <h3 class="voie-title">Affronter ses ombres</h3>
+        <p class="voie-body">
+          Les Échos sont tes obstacles devenus créatures, et chacun porte un nom. On ne les
+          frappe pas d'abord : on leur <b>répond</b>. Le combat est un duel de phrases —
+          leurs pensées noires contre les tiennes.
+        </p>
+        <p class="voie-tag">Échos · Duel verbal</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== TERRITOIRE JOUABLE ===================== -->
+  <section class="section" id="territoire">
+    <div class="section-head">
+      <div class="plate plate-yellow"><span>Ton territoire</span></div>
+      <p class="section-lead">
+        Voilà la boucle du jeu, en vrai : tu valides une habitude, tu gagnes des PM,
+        tu les investis sur un hexagone. Vas-y — c'est jouable.
+      </p>
+    </div>
+
+    <div class="panel terr-card reveal">
+      <div class="panel-title panel-title-center"><span>Carte d'expansion</span></div>
+      <div class="panel-body">
+
+        <div class="terr-hud">
+          <span class="hud-stat"><img src="assets/PM.png" alt="Points de Maîtrise"><b id="terr-pm">9</b> PM</span>
+          <span class="hud-stat"><img src="assets/PE.png" alt="Points d'Évolution"><b id="terr-pe">0</b> PE</span>
+          <span class="hud-stat"><img src="assets/game/pv.png" alt="Points de Vie"><b id="terr-pv">3</b> PV</span>
+          <span class="hud-stat hud-progress"><img src="assets/game/hex_grass.png" alt="Hexagones"><b id="terr-owned">1</b> conquis</span>
+        </div>
+
+        <div class="terr-stage">
+          <div class="terr-map" id="terr-map" role="group" aria-label="Carte hexagonale : investis tes PM sur un hexagone voisin"></div>
+          <div class="terr-ambush" id="terr-ambush" hidden aria-hidden="true">
+            <img src="assets/game/echo.png" alt="" class="terr-ambush-echo">
+            <p class="terr-ambush-label">UN ÉCHO SURGIT</p>
+          </div>
+          <div class="terr-burst" id="terr-burst" hidden aria-hidden="true"></div>
+        </div>
+
+        <!-- Consigne de jeu : elle bascule en alerte quand il n'y a plus de PM -->
+        <p class="terr-tip" id="terr-tip">Clique sur une case pour la révéler.</p>
+
+        <!-- Fenêtre de dialogue : c'est elle qui explique quoi faire, pas une légende -->
+        <div class="terr-dialogue">
+          <img src="assets/character1.png" alt="" class="terr-portrait" aria-hidden="true">
+          <div class="terr-dialogue-box">
+            <span class="terr-dialogue-name"><span>TOI</span></span>
+            <p class="terr-dialogue-text" id="terr-hint">Je ressens une forme d'énergie sous ces terres… mais l'ombre les recouvre encore.</p>
+          </div>
+        </div>
+
+        <!-- L'action de la VRAIE VIE, séparée de la carte pour lever l'ambiguïté -->
+        <div class="terr-habit-block">
+          <p class="terr-habit-label">Dans la vraie vie</p>
+          <button type="button" class="btn btn-yellow" id="terr-habit">Valider l'habitude</button>
+          <p class="terr-habit-sub">Ex.&nbsp;: «&nbsp;10 pompes&nbsp;». Chaque habitude tenue te rapporte <b>3 PM</b> — la force qui ouvre la carte.</p>
+        </div>
+
+        <div class="terr-actions">
+          <a href="#combat" class="btn btn-red btn-small" id="terr-tocombat" hidden>Affronter l'écho</a>
+        </div>
+
+        <div class="terr-log" id="terr-log" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMBAT — TAMERAI ===================== -->
+  <section class="section section-combat" id="combat">
+    <div class="section-head">
+      <div class="plate plate-red"><span>L'écho de la semaine</span></div>
+      <p class="section-lead">
+        Un écho ne se balaie pas d'un clic. Il te jette une pensée à la figure — et tu choisis
+        quoi lui répondre. Voici un vrai combat de Shinkatô, avec le vrai texte du jeu.
+      </p>
+    </div>
+
+    <div class="fight reveal" id="fight">
+
+      <!-- ÉCRAN 1 — présentation du boss -->
+      <div class="fight-screen fight-intro" id="fight-intro">
+        <p class="fight-kicker">L'ÉCHO DE LA SEMAINE</p>
+        <div class="fight-portrait"><img src="assets/game/echo.png" alt="Tamerai, écho de la peur de se lancer"></div>
+        <h3 class="fight-bossname">TAMERAI</h3>
+        <div class="fight-obstacle"><span>La Peur de se lancer</span></div>
+        <p class="fight-introline">« Reste où tu es. Le seuil est bien trop haut pour toi. »</p>
+        <button type="button" class="btn btn-red" id="fight-start">L'affronter</button>
+      </div>
+
+      <!-- ÉCRAN 2 — duel de phrases -->
+      <div class="fight-screen fight-arena" id="fight-arena" hidden>
+        <div class="fight-scene" id="fight-scene">
+
+          <!-- La pensée noire de l'écho est TOUT EN HAUT : plus bas, elle tombait sous le
+               joueur et se lisait comme si c'était LUI qui la prononçait. -->
+          <div class="fight-bubble" id="fight-bubble">
+            <p class="fight-bubble-text" id="fight-attack">…</p>
+          </div>
+
+          <div class="fight-sprites">
+
+            <!-- Écho : sprite en haut à droite, identité JUSTE EN DESSOUS de lui -->
+            <div class="fight-echo-col">
+              <div class="fight-echo" id="fight-echo">
+                <img src="assets/fight/echo_01.webp" alt="" id="fight-echo-img">
+                <img src="assets/fight/echo_01.webp" alt="" id="fight-echo-flash" class="fight-echo-flash">
+                <span class="fight-slash" id="fight-slash" hidden></span>
+                <img alt="" class="fight-qpop" id="fight-qpop" hidden>
+              </div>
+              <div class="fight-echo-id">
+                <span class="fight-name-tag">TAMERAI</span>
+                <span class="fight-ob-tag">La Peur de se lancer</span>
+              </div>
+            </div>
+
+            <!-- Joueur : cœurs AU-DESSUS de lui, sprite en bas à gauche -->
+            <div class="fight-hero-col">
+              <div class="hearts" id="fight-hearts" aria-label="Points de vie"></div>
+              <div class="fight-hero" id="fight-hero">
+                <img src="assets/fight/hero_01.webp" alt="Ton personnage" id="fight-hero-img">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="fight-liber">
+          <span class="fight-liber-label">Libération</span>
+          <div class="fight-liber-bar"><div class="fight-liber-fill" id="fight-liber-fill"></div></div>
+          <span class="fight-liber-pct" id="fight-liber-pct">0 / 5</span>
+        </div>
+
+        <!-- Phase ripostes -->
+        <div class="fight-answers" id="fight-answers"></div>
+
+        <!-- Phase finisher -->
+        <div class="fight-finisher" id="fight-finisher" hidden>
+          <p class="fight-fin-callout" id="fight-fin-callout">C'EST LE MOMENT — ACHÈVE-LE</p>
+          <p class="fight-fin-line" id="fight-fin-line"></p>
+          <div class="fight-time"><div class="fight-time-fill" id="fight-time-fill"></div></div>
+          <div class="fight-charge">
+            <div class="fight-charge-bar"><div class="fight-charge-fill" id="fight-charge-fill"></div></div>
+            <span class="fight-charge-pct" id="fight-charge-pct">0 %</span>
+          </div>
+          <button type="button" class="btn btn-red fight-attack-btn" id="fight-attack-btn">Attaquer</button>
+        </div>
+      </div>
+
+      <!-- ÉCRAN 3 — victoire -->
+      <div class="fight-screen fight-victory" id="fight-victory" hidden>
+        <div class="plate plate-red fight-vic-kicker"><span>C'est gagné</span></div>
+        <h3 class="fight-vic-name">TAMERAI</h3>
+        <p class="fight-vic-stamp">REPOUSSÉ</p>
+        <div class="fight-star"><span id="fight-xp">+40</span><small>XP</small></div>
+        <div class="fight-vic-gains">
+          <span><img src="assets/PE.png" alt="">+25 PE</span>
+          <span><img src="assets/PM.png" alt="">+8 PM</span>
+          <span><img src="assets/tanto_03.png" alt="">Éclat de lame</span>
+        </div>
+        <p class="fight-vic-note">
+          Dans l'application, ce butin part vraiment dans ton profil — et Tamerai revient plus fort
+          la prochaine fois.
+        </p>
+        <div class="fight-vic-actions">
+          <a href="#telecharger" class="btn btn-yellow">Rejoindre l'aventure</a>
+          <button type="button" class="btn btn-ghost btn-small" id="fight-replay">Rejouer le combat</button>
+        </div>
+      </div>
+
+      <!-- ÉCRAN 4 — pas encore -->
+      <div class="fight-screen fight-failed" id="fight-failed" hidden>
+        <div class="plate plate-yellow fight-vic-kicker"><span>Pas encore</span></div>
+        <p class="fight-failed-text">
+          « Tamerai tient encore debout. Ce n'est pas une défaite : c'est un rappel.
+          Renforce tes habitudes, reviens plus fort. » — <b>Kaen</b>
+        </p>
+        <button type="button" class="btn btn-red" id="fight-retry">Réessayer</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== PROGRESSION ===================== -->
+  <section class="section" id="progression">
+    <div class="section-head">
+      <div class="plate plate-yellow"><span>Ta vie, tes stats</span></div>
+      <p class="section-lead">
+        Dans la vraie vie, l'effort est invisible. Ici, chaque action compte, se voit, et&nbsp;reste&nbsp;acquise.
+      </p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card reveal">
+        <img src="assets/PM.png" alt="">
+        <h4>Points de Maîtrise</h4>
+        <p>La maîtrise gagnée en tenant tes vraies habitudes. C'est avec eux que tu étends ton territoire.</p>
+      </div>
+      <div class="stat-card reveal">
+        <img src="assets/PE.png" alt="">
+        <h4>Points d'Évolution</h4>
+        <p>Trouvés dans les coffres et les victoires. Ils débloquent de nouvelles habitudes : ton évolution finance ton évolution.</p>
+      </div>
+      <div class="stat-card reveal">
+        <img src="assets/xp.png" alt="">
+        <h4>Expérience</h4>
+        <p>Ton niveau raconte ton parcours. Il monte, il ne redescend jamais — comme tout ce que tu construis ici.</p>
+      </div>
+    </div>
+
+    <div class="tanto-band reveal">
+      <div class="tanto-copy">
+        <h3 class="tanto-title">Une lame qui se forge avec toi</h3>
+        <p>
+          Ton tantô est le reflet de ta progression. Chaque écho repoussé le renforce ;
+          chaque lame ouvre la voie vers des obstacles plus grands. Pas de classes, pas de hasard :
+          seulement toi, ta lame, et le chemin.
+        </p>
+      </div>
+      <div class="tanto-strip" aria-label="Tantôs du jeu">
+        <img src="assets/tanto_01.png" alt="Tantô">
+        <img src="assets/tanto_03.png" alt="Tantô de foudre">
+        <img src="assets/tanto_05.png" alt="Tantô">
+        <img src="assets/tanto_07.png" alt="Tantô">
+        <img src="assets/tanto_09.png" alt="Tantô">
+        <img src="assets/tanto_11.png" alt="Tantô">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== KAEN ===================== -->
+  <section class="section" id="kaen">
+    <div class="kaen-wrap reveal">
+      <div class="kaen-figure">
+        <img src="assets/kaen.png" alt="Kaen, le mentor de Shinkatô, assis avec sa lame">
+      </div>
+      <div class="panel dialogue-card">
+        <div class="panel-title panel-title-red"><span>Kaen</span></div>
+        <div class="panel-body">
+        <p class="dialogue-text">
+          « Je ne vois pas ce que tu es aujourd'hui. Je vois ce que tu deviens.
+          Chaque petit pas t'appartient — personne ne pourra te le reprendre. »
+        </p>
+        <p class="dialogue-sub">
+          Kaen guide celles et ceux qui choisissent la voie de l'évolution. Il n'exige rien,
+          ne punit jamais : si tu t'arrêtes un temps, ta flamme t'attend, intacte.
+        </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TÉLÉCHARGER ===================== -->
+  <section class="section section-cta" id="telecharger">
+    <img src="assets/logo_blanc.png" alt="" class="cta-emblem" aria-hidden="true">
+    <h2 class="cta-title">Ton histoire commence ici</h2>
+    <p class="cta-sub">
+      Shinkatô arrive bientôt sur Google Play et l'App Store.<br>
+      Sois parmi les premiers héros à ouvrir le Chapitre I.
+    </p>
+    <div class="cta-actions">
+      <a class="btn btn-yellow" href="mailto:shinkato.contact@gmail.com?subject=Pr%C3%A9venez-moi%20au%20lancement%20de%20Shinkat%C3%B4">Être prévenu au lancement</a>
+    </div>
+    <div class="cta-characters" aria-hidden="true">
+      <img src="assets/character1.png" alt="">
+      <img src="assets/character2.png" alt="">
+      <img src="assets/character3.png" alt="">
+      <img src="assets/character4.png" alt="">
+      <img src="assets/character5.png" alt="">
+    </div>
+  </section>
+
+  <!-- ===================== PARTENAIRES ===================== -->
+  <section class="section section-partners" id="partenaires">
+    <div class="panel partners-card reveal">
+      <div class="panel-title"><span>Vous êtes une marque ?</span></div>
+      <div class="panel-body partners-body-grid">
+        <p class="partners-body">
+          Les partenaires Shinkatô vivent dans le jeu : votre marque devient un allié retenu par
+          un écho, votre histoire une quête, vos offres des trophées à conquérir. Un tableau de
+          bord dédié suit vos quêtes, vos trophées et vos retombées.
+        </p>
+        <div class="partners-actions">
+          <a class="btn btn-red" href="mailto:shinkato.contact@gmail.com?subject=Partenariat%20Shinkat%C3%B4">Devenir partenaire</a>
+          <p class="partners-note">Déjà partenaire ? Votre tableau de bord vous est fourni avec vos identifiants.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <img src="assets/logo_blanc.png" alt="Shinkatô" class="footer-logo">
+    <p class="footer-tagline">Deviens le héros de ton évolution.</p>
+    <p class="footer-meta">
+      <a href="mailto:shinkato.contact@gmail.com">shinkato.contact@gmail.com</a>
+      <span aria-hidden="true">·</span>
+      © 2026 Shinkatô — Tous droits réservés
+    </p>
+  </footer>
+
+  <!-- ===================== ANIMATION DE RAMASSAGE =====================
+       Mêmes frames que l'app (assets/images/animation) : coffre qui s'ouvre,
+       parchemin qu'on ramasse, baies qu'on mange. Les frames sont EMPILÉES et
+       on ne fait varier que leur opacité — changer le src à chaque frame
+       provoque un flash le temps du décodage. -->
+  <div class="sprite-layer" id="sprite-layer" hidden aria-hidden="true">
+    <div class="sprite-stage" id="sprite-stage"></div>
+  </div>
+
+  <!-- ===================== ILLUSTRATION DU PARCHEMIN =====================
+       La scène du parchemin « L'Appel » : elle s'affiche 2 s À LA FIN DE LA LECTURE
+       (une fois la dernière scène fermée), puis s'efface. Elle illustre ce qu'on vient
+       de lire — la montrer avant éventerait la chute du récit. -->
+  <div class="story-splash" id="story-splash" hidden aria-hidden="true">
+    <img src="assets/kaen_site.png" alt="Kaen saisit la lame dans le sanctuaire">
+  </div>
+
+  <!-- ===================== PARCHEMIN D'HISTOIRE ===================== -->
+  <!-- Lecture scène par scène du premier parchemin du jeu (story_01 — « L'Appel »).
+       Même grammaire que l'app : papier crème, portrait + plaque du nom, mot en rouge. -->
+  <div class="scroll-layer" id="scroll-layer" hidden>
+    <div class="scroll-scrim" id="scroll-scrim"></div>
+    <div class="scroll-card" role="dialog" aria-modal="true" aria-labelledby="scroll-title">
+      <div class="scroll-head">
+        <img src="assets/quest.png" alt="" class="scroll-icon">
+        <div>
+          <p class="scroll-kicker">Parchemin d'histoire</p>
+          <h3 class="scroll-title" id="scroll-title">L'Appel</h3>
+        </div>
+        <button type="button" class="scroll-close" id="scroll-close" aria-label="Fermer le parchemin">✕</button>
+      </div>
+
+      <div class="scroll-portrait-col" id="scroll-portrait-col" hidden>
+        <img src="assets/kaen.png" alt="" class="scroll-portrait" id="scroll-portrait">
+        <span class="scroll-plate" id="scroll-speaker">KAEN</span>
+      </div>
+
+      <div class="scroll-panel">
+        <p class="scroll-text" id="scroll-text"></p>
+      </div>
+
+      <div class="scroll-dots" id="scroll-dots" aria-hidden="true"></div>
+      <button type="button" class="btn btn-red" id="scroll-next">Suivant</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

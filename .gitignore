@@ -1,0 +1,18 @@
+# Outils locaux — non publiés
+_audit.js
+
+# Systèmes
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+
+# ⚠️ NE RIEN AJOUTER D'AUTRE ICI SANS RÉFLÉCHIR.
+# Ce dépôt EST le site publié : tout fichier ignoré ici est un fichier absent en ligne.
+# C'est exactement le piège qui a motivé la création de ce dépôt — dans l'ancien, plus de
+# la moitié des assets (vidéo de fond, animations, visuels de combat) n'étaient pas suivis
+# par git, et un déploiement aurait donné une page trouée.
+# Après toute modification : `node _audit.js` doit afficher « aucune référence cassée ».
