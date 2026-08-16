@@ -130,10 +130,20 @@ la suite naturelle. Même logique d'objet fixe pour le tri.
 | CGU | Facultatif pour un site vitrine. Utile pour l'application elle-même. |
 | Bandeau cookies | **Non** — le site ne dépose aucun cookie et n'utilise aucun traceur. |
 
-🔴 **`mentions-legales.html` contient un bloc « À compléter » encadré de rouge.** L'identité
-de l'éditeur (particulier ou entreprise, avec SIREN le cas échéant) ne peut être renseignée
-que par toi. **Tant que ce bloc est visible en ligne, les mentions légales ne sont pas
-conformes.** Il est volontairement voyant pour qu'on ne l'oublie pas.
+Les deux pages sont **complètes**, en régime professionnel : l'éditeur est une entreprise
+individuelle active (Tristan GONCALVES, EI, nom commercial Shinkatô, SIREN 942 998 972).
+
+Pourquoi le régime professionnel et non le régime « non professionnel » — qui aurait permis
+de ne publier que l'hébergeur : l'entreprise est active, porte le nom Shinkatô, et le site
+démarche des marques pour des partenariats. Le régime allégé n'aurait pas tenu, et l'écart
+de sanction est de 1 an d'emprisonnement et 75 000 € d'amende.
+
+🟠 **Deux données sensibles y figurent, parce que la loi les impose :**
+l'adresse du siège — qui est le **domicile personnel** de l'éditeur — et un **numéro de
+mobile personnel**. Les deux sont déjà publics via l'INSEE (diffusion commerciale activée),
+mais les publier sur un site les rend indexables par les moteurs de recherche.
+Alternatives si cela pose problème : une société de domiciliation pour l'adresse, un second
+numéro dédié pour le téléphone. À trancher **avant** de rendre le dépôt public.
 
 L'hébergeur est déjà renseigné : GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco.
 
@@ -200,7 +210,8 @@ ne manque. À supprimer quand tu auras confirmé qu'aucune évolution prévue ne
       elle, le visiteur atterrit sur la page générique de FormSubmit.
 - [ ] **Renseigner les liens des stores** dans `#telecharger` (`index.html` ~ligne 353).
       Le texte dit « arrive bientôt sur Google Play et l'App Store ». À reprendre au lancement.
-- [ ] **Compléter le bloc « éditeur » des mentions légales** (encadré rouge). Obligatoire.
+- [ ] **Confirmer l'adresse et le téléphone publiés** dans les mentions légales : ce sont
+      aujourd'hui le domicile et le mobile personnels de l'éditeur (cf. §4 ter).
 - [ ] Décider pour les polices (section 5). Si elles passent en local, supprimer le
       paragraphe Google Fonts de `confidentialite.html`.
 - [ ] Vérifier le lien du tableau de bord partenaire (section `#partenaires`).

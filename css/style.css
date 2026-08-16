@@ -2044,14 +2044,37 @@ a { color: inherit; }
 .legal-list { margin: 0 0 14px 20px; color: var(--blanc-60); line-height: 1.68; }
 .legal-list li { margin-bottom: 10px; }
 
-/* Bloc « à compléter » : volontairement voyant. Tant qu'il est visible en ligne,
-   les mentions légales ne sont pas conformes. */
-.legal-todo {
-  background: rgba(173, 25, 25, 0.14);
-  border: 1px dashed var(--rouge);
-  border-radius: 4px;
-  padding: 16px 18px;
-  color: var(--blanc) !important;
+/* Tableau des durées de conservation (politique de confidentialité). */
+.legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 6px 0 18px;
+  font-size: 0.94rem;
+  color: var(--blanc-60);
+}
+
+.legal-table th,
+.legal-table td {
+  border: 1px solid var(--bordure);
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.legal-table th {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  background: rgba(242, 205, 15, 0.05);
+}
+
+/* Le tableau déborderait sur un téléphone : on le laisse défiler seul. */
+@media (max-width: 620px) {
+  .legal-table { display: block; overflow-x: auto; white-space: nowrap; }
 }
 
 /* ---------- Reveal au scroll ---------- */
