@@ -1926,7 +1926,7 @@ a { color: inherit; }
 .partners-form .cta-form-label { margin-top: 18px; }
 .partners-form .cta-form-label:first-of-type { margin-top: 0; }
 .partners-form .cta-input { width: 100%; }
-.partners-form .btn { margin-top: 22px; align-self: flex-start; cursor: pointer; }
+.partners-form .btn { margin-top: 22px; align-self: center; cursor: pointer; }
 
 .cta-form-note {
   margin-top: 14px;
