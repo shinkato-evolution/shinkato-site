@@ -281,7 +281,11 @@ a { color: inherit; }
   text-decoration: none;
 }
 
-.nav-logo { width: 40px; height: auto; }
+.nav-logo {
+  width: 40px;
+  height: auto;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
 
 .nav-wordmark {
   font-family: var(--font-epic);
@@ -289,6 +293,28 @@ a { color: inherit; }
   font-size: 1.15rem;
   letter-spacing: 0.32em;
   color: var(--blanc);
+  transition: color 0.25s ease, letter-spacing 0.25s ease;
+}
+
+/* Survol de la marque : l'emblème s'allume et le mot s'ouvre légèrement.
+   Sans ça, le seul élément cliquable du header sans réaction — on doutait
+   qu'il le soit. L'espacement des lettres bouge de 0.32 à 0.35em : perceptible,
+   jamais assez pour décaler la mise en page voisine. */
+.nav-brand:hover .nav-logo {
+  transform: scale(1.08) rotate(-4deg);
+  filter: drop-shadow(0 0 10px rgba(242, 205, 15, 0.55));
+}
+
+.nav-brand:hover .nav-wordmark {
+  color: var(--jaune);
+  letter-spacing: 0.35em;
+}
+
+/* Repère clavier : la marque doit rester atteignable sans souris. */
+.nav-brand:focus-visible {
+  outline: 2px solid var(--jaune);
+  outline-offset: 6px;
+  border-radius: 3px;
 }
 
 .nav-links { display: flex; gap: 32px; }
@@ -1841,7 +1867,7 @@ a { color: inherit; }
 
 /* ---------- Formulaire « Être prévenu au lancement » ---------- */
 
-.cta-form { margin: 36px auto 0; max-width: 620px; }
+.cta-form { margin: 36px auto 0; max-width: 720px; }
 
 .cta-form-label {
   display: block;
@@ -1861,12 +1887,13 @@ a { color: inherit; }
   flex: 1 1 auto;
   min-width: 0;                       /* sinon le champ refuse de se réduire en flex */
   font-family: var(--font-ui);
-  font-size: 1rem;
+  font-size: 1.08rem;
   color: var(--blanc);
   background: rgba(20, 16, 10, 0.72);
   border: 1px solid var(--bordure);
   border-radius: 4px;
-  padding: 15px 18px;
+  padding: 19px 22px;                 /* champ volontairement généreux : c'est LE geste
+                                         qu'on demande au visiteur, il doit se voir */
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1893,6 +1920,13 @@ a { color: inherit; }
   opacity: 0;
   pointer-events: none;
 }
+
+/* Formulaire partenaire : champs empilés (deux informations à saisir, pas une). */
+.partners-form { display: flex; flex-direction: column; gap: 0; }
+.partners-form .cta-form-label { margin-top: 18px; }
+.partners-form .cta-form-label:first-of-type { margin-top: 0; }
+.partners-form .cta-input { width: 100%; }
+.partners-form .btn { margin-top: 22px; align-self: flex-start; cursor: pointer; }
 
 .cta-form-note {
   margin-top: 14px;
@@ -1967,6 +2001,59 @@ a { color: inherit; }
 .footer-meta a:hover { color: var(--jaune); }
 .footer-meta span { margin: 0 10px; }
 
+/* ---------- Pages légales (mentions, confidentialité) ---------- */
+
+.legal-wrap { max-width: 780px; margin: 0 auto; padding: 130px 5vw 90px; }
+
+.legal-title {
+  font-family: var(--font-epic);
+  font-weight: 900;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--jaune);
+}
+
+.legal-updated { margin-top: 10px; font-size: 0.86rem; color: var(--blanc-40); }
+
+.legal-intro {
+  margin-top: 26px;
+  font-size: 1.06rem;
+  line-height: 1.65;
+  color: var(--blanc);
+  border-left: 3px solid var(--rouge);
+  padding-left: 18px;
+}
+
+.legal-section { margin-top: 42px; }
+
+.legal-section h2 {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  margin-bottom: 14px;
+}
+
+.legal-section p { color: var(--blanc-60); line-height: 1.68; margin-bottom: 14px; }
+.legal-section a { color: var(--jaune-dim); }
+.legal-section a:hover { color: var(--jaune); }
+
+.legal-list { margin: 0 0 14px 20px; color: var(--blanc-60); line-height: 1.68; }
+.legal-list li { margin-bottom: 10px; }
+
+/* Bloc « à compléter » : volontairement voyant. Tant qu'il est visible en ligne,
+   les mentions légales ne sont pas conformes. */
+.legal-todo {
+  background: rgba(173, 25, 25, 0.14);
+  border: 1px dashed var(--rouge);
+  border-radius: 4px;
+  padding: 16px 18px;
+  color: var(--blanc) !important;
+}
+
 /* ---------- Reveal au scroll ---------- */
 
 .reveal {
@@ -1990,7 +2077,8 @@ a { color: inherit; }
   .terr-hex.is-frontier { filter: brightness(0.95); }
   .fight-slash::before { animation-duration: 0.05s; }
   .float-reward, .dmg-star { animation-duration: 0.01s; }
-  .btn, .voie-card, .tanto-premier, .terr-hex { transition: none; }
+  .btn, .voie-card, .tanto-premier, .terr-hex,
+  .nav-logo, .nav-wordmark, .cta-input { transition: none; }
 }
 
 /* ---------- Responsive ---------- */

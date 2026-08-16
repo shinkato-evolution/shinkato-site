@@ -120,6 +120,23 @@ Le bouton **« Devenir partenaire »** (section `#partenaires`) reste un `mailto
 `Devenir partenaire` — volume attendu faible, et un échange par mail est de toute façon
 la suite naturelle. Même logique d'objet fixe pour le tri.
 
+## 4 ter. Pages légales
+
+| Page | Obligatoire ? |
+|---|---|
+| `mentions-legales.html` | **OUI** — loi LCEN art. 6-III, pour tout site accessible au public, commercial ou non. |
+| `confidentialite.html` | **OUI** depuis l'ajout des formulaires : dès qu'on collecte une donnée personnelle, le RGPD impose d'informer. |
+| CGV | **Non** — elles n'existent qu'en cas de vente. À créer le jour où l'app vendra quelque chose. |
+| CGU | Facultatif pour un site vitrine. Utile pour l'application elle-même. |
+| Bandeau cookies | **Non** — le site ne dépose aucun cookie et n'utilise aucun traceur. |
+
+🔴 **`mentions-legales.html` contient un bloc « À compléter » encadré de rouge.** L'identité
+de l'éditeur (particulier ou entreprise, avec SIREN le cas échéant) ne peut être renseignée
+que par toi. **Tant que ce bloc est visible en ligne, les mentions légales ne sont pas
+conformes.** Il est volontairement voyant pour qu'on ne l'oublie pas.
+
+L'hébergeur est déjà renseigné : GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco.
+
 ## 5. Dépendances externes
 
 **Une seule** : les polices Google Fonts, chargées dans `index.html` —
@@ -183,7 +200,9 @@ ne manque. À supprimer quand tu auras confirmé qu'aucune évolution prévue ne
       elle, le visiteur atterrit sur la page générique de FormSubmit.
 - [ ] **Renseigner les liens des stores** dans `#telecharger` (`index.html` ~ligne 353).
       Le texte dit « arrive bientôt sur Google Play et l'App Store ». À reprendre au lancement.
-- [ ] Décider pour les polices (section 5).
+- [ ] **Compléter le bloc « éditeur » des mentions légales** (encadré rouge). Obligatoire.
+- [ ] Décider pour les polices (section 5). Si elles passent en local, supprimer le
+      paragraphe Google Fonts de `confidentialite.html`.
 - [ ] Vérifier le lien du tableau de bord partenaire (section `#partenaires`).
 - [ ] Ajouter les métadonnées de partage (`og:image`, `og:title`) — un des panneaux de
       `store-assets/out/` ferait une excellente image de partage.

@@ -354,8 +354,8 @@
     <img src="assets/logo_blanc.png" alt="" class="cta-emblem" aria-hidden="true">
     <h2 class="cta-title">Ton histoire commence ici</h2>
     <p class="cta-sub">
-      Shinkatô arrive bientôt sur Google Play et l'App Store.<br>
-      Sois parmi les premiers héros à ouvrir le Chapitre I.
+      Shinkatô est bientôt disponible sur les stores.<br>
+      Sois parmi les premiers héros à commencer ton histoire.
     </p>
     <!-- Inscription à l'annonce de sortie.
          Pourquoi un formulaire et plus un simple `mailto:` : le lien mailto ouvre le
@@ -412,7 +412,31 @@
           bord dédié suit vos quêtes, vos trophées et vos retombées.
         </p>
         <div class="partners-actions">
-          <a class="btn btn-red" href="mailto:shinkato.contact@gmail.com?subject=Devenir%20partenaire">Devenir partenaire</a>
+          <!-- Même raison que le formulaire de lancement : le `mailto:` d'avant ne
+               déclenchait RIEN chez un visiteur sans logiciel de messagerie configuré —
+               cas très courant sur ordinateur. Un partenaire perdu ne revient pas. -->
+          <form class="partners-form" action="https://formsubmit.co/shinkato.contact@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Devenir partenaire">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" class="cta-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <!-- ⚠️ Le jour de la mise en ligne, ajouter comme sur l'autre formulaire :
+                 <input type="hidden" name="_next" value="https://TON-DOMAINE/merci.html"> -->
+
+            <label class="cta-form-label" for="partenaire-marque">Votre marque</label>
+            <input class="cta-input" type="text" id="partenaire-marque" name="marque"
+                   placeholder="Nom de votre marque" required autocomplete="organization">
+
+            <label class="cta-form-label" for="partenaire-email">Votre adresse e-mail</label>
+            <input class="cta-input" type="email" id="partenaire-email" name="email"
+                   placeholder="contact@votremarque.com" required autocomplete="email">
+
+            <button class="btn btn-red" type="submit">Devenir partenaire</button>
+            <p class="cta-form-note">
+              Vos informations ne servent qu'à vous recontacter au sujet d'un partenariat.
+              Aucun partage, aucune newsletter.
+            </p>
+          </form>
           <p class="partners-note">Déjà partenaire ? Votre tableau de bord vous est fourni avec vos identifiants.</p>
         </div>
       </div>
@@ -425,6 +449,10 @@
     <p class="footer-tagline">Deviens le héros de ton évolution.</p>
     <p class="footer-meta">
       <a href="mailto:shinkato.contact@gmail.com">shinkato.contact@gmail.com</a>
+      <span aria-hidden="true">·</span>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <span aria-hidden="true">·</span>
+      <a href="confidentialite.html">Confidentialité</a>
       <span aria-hidden="true">·</span>
       © 2026 Shinkatô — Tous droits réservés
     </p>
