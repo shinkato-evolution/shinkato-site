@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Gabarit de l'image de partage</title>
+<!-- ============================================================
+     GABARIT DE L'IMAGE DE PARTAGE (1200 × 630)
+     C'est l'image qui s'affiche quand quelqu'un colle le lien du site sur
+     WhatsApp, LinkedIn, Instagram, Discord, Slack…
+     Régénération : voir GUIDE.md § Image de partage.
+     ============================================================ -->
+<link rel="stylesheet" href="css/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: #1d1d1d; }
+
+  .carte {
+    position: relative;
+    width: 1200px; height: 630px;
+    background: url('assets/video/shinkato_scroll_poster.jpg') center 38% / cover no-repeat;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 88px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Voile : sans lui, le texte blanc se perd dans les lumières de la ville. */
+  .carte::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(100deg, rgba(15,13,10,0.94) 0%, rgba(15,13,10,0.86) 46%, rgba(15,13,10,0.45) 100%);
+  }
+
+  .contenu { position: relative; z-index: 1; max-width: 660px; }
+
+  .marque { display: flex; align-items: center; gap: 18px; margin-bottom: 34px; }
+  .marque img { width: 62px; }
+  .marque span {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 30px;
+    letter-spacing: 0.3em; color: #f0eeee;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif; font-weight: 900; font-size: 66px; line-height: 1.06;
+    color: #f0eeee; text-shadow: 0 4px 24px rgba(0,0,0,0.9);
+  }
+  h1 em { font-style: normal; color: #f2cd0f; display: block; }
+
+  .sous {
+    margin-top: 26px; font-size: 23px; line-height: 1.5;
+    color: rgba(240,238,238,0.95); max-width: 545px;
+  }
+
+  .ruban {
+    display: inline-block; margin-top: 34px;
+    background: #f2cd0f; color: #1d1d1d;
+    transform: skewX(-25deg); padding: 12px 34px;
+    box-shadow: 7px 7px 0 rgba(0,0,0,0.9);
+  }
+  .ruban span {
+    display: inline-block; transform: skewX(25deg);
+    font-weight: 900; font-size: 19px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+
+  /* Les héros à droite, en appui : ils disent « jeu » avant même qu'on lise. */
+  .heros { position: absolute; right: 26px; bottom: 0; z-index: 1; display: flex; align-items: flex-end; }
+  .heros img { height: 350px; filter: drop-shadow(0 8px 30px rgba(0,0,0,0.8)); }
+  .heros img:nth-child(1) { height: 265px; opacity: 0.85; margin-right: -70px; }
+  .heros img:nth-child(2) { height: 365px; }
+</style>
+</head>
+<body>
+  <div class="carte">
+    <div class="contenu">
+      <div class="marque">
+        <img src="assets/logo_blanc.png" alt="">
+        <span>SHINKATÔ</span>
+      </div>
+      <h1>Deviens le héros<em>de ton évolution</em></h1>
+      <p class="sous">
+        Tes vraies habitudes te renforcent, ton territoire s'étend,
+        et tes obstacles prennent forme — pour être affrontés.
+      </p>
+      <div class="ruban"><span>Essayer sans rien installer</span></div>
+    </div>
+    <div class="heros">
+      <img src="assets/character3.png" alt="">
+      <img src="assets/character1.png" alt="">
+    </div>
+  </div>
+</body>
+</html>

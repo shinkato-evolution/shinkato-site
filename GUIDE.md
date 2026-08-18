@@ -3,8 +3,10 @@
 Tout ce dont le site a besoin pour tourner, et rien d'autre. Ce dépôt est **autonome** :
 il ne dépend d'aucun autre dossier du projet, d'aucun serveur, d'aucune base de données.
 
-> **Statut au 16/08/2026** — le site est complet et prêt. GitHub Pages n'est **pas encore
-> activé** : on attend que les liens vers l'application existent (voir « Avant d'activer »).
+> **Statut au 16/08/2026** — le site est complet, conforme RGPD (aucune ressource tierce),
+> et **rien ne bloque plus la mise en ligne**. Reste à activer GitHub Pages (voir §8).
+> Les liens vers les stores viendront au lancement de l'application : le site sert d'abord
+> à récolter des adresses avant la sortie.
 
 ---
 
@@ -13,7 +15,7 @@ il ne dépend d'aucun autre dossier du projet, d'aucun serveur, d'aucune base de
 Une page unique (`index.html`), statique, en français. Pas de framework, pas de build,
 pas de `npm install`. On ouvre le fichier, ça marche.
 
-**96 fichiers, 13 Mo.** Aucun secret, aucune clé d'API : la démo jouable tourne sur des
+**100 fichiers, 12 Mo.** Aucun secret, aucune clé d'API : la démo jouable tourne sur des
 données écrites en dur dans `js/main.js`.
 
 ## 2. Structure
@@ -22,7 +24,7 @@ données écrites en dur dans `js/main.js`.
 index.html          la page entière (445 lignes)
 css/style.css       toute la mise en forme
 js/main.js          fond vidéo, territoire jouable, combat, parchemin (1149 lignes)
-assets/             96 fichiers — détail en section 4
+assets/             les images, la vidéo, les polices — détail en section 4
 GUIDE.md            ce document
 _audit.js           vérificateur d'intégrité (non publié)
 ```
@@ -32,13 +34,14 @@ _audit.js           vérificateur d'intégrité (non publié)
 | Ancre | Contenu |
 |---|---|
 | `#hero` | Titre, tagline, fond vidéo piloté par le scroll |
-| `#voies` | Les six disciplines |
+| `#voies` | Les trois voies : se renforcer, affronter ses ombres, étendre son territoire (dans cet ordre — le combat au milieu) |
 | `#territoire` | Territoire hexagonal **jouable** (investir des PM, révéler une case) |
 | `#combat` | Battle de phrases contre TAMERAI — La Peur de se lancer |
 | `#progression` | Niveaux, séries, régularité |
 | `#kaen` | Le personnage et le lore |
 | `#telecharger` | **Appel à l'action — c'est ici que vont les liens des stores** |
 | `#partenaires` | Offre marques + lien vers le tableau de bord partenaire |
+| *(bas de page)* | Réseaux sociaux (Instagram, TikTok) puis pied de page |
 
 ## 4. Les assets, par usage
 
@@ -206,17 +209,43 @@ L'hébergeur est déjà renseigné : GitHub, Inc., 88 Colin P. Kelly Jr. Street,
 
 ## 5. Dépendances externes
 
-**Une seule** : les polices Google Fonts, chargées dans `index.html` —
-**Cinzel** (600/700/900) et **Montserrat** (400 à 900 + italique).
+**Aucune.** Le site ne charge pas une seule ressource depuis un autre domaine : pas de
+jQuery, pas d'analytics, pas de cookies, pas de tracker, et **plus de Google Fonts**.
 
-> ⚠️ **À décider avant la mise en ligne.** Google Fonts en CDN envoie l'adresse IP de
-> chaque visiteur à Google. En France et dans l'UE, plusieurs décisions de justice ont
-> jugé cela non conforme au RGPD sans consentement. **Héberger les deux polices en local**
-> (les `.ttf` sont déjà dans `application_shinkato/node_modules/@expo-google-fonts/`)
-> supprime le problème, retire une dépendance réseau et accélère le premier affichage.
-> Une demi-heure de travail, à faire avant de communiquer l'adresse.
+### Polices — hébergées en local depuis le 16/08/2026
 
-Aucune autre dépendance : pas de jQuery, pas d'analytics, pas de cookies, pas de tracker.
+**Cinzel** (600/700/900) et **Montserrat** (400, 600, 700, 900 + 400 italique) sont servies
+par notre propre hébergement, depuis `assets/fonts/`. Le `@font-face` vit dans
+`css/fonts.css`, chargé avant `css/style.css` dans les trois pages.
+
+**Pourquoi on a quitté le CDN Google.** C'était le réglage par défaut : Google Fonts donne
+une balise `<link>` à copier-coller, tout le monde fait ça, et ça marche. Le problème n'est
+pas technique — il est juridique. Chaque visiteur qui ouvre la page va chercher la police
+sur `fonts.gstatic.com`, ce qui **transmet son adresse IP à Google sans son accord**. Un
+tribunal allemand (Munich, janvier 2022) a condamné un site sur ce seul motif, et la CNIL
+tient la même ligne. Sans bandeau de consentement, c'était une infraction — pour un gain
+nul, puisque les polices tiennent en 243 Ko.
+
+**Ce que ça change en mieux :** zéro requête sortante, premier affichage plus rapide (plus
+de résolution DNS ni de connexion TLS vers deux domaines tiers), et le site fonctionne même
+si Google est bloqué ou en panne.
+
+**Poids :** 8 fichiers `.woff2`, 243 Ko au total, sous-ensemble « latin » (il couvre le
+français : é à ç ù ô œ €). Les poids inutilisés ont été écartés — le CSS n'emploie que
+600, 700, 900 et le 400 par défaut.
+
+**Régénérer les polices** (ajouter une graisse, mettre à jour une version) :
+
+```bash
+node _fonts.js     # télécharge les .woff2 et réécrit css/fonts.css
+```
+
+Modifier la constante `URL_CSS` en tête du fichier pour changer la liste des graisses.
+C'est le **seul** moment où le projet parle à Google : au téléchargement, sur ta machine,
+jamais chez le visiteur.
+
+⚠️ Les `.ttf` de `@expo-google-fonts` n'ont pas été repris : ils ne contiennent que
+Montserrat (pas Cinzel) et pèsent 5 à 6 fois plus lourd que le `.woff2` équivalent.
 
 ## 6. Travailler sur le site
 
@@ -244,17 +273,34 @@ vitrine le premier affichage compte.
 |---|---|---|
 | `assets/video/shinkato_scroll.mp4` | 5,26 Mo | Ré-encoder en H.264 CRF 28, ou proposer une version courte sur mobile |
 | `assets/kaen_site.png` | 1,36 Mo | PNG sans transparence → **JPEG qualité 88 ≈ 150 Ko** |
-| `assets/cosmos.png` | 0,67 Mo | Idem — et il n'est **plus appelé** (voir ci-dessous) |
 
-**15 fichiers ne sont appelés nulle part** (1 380 Ko) — vestiges d'anciennes versions :
+✅ **Nettoyage fait le 16/08/2026** : les **15 fichiers qui n'étaient appelés nulle part**
+(1 380 Ko — `cosmos.png`, `door.png`, `fire.png`, `glyph_img.png`, `open_chest.png` et les
+10 `tile_*.png`) ont été supprimés. `node _audit.js` affiche désormais
+`fichiers vraiment jamais appelés (0)`. Ils restent récupérables dans l'historique git.
 
+## 7 bis. Image de partage — `_og.html`
+
+L'image qui s'affiche quand le lien est collé sur WhatsApp, LinkedIn, Discord, Instagram…
+Sans elle, le lien apparaît **nu**, et c'est elle qui décide si on clique.
+
+- **Le résultat** : `assets/og-cover.png`, 1200 × 630 (le format attendu par tous les réseaux).
+- **Le gabarit** : `_og.html`, une page HTML autonome qui compose la carte à partir des
+  assets du site (affiche vidéo en fond, logo, personnages).
+- **Régénérer** après un changement de titre ou de visuel :
+
+```bash
+"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --disable-gpu \
+  --hide-scrollbars --window-size=1200,630 --virtual-time-budget=6000 \
+  --screenshot="assets/og-cover.png" "file:///C:/Users/gonca/Desktop/shinkato-site/_og.html"
 ```
-assets/cosmos.png        assets/door.png          assets/fire.png
-assets/glyph_img.png     assets/open_chest.png    assets/tile_*.png (10 fichiers)
-```
 
-Ils sont **conservés volontairement** dans ce premier dépôt : la consigne était que rien
-ne manque. À supprimer quand tu auras confirmé qu'aucune évolution prévue ne les réclame.
+⚠️ **Les balises `og:` exigent des URL absolues** — un chemin relatif est ignoré par les
+robots des réseaux. Elles pointent aujourd'hui sur l'adresse GitHub Pages : au branchement
+du nom de domaine, remplacer les `https://…` en tête d'`index.html`.
+
+💡 Après mise en ligne, forcer la relecture chez Facebook/LinkedIn via leurs outils de
+débogage de partage : les deux gardent l'ancienne version en cache pendant des semaines.
 
 ## 8. Avant d'activer GitHub Pages
 
@@ -262,12 +308,29 @@ ne manque. À supprimer quand tu auras confirmé qu'aucune évolution prévue ne
       Rien à activer, rien à reconfigurer au changement de domaine : l'envoi ne dépend
       ni de l'origine de la page ni du domaine. ⚠️ Refaire malgré tout **un** essai
       après la mise en ligne, par principe.
+- [x] ~~**Polices**~~ — ✅ **passées en hébergement local le 16/08/2026** (section 5).
+      Le paragraphe Google Fonts de `confidentialite.html` a été remplacé, et la liste des
+      prestataires y a été corrigée (FormSubmit → Supabase + Resend).
+- [x] ~~**Image de partage (og:)**~~ — ✅ **faite le 16/08/2026** (section 7 bis).
+      ⚠️ Les URL absolues sont à repasser sur le vrai domaine le jour du branchement.
+- [x] ~~**Structure des titres**~~ — ✅ **corrigée le 16/08/2026** : les titres de section
+      étaient des `<div>`, Google ne voyait qu'un `h1` et un `h2` sur toute la page. Ils sont
+      désormais en `<h2>` (1 `h1`, 6 `h2`, 7 `h3`, 3 `h4`). Aucun changement visuel.
+- [x] ~~**Page 404**~~ — ✅ **créée le 16/08/2026** (`404.html`, servie automatiquement par
+      GitHub Pages). ⚠️ Ses chemins sont relatifs : à passer en absolus le jour où un
+      sous-dossier existera (`/blog/`).
+- [x] ~~**Réseaux sociaux**~~ — ✅ **ajoutés le 16/08/2026** au-dessus du pied de page des
+      4 pages : Instagram et TikTok, icônes dessinées en SVG dans la page (aucun fichier,
+      aucune requête tierce).
+- [ ] **`robots.txt` + `sitemap.xml`** — 2 minutes, mais ils exigent le domaine définitif
+      (un sitemap qui annonce de mauvaises URL est pire que pas de sitemap). À faire au
+      moment du branchement du domaine.
 - [ ] **Renseigner les liens des stores** dans `#telecharger` (`index.html` ~ligne 353).
-      Le texte dit « arrive bientôt sur Google Play et l'App Store ». À reprendre au lancement.
-- [ ] **Confirmer l'adresse et le téléphone publiés** dans les mentions légales : ce sont
-      aujourd'hui le domicile et le mobile personnels de l'éditeur (cf. §4 ter).
-- [ ] Décider pour les polices (section 5). Si elles passent en local, supprimer le
-      paragraphe Google Fonts de `confidentialite.html`.
+      Le texte dit « arrive bientôt sur Google Play et l'App Store ». **Décision du
+      16/08/2026 : on publie sans.** Le site sert à récolter des adresses avant la sortie ;
+      les liens arriveront au lancement.
+- [x] ~~**Adresse et téléphone des mentions légales**~~ — ✅ **assumés par l'éditeur**
+      (décision du 16/08/2026, cf. §4 ter). Rien à changer.
 - [ ] Vérifier le lien du tableau de bord partenaire (section `#partenaires`).
 - [ ] Ajouter les métadonnées de partage (`og:image`, `og:title`) — un des panneaux de
       `store-assets/out/` ferait une excellente image de partage.

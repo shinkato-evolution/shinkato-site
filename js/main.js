@@ -1179,4 +1179,56 @@
   } else {
     revealables.forEach(function (el) { el.classList.add('visible'); });
   }
+
+  /* =========================================================
+     PARTIE 5 — Menu replié (téléphone)
+
+     La barre collante occupait 122 px sur téléphone parce que les quatre liens
+     passaient à la ligne. Ils vivent maintenant dans un panneau qu'on ouvre.
+
+     Ce que ce bloc doit garantir, au-delà de l'ouverture :
+       • `aria-expanded` suit l'état réel — c'est la seule chose qu'un lecteur
+         d'écran entend ;
+       • le menu se referme après un clic sur un lien, sinon il masque la section
+         vers laquelle on vient de sauter ;
+       • Échap referme et rend le focus au bouton, sinon le clavier reste piégé ;
+       • un retour en grand écran referme aussi : le panneau n'existe plus en CSS
+         au-delà de 860 px, un état « ouvert » oublié rouvrirait au redimensionnement.
+     ========================================================= */
+
+  var burger = document.getElementById('nav-burger');
+  var menu = document.getElementById('nav-menu');
+
+  if (burger && menu) {
+    var basculerMenu = function (ouvrir) {
+      menu.classList.toggle('is-open', ouvrir);
+      burger.setAttribute('aria-expanded', ouvrir ? 'true' : 'false');
+      burger.setAttribute('aria-label', ouvrir ? 'Fermer le menu' : 'Ouvrir le menu');
+    };
+
+    var menuOuvert = function () { return menu.classList.contains('is-open'); };
+
+    burger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      basculerMenu(!menuOuvert());
+    });
+
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') basculerMenu(false);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (menuOuvert() && !menu.contains(e.target) && !burger.contains(e.target)) {
+        basculerMenu(false);
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menuOuvert()) { basculerMenu(false); burger.focus(); }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 860 && menuOuvert()) basculerMenu(false);
+    });
+  }
 })();

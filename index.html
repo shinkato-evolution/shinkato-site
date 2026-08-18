@@ -4,11 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shinkatô — Deviens le héros de ton évolution</title>
-  <meta name="description" content="Shinkatô transforme ta vraie vie en RPG : tes habitudes te renforcent, ton territoire s'étend case par case, et tes obstacles prennent forme pour être affrontés.">
+  <meta name="description" content="Shinkatô transforme ta vraie vie en RPG : tes habitudes te renforcent, ton territoire s'étend case par case, et tes obstacles prennent forme pour être affrontés. Essaie la carte et un combat directement sur la page, sans rien installer.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
+  <!-- ===== Image et texte de partage (Open Graph + Twitter) =====
+       C'est ce qui s'affiche quand le lien est collé sur WhatsApp, LinkedIn, Discord,
+       Instagram… Sans ces balises, le lien apparaît nu : ni image, ni titre.
+       ⚠️ Les URL doivent être ABSOLUES — un chemin relatif n'est pas suivi par les robots
+       des réseaux. Elles pointent aujourd'hui sur l'adresse GitHub Pages ; au branchement
+       du nom de domaine, remplacer les trois `https://…` ci-dessous (et rien d'autre).
+       Le gabarit de l'image est `_og.html`, régénérable — voir GUIDE.md. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shinkatô">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://shinkato-evolution.github.io/shinkato-site/">
+  <meta property="og:title" content="Shinkatô — Deviens le héros de ton évolution">
+  <meta property="og:description" content="Tes vraies habitudes te renforcent, ton territoire s'étend, tes obstacles prennent forme — pour être affrontés. Essaie la carte et un combat sur la page, sans rien installer.">
+  <meta property="og:image" content="https://shinkato-evolution.github.io/shinkato-site/assets/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Shinkatô — Deviens le héros de ton évolution">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shinkatô — Deviens le héros de ton évolution">
+  <meta name="twitter:description" content="Tes vraies habitudes te renforcent, ton territoire s'étend, tes obstacles prennent forme — pour être affrontés. Essaie le jeu sans rien installer.">
+  <meta name="twitter:image" content="https://shinkato-evolution.github.io/shinkato-site/assets/og-cover.png">
+  <!-- Polices servies par NOTRE hébergement, jamais par le CDN Google : aucune adresse IP
+       de visiteur ne part chez un tiers (RGPD). Voir css/fonts.css. -->
+  <link rel="preload" href="assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/cinzel-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -31,13 +55,27 @@
       <img src="assets/logo_blanc.png" alt="Emblème Shinkatô" class="nav-logo">
       <span class="nav-wordmark">SHINKATÔ</span>
     </a>
-    <nav class="nav-links" aria-label="Navigation principale">
-      <a href="#voies">Les trois voies</a>
-      <a href="#territoire">Territoire</a>
-      <a href="#combat">Combat</a>
+    <!-- Libellés : ce sont des INVITATIONS, pas une table des matières. « Territoire » et
+         « Combat » nommaient des mécaniques que le visiteur ne connaît pas encore ; les
+         verbes disent ce qu'il peut faire, tout de suite, sans rien installer.
+         ⚠️ « Obstacle » et pas « Écho » : le vocabulaire de l'univers est un atout, mais il
+         se GAGNE. Ici on arrive de nulle part, « écho » ne veut encore rien dire ; le mot est
+         appris dans la section elle-même, et réutilisé partout ensuite. -->
+    <nav class="nav-links" id="nav-menu" aria-label="Navigation principale">
+      <a href="#voies">Le jeu</a>
+      <a href="#territoire">Essayer la carte</a>
+      <a href="#combat">Affronter un obstacle</a>
       <a href="#partenaires">Partenaires</a>
     </nav>
     <a href="#telecharger" class="btn btn-yellow btn-small">Rejoindre l'aventure</a>
+    <!-- Menu replié : visible sur téléphone uniquement. Sur grand écran les quatre liens
+         tiennent sur la ligne, le bouton est masqué en CSS. `aria-expanded` est la seule
+         information qu'un lecteur d'écran reçoit sur l'état ouvert/fermé — il doit donc
+         être tenu à jour par le JS, pas seulement la classe. -->
+    <button class="nav-burger" id="nav-burger" type="button"
+            aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <!-- ===================== HERO ===================== -->
@@ -49,12 +87,13 @@
         <span class="hero-title-accent">de ton évolution</span>
       </h1>
       <p class="hero-sub">
-        Shinkatô transforme ta vraie vie en RPG. Tes habitudes te renforcent jour après jour,
-        ton territoire s'étend case après case, et tes obstacles prennent forme — pour être affrontés.
+        Tu as déjà tenu une habitude quelques semaines, puis tout est retombé.
+        Ici, rien ne retombe. Shinkatô transforme ta vraie vie en aventure : chaque effort
+        réel te renforce, fait reculer tes ombres et étend ton territoire.
       </p>
       <div class="hero-ctas">
-        <a href="#territoire" class="btn btn-yellow">Essayer maintenant</a>
-        <a href="#voies" class="btn btn-ghost">Découvrir le jeu</a>
+        <a href="#territoire" class="btn btn-yellow">Essayer sans rien installer</a>
+        <a href="#voies" class="btn btn-ghost">Comment ça marche</a>
       </div>
       <p class="hero-note">Pas de punition. Pas de série perdue. Chaque pas en avant reste acquis.</p>
     </div>
@@ -64,43 +103,45 @@
   <!-- ===================== LES 3 VOIES ===================== -->
   <section class="section" id="voies">
     <div class="section-head">
-      <div class="plate plate-yellow"><span>Les trois voies</span></div>
+      <h2 class="plate plate-yellow"><span>Comment ça marche ?</span></h2>
       <p class="section-lead">
-        La vie ne se résume pas à cocher des cases. Elle se construit, elle s'étend, elle s'affronte.
-        Shinkatô repose sur trois piliers indissociables — et tu peux les essayer ici même.
+        La vie ne se résume pas à cocher des cases. Elle se construit, elle s'affronte, elle s'étend.
+        Shinkatô repose sur ces trois voies — et tu peux les essayer ici même, sur cette page.
       </p>
     </div>
 
+    <!-- Ordre voulu : on se renforce, on affronte, puis on gagne du terrain. Le combat est
+         au MILIEU — c'est le moment le plus fort des trois, et il tient mieux entouré. -->
     <div class="voies-grid">
       <article class="voie-card reveal">
         <div class="hex voie-visual"><img src="assets/PM.png" alt="Point de Maîtrise"></div>
         <h3 class="voie-title">Se renforcer</h3>
         <p class="voie-body">
-          De petites habitudes, répétées sans pression, forgent de grandes transformations.
-          Chaque habitude validée dans la vraie vie te rapporte des <b>Points de Maîtrise</b> —
-          la seule monnaie du jeu.
+          Dix pompes. Un verre d'eau. Dix minutes de lecture. Chaque habitude tenue dans la vraie
+          vie te rapporte des <b>Points de Maîtrise</b> — la force avec laquelle tu joues.
+          Ton effort d'aujourd'hui devient ton pouvoir de demain.
         </p>
         <p class="voie-tag">Habitudes · Kaizen</p>
-      </article>
-      <article class="voie-card reveal">
-        <div class="hex voie-visual"><img src="assets/game/hex_grass.png" alt="Hexagone de territoire"></div>
-        <h3 class="voie-title">Étendre son territoire</h3>
-        <p class="voie-body">
-          Ta carte est une terre inconnue en nid d'abeilles. Tu investis tes PM sur un hexagone
-          voisin pour l'arracher à l'ombre — et découvrir ce qu'il cachait : coffre, parchemin,
-          relique… ou écho.
-        </p>
-        <p class="voie-tag">Territoire · Expansion</p>
       </article>
       <article class="voie-card reveal">
         <div class="hex voie-visual"><img src="assets/game/echo.png" alt="Écho, créature d'ombre"></div>
         <h3 class="voie-title">Affronter ses ombres</h3>
         <p class="voie-body">
-          Les Échos sont tes obstacles devenus créatures, et chacun porte un nom. On ne les
-          frappe pas d'abord : on leur <b>répond</b>. Le combat est un duel de phrases —
-          leurs pensées noires contre les tiennes.
+          « Tu n'y arriveras pas. » Cette phrase-là, tu la connais. Dans Shinkatô, l'obstacle
+          qui la murmure prend un corps et un nom : c'est un <b>Écho</b>. On ne le frappe pas
+          d'abord, on lui <b>répond</b> — un duel de phrases, les siennes contre les tiennes.
         </p>
         <p class="voie-tag">Échos · Duel verbal</p>
+      </article>
+      <article class="voie-card reveal">
+        <div class="hex voie-visual"><img src="assets/game/hex_grass.png" alt="Hexagone de territoire"></div>
+        <h3 class="voie-title">Étendre son territoire</h3>
+        <p class="voie-body">
+          Tes Points de Maîtrise achètent du terrain. Une case arrachée à l'ombre, puis une autre :
+          au bout de quelques semaines, ta carte montre noir sur or tout ce que tu as tenu.
+          Et sous chaque case, quelque chose t'attendait — coffre, parchemin, relique… ou écho.
+        </p>
+        <p class="voie-tag">Territoire · Expansion</p>
       </article>
     </div>
   </section>
@@ -108,10 +149,10 @@
   <!-- ===================== TERRITOIRE JOUABLE ===================== -->
   <section class="section" id="territoire">
     <div class="section-head">
-      <div class="plate plate-yellow"><span>Ton territoire</span></div>
+      <h2 class="plate plate-yellow"><span>Ton territoire</span></h2>
       <p class="section-lead">
-        Voilà la boucle du jeu, en vrai : tu valides une habitude, tu gagnes des PM,
-        tu les investis sur un hexagone. Vas-y — c'est jouable.
+        Voilà la boucle du jeu, en vrai : tu tiens une habitude, tu gagnes des PM, tu ouvres une case.<br>
+        Vas-y — c'est jouable ici même, rien à installer.
       </p>
     </div>
 
@@ -166,10 +207,16 @@
   <!-- ===================== COMBAT — TAMERAI ===================== -->
   <section class="section section-combat" id="combat">
     <div class="section-head">
-      <div class="plate plate-red"><span>L'écho de la semaine</span></div>
+      <h2 class="plate plate-red"><span>Affronter un obstacle</span></h2>
+      <!-- C'est ICI qu'on apprend le mot « Écho » — pas dans le menu. Le lecteur reçoit
+           d'abord ce qu'il connaît (un obstacle, une pensée qui bloque), et le terme de
+           l'univers arrive comme une révélation, pas comme un mot de passe. -->
       <p class="section-lead">
-        Un écho ne se balaie pas d'un clic. Il te jette une pensée à la figure — et tu choisis
-        quoi lui répondre. Voici un vrai combat de Shinkatô, avec le vrai texte du jeu.
+        Ce qui te bloque ne reste pas une pensée vague : ici, ton obstacle prend un visage et
+        un nom. C'est un <b>Écho</b> — ton ombre, celle qui te répète depuis des années que
+        ce n'est pas pour toi. Il te jette sa pensée à la figure, et c'est toi qui choisis quoi
+        lui répondre.<br>
+        Teste-le : remporte ton premier combat, juste en dessous.
       </p>
     </div>
 
@@ -281,7 +328,7 @@
   <!-- ===================== PROGRESSION ===================== -->
   <section class="section" id="progression">
     <div class="section-head">
-      <div class="plate plate-yellow"><span>Ta vie, tes stats</span></div>
+      <h2 class="plate plate-yellow"><span>Ta vie, tes stats</span></h2>
       <p class="section-lead">
         Dans la vraie vie, l'effort est invisible. Ici, chaque action compte, se voit, et&nbsp;reste&nbsp;acquise.
       </p>
@@ -352,10 +399,10 @@
   <!-- ===================== TÉLÉCHARGER ===================== -->
   <section class="section section-cta" id="telecharger">
     <img src="assets/logo_blanc.png" alt="" class="cta-emblem" aria-hidden="true">
-    <h2 class="cta-title">Ton histoire commence ici</h2>
+    <h2 class="cta-title">Sois là le jour de l'ouverture</h2>
     <p class="cta-sub">
-      Shinkatô est bientôt disponible sur les stores.<br>
-      Sois parmi les premiers héros à commencer ton histoire.
+      Tu viens d'en voir deux minutes. Bientôt, tu pourras y vivre.<br>
+      Laisse ton adresse : tu sauras le jour où Shinkatô ouvre, et tu commenceras avec les premiers.
     </p>
     <!-- Inscription à l'annonce de sortie.
          L'envoi part vers Supabase (voir js/contact.js) : pas de rechargement de page,
@@ -369,8 +416,7 @@
         <button class="btn btn-yellow" type="submit">Être prévenu au lancement</button>
       </div>
       <p class="cta-form-note">
-        Ton adresse ne servira qu'à t'annoncer la sortie. Aucun partage, aucune newsletter,
-        désinscription sur simple demande.
+        Ton adresse ne servira qu'à t'annoncer la sortie. Aucun partage, aucune newsletter.
       </p>
     </form>
     <div class="cta-characters" aria-hidden="true">
@@ -385,13 +431,20 @@
   <!-- ===================== PARTENAIRES ===================== -->
   <section class="section section-partners" id="partenaires">
     <div class="panel partners-card reveal">
-      <div class="panel-title"><span>Vous êtes une marque ?</span></div>
+      <h2 class="panel-title"><span>Vous êtes une marque ?</span></h2>
       <div class="panel-body partners-body-grid">
-        <p class="partners-body">
-          Les partenaires Shinkatô vivent dans le jeu : votre marque devient un allié retenu par
-          un écho, votre histoire une quête, vos offres des trophées à conquérir. Un tableau de
-          bord dédié suit vos quêtes, vos trophées et vos retombées.
-        </p>
+        <div class="partners-body">
+          <p>
+            Les partenaires Shinkatô deviennent des alliés du jeu. Votre marque n'est pas
+            affichée : elle est <b>racontée</b>. Un personnage l'incarne, porte vos valeurs et
+            affronte, aux côtés du joueur, les Échos que vous combattez déjà dans la vraie vie.
+          </p>
+          <p>
+            Vous agissez pour l'écologie, l'inclusion, le bien-être, contre l'isolement ?
+            Faites-le savoir autrement qu'avec une bannière. Dites-nous qui vous êtes : on vous
+            explique comment votre mission devient un défi à relever dans Shinkatô.
+          </p>
+        </div>
         <div class="partners-actions">
           <!-- Même envoi que le formulaire de lancement (js/contact.js). -->
           <form class="partners-form">
@@ -417,6 +470,24 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
+  <!-- ===================== RÉSEAUX =====================
+       Icônes dessinées en SVG dans la page : aucun fichier image, aucune requête vers un
+       CDN d'icônes — le site reste à zéro ressource tierce. -->
+  <nav class="socials" aria-label="Réseaux sociaux de Shinkatô">
+    <span class="socials-label">Suivre l'aventure</span>
+    <a class="social" href="https://www.instagram.com/shinkato_evolution/" target="_blank" rel="noopener" aria-label="Shinkatô sur Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" focusable="false">
+        <rect x="3" y="3" width="18" height="18" rx="5.2"/>
+        <circle cx="12" cy="12" r="4.1"/>
+        <circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a class="social" href="https://www.tiktok.com/@shinkato_officiel" target="_blank" rel="noopener" aria-label="Shinkatô sur TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+        <path d="M16.5 0h-3.4v14.6a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .8.1V8.3a6.3 6.3 0 0 0-.8-.1 6.3 6.3 0 1 0 6.3 6.3V7.3a7.6 7.6 0 0 0 4.4 1.4V5.3a4.4 4.4 0 0 1-4.4-4.4V0z"/>
+      </svg>
+    </a>
+  </nav>
   <footer class="footer">
     <img src="assets/logo_blanc.png" alt="Shinkatô" class="footer-logo">
     <p class="footer-tagline">Deviens le héros de ton évolution.</p>

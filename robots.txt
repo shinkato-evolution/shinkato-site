@@ -1,0 +1,28 @@
+# Shinkatô — site vitrine
+# Tout est public et indexable : c'est une page de présentation, elle n'a rien à cacher.
+
+User-agent: *
+Allow: /
+
+# Les robots des IA génératives sont autorisés VOLONTAIREMENT.
+# Être lu par ChatGPT, Perplexity ou Claude, c'est être cité quand quelqu'un demande
+# « une application pour tenir ses habitudes ». Les bloquer reviendrait à disparaître
+# de la moitié des recherches d'aujourd'hui.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Outils de développement : sans intérêt pour un moteur, et ils polluent l'index.
+Disallow: /_audit.js
+Disallow: /_fonts.js
+Disallow: /_og.html
+
+Sitemap: https://shinkato-evolution.github.io/shinkato-site/sitemap.xml

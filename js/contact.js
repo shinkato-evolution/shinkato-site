@@ -98,7 +98,7 @@
       function (f) {
         return { kind: 'lancement', email: f.querySelector('[name="email"]').value.trim() };
       },
-      'Tu seras prévenu dès l\'ouverture du Chapitre I — un seul message, le jour de la sortie.'
+      'Tu seras prévenu dès le lancement de l\'application. Un seul message, et tu seras paré pour l\'aventure.'
     );
 
     brancher(
