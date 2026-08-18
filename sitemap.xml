@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Plan du site. Les adresses sont ABSOLUES : c'est une exigence du format, un chemin
-  relatif y est ignoré. Elles devront donc être remplacées le jour où un nom de domaine
-  propre remplacera l'adresse github.io (même chose dans robots.txt et dans les balises
-  Open Graph de chaque page).
+  relatif y est ignoré. Elles utilisent le nom de domaine `shinkato.fr`, branché le
+  18/08/2026 ; en cas de changement d'adresse, reprendre aussi `CNAME`, `robots.txt` et
+  les balises Open Graph de chaque page.
   La page 404 n'y figure pas : on ne demande pas à Google d'indexer une erreur.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shinkato-evolution.github.io/shinkato-site/</loc>
+    <loc>https://shinkato.fr/</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://shinkato-evolution.github.io/shinkato-site/mentions-legales.html</loc>
+    <loc>https://shinkato.fr/mentions-legales.html</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://shinkato-evolution.github.io/shinkato-site/confidentialite.html</loc>
+    <loc>https://shinkato.fr/confidentialite.html</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

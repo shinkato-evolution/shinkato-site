@@ -25,4 +25,4 @@ Disallow: /_audit.js
 Disallow: /_fonts.js
 Disallow: /_og.html
 
-Sitemap: https://shinkato-evolution.github.io/shinkato-site/sitemap.xml
+Sitemap: https://shinkato.fr/sitemap.xml
