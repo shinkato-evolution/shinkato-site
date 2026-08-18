@@ -62,16 +62,27 @@
 <body>
 
   <!-- ====== FOND VIDÉO GLOBAL ======
-       ⚠️ `data-src` et non `src` : la vidéo pèse 5,3 Mo. Avec `src` + `preload="auto"`,
-       tout téléphone la téléchargeait AVANT d'afficher la page — plusieurs secondes
-       d'attente en 4G pour un simple décor. Le poster (40 Ko) s'affiche seul, et le JS
-       ne charge la vraie vidéo que sur grand écran et connexion correcte.
+       ⚠️ `data-src` et non `src` : le JS choisit le fichier selon l'écran, après le
+       premier rendu. Deux encodages du même plan :
+         · `data-src`        — 1280×720, 5,3 Mo  → grand écran ;
+         · `data-src-mobile` —  854×480, 0,6 Mo  → téléphone et tablette.
+       Le fond est recouvert d'un voile (`filmbg-veil`) : la perte de définition ne se
+       voit pas, et 0,6 Mo se télécharge en moins d'une seconde en 4G.
+
+       ⚠️ LE POSTER EST LA PREMIÈRE IMAGE DU PLAN — refait le 18/08/2026. Il montrait
+       jusque-là la DERNIÈRE : à l'ouverture on voyait donc la fin du plan, puis un saut
+       brutal au démarrage de la lecture, qui repart de zéro. Si le poster est un jour
+       réexporté, le prendre à t=0 :
+           ffmpeg -i shinkato_scroll.mp4 -vframes 1 -q:v 6 shinkato_scroll_poster.jpg
+       Il tient l'image le temps du chargement, et reste seul si le visiteur a demandé
+       moins d'animations ou annonce une connexion très lente.
        Voir PARTIE 1 de js/main.js. -->
   <div class="filmbg" aria-hidden="true">
     <video
       class="filmbg-video"
       id="filmbg-video"
       data-src="assets/video/shinkato_scroll.mp4"
+      data-src-mobile="assets/video/shinkato_scroll_mobile.mp4"
       poster="assets/video/shinkato_scroll_poster.jpg"
       muted playsinline loop preload="none" disablepictureinpicture></video>
     <div class="filmbg-veil"></div>

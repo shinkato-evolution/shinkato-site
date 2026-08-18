@@ -34,30 +34,38 @@
     var cue   = byId('hero-cue');
     if (!video) { return; }
 
-    /* ⚠️ CHARGEMENT CONDITIONNEL DE LA VIDÉO — corrigé le 18/08/2026.
-       Elle pèse 5,3 Mo, le poster 40 Ko : 130 fois moins. Avec `src` en dur et
-       `preload="auto"`, chaque téléphone téléchargeait les 5,3 Mo au chargement,
-       d'où plusieurs secondes d'attente en 4G — un décor payé au prix de la
-       première impression.
+    /* ⚠️ CHARGEMENT CONDITIONNEL DE LA VIDÉO — révisé le 18/08/2026 (2e passe).
 
-       On ne charge donc la vidéo que si TOUTES ces conditions sont réunies :
-         · écran large (au-delà du seuil mobile du CSS) ;
-         · l'utilisateur n'a pas demandé à réduire les animations ;
-         · le navigateur n'annonce pas un mode économie de données ;
-         · la connexion n'est pas annoncée comme lente.
-       Sinon le poster reste seul : la page est identique, simplement immobile. */
+       Historique : le 18/08 au matin, la vidéo avait été coupée sous 860 px de large,
+       parce qu'elle pèse 5,3 Mo et que chaque téléphone les téléchargeait avant même
+       d'afficher la page. Effet de bord : sur téléphone le décor devenait une image
+       FIXE — exactement ce que la décision du 16/08 voulait éviter (un jeu ne doit pas
+       paraître immobile à l'arrivée). Le poids était le vrai problème, pas le mobile.
+
+       Correctif : deux encodages du même plan. Le téléphone reçoit une version 854×480
+       de 0,6 Mo — moins d'une seconde en 4G, presque 9 fois plus léger. Le fond est de
+       toute façon recouvert d'un voile : la définition moindre ne se voit pas.
+
+       Le poster reste SEUL dans deux cas seulement, et pour de bonnes raisons :
+         · `prefers-reduced-motion` — le visiteur a demandé moins de mouvement ;
+         · économie de données annoncée, ou connexion 2G — 0,6 Mo y coûte encore trop.
+       La 3G n'exclut plus rien : elle avale 0,6 Mo sans peine. */
     var connexion = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     var lente = connexion && (
       connexion.saveData === true ||
-      /^(slow-)?2g$/.test(connexion.effectiveType || '') ||
-      connexion.effectiveType === '3g'
+      /^(slow-)?2g$/.test(connexion.effectiveType || '')
     );
     var reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var grandEcran = window.innerWidth > 860;
 
-    if (!grandEcran || lente || reduit) { return; }   // le poster suffit
+    if (lente || reduit) { return; }   // le poster suffit
 
-    video.src = video.getAttribute('data-src');
+    /* Le seuil suit celui du CSS. On lit la largeur une seule fois, au chargement :
+       changer de source après coup relancerait le téléchargement et ferait sauter
+       l'image — une rotation d'écran ne vaut pas ça. */
+    var petitEcran = window.innerWidth <= 860;
+    var source = (petitEcran && video.getAttribute('data-src-mobile')) || video.getAttribute('data-src');
+
+    video.src = source;
     video.preload = 'auto';
     video.load();
 
