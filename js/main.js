@@ -34,6 +34,33 @@
     var cue   = byId('hero-cue');
     if (!video) { return; }
 
+    /* ⚠️ CHARGEMENT CONDITIONNEL DE LA VIDÉO — corrigé le 18/08/2026.
+       Elle pèse 5,3 Mo, le poster 40 Ko : 130 fois moins. Avec `src` en dur et
+       `preload="auto"`, chaque téléphone téléchargeait les 5,3 Mo au chargement,
+       d'où plusieurs secondes d'attente en 4G — un décor payé au prix de la
+       première impression.
+
+       On ne charge donc la vidéo que si TOUTES ces conditions sont réunies :
+         · écran large (au-delà du seuil mobile du CSS) ;
+         · l'utilisateur n'a pas demandé à réduire les animations ;
+         · le navigateur n'annonce pas un mode économie de données ;
+         · la connexion n'est pas annoncée comme lente.
+       Sinon le poster reste seul : la page est identique, simplement immobile. */
+    var connexion = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var lente = connexion && (
+      connexion.saveData === true ||
+      /^(slow-)?2g$/.test(connexion.effectiveType || '') ||
+      connexion.effectiveType === '3g'
+    );
+    var reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var grandEcran = window.innerWidth > 860;
+
+    if (!grandEcran || lente || reduit) { return; }   // le poster suffit
+
+    video.src = video.getAttribute('data-src');
+    video.preload = 'auto';
+    video.load();
+
     /* ⚠️ DÉCISION 16/08/2026 — LA VIDÉO TOURNE EN BOUCLE, le scroll ne la pilote plus.
        Le pilotage au scroll existait et fonctionnait, mais il a été abandonné après test :
 

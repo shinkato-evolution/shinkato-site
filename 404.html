@@ -3,6 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== HTTPS OBLIGATOIRE =====
+       Placé avant tout le reste : la redirection doit partir avant le premier octet
+       de style, sinon la page s'affiche en clair et le navigateur écrit « Non sécurisé ».
+       GitHub Pages n'accepte aucune règle de redirection côté serveur ; son réglage
+       « Enforce HTTPS » se désactive à chaque renouvellement de certificat. Ce script
+       le double, de façon permanente.
+       Le test exclut le développement local, où HTTPS n'existe pas. -->
+  <script>
+    (function () {
+      var h = location.hostname;
+      if (location.protocol === 'http:' && h !== 'localhost' && h !== '127.0.0.1' && h.indexOf('192.168.') !== 0) {
+        location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
   <title>Page introuvable — Shinkatô</title>
   <meta name="description" content="Cette page n'existe pas ou n'existe plus. Retour à l'accueil de Shinkatô.">
   <meta name="robots" content="noindex">
