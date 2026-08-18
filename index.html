@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shinkatô — Deviens le héros de ton évolution</title>
   <meta name="description" content="Shinkatô transforme ta vraie vie en RPG : tes habitudes te renforcent, ton territoire s'étend case par case, et tes obstacles prennent forme pour être affrontés. Essaie la carte et un combat directement sur la page, sans rien installer.">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <!-- Icônes de l'onglet et de l'écran d'accueil.
+       Deux versions : le logo est noir, donc invisible sur un onglet en thème sombre —
+       la variante blanche prend le relais via `prefers-color-scheme`. Les navigateurs
+       qui ignorent cet attribut retiennent simplement la première ligne. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <!-- ===== Image et texte de partage (Open Graph + Twitter) =====
        C'est ce qui s'affiche quand le lien est collé sur WhatsApp, LinkedIn, Discord,

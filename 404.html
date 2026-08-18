@@ -6,7 +6,14 @@
   <title>Page introuvable — Shinkatô</title>
   <meta name="description" content="Cette page n'existe pas ou n'existe plus. Retour à l'accueil de Shinkatô.">
   <meta name="robots" content="noindex">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <!-- Icônes de l'onglet et de l'écran d'accueil.
+       Deux versions : le logo est noir, donc invisible sur un onglet en thème sombre —
+       la variante blanche prend le relais via `prefers-color-scheme`. Les navigateurs
+       qui ignorent cet attribut retiennent simplement la première ligne. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <!-- Polices servies par NOTRE hébergement, jamais par le CDN Google : aucune adresse IP
        de visiteur ne part chez un tiers (RGPD). Voir css/fonts.css. -->
   <link rel="preload" href="assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
