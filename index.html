@@ -19,22 +19,16 @@
       }
     })();
   </script>
-  <!-- ===== Ce que Google affiche, et ce sur quoi il classe =====
-       Le titre porte le MOT-CLÉ EN TÊTE, la marque à la fin : personne ne cherche
-       « Shinkatô », les gens cherchent « application d'habitudes gamifiée » (audit du
-       21/08/2026). La baseline « Deviens le héros de ton évolution » reste le <h1> de la
-       page : elle est l'identité, pas la requête.
-       Longueurs à tenir : titre 50-60 caractères, description 140-160. Au-delà, Google
-       coupe — l'ancienne description faisait 232 caractères et finissait en « … ». -->
+  <!-- Longueurs à tenir : titre 50-60 caractères, description 140-160.
+       Au-delà, Google tronque. -->
   <title>Application d'habitudes gamifiée : ta vie en RPG — Shinkatô</title>
   <meta name="description" content="Application d'habitudes gamifiée : tes efforts réels te font monter de niveau et étendre ton territoire. Essaie la carte et un combat, sans rien installer.">
 
-  <!-- L'adresse de référence de cette page. Sans elle, chaque variante (?utm_source=…,
-       une ancre partagée) peut compter comme une page distincte et diluer le classement. -->
+  <!-- Adresse de référence : sans elle, chaque variante (?utm_source=…) compte
+       comme une page distincte. -->
   <link rel="canonical" href="https://shinkato.fr/">
 
-  <!-- Autorise explicitement l'extrait long et la grande image : c'est ce qui permet aux
-       moteurs et aux IA de citer un passage entier plutôt qu'une ligne tronquée. -->
+  <!-- Autorise l'extrait long et la grande image. -->
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <!-- Icônes de l'onglet et de l'écran d'accueil.
        Deux versions : le logo est noir, donc invisible sur un onglet en thème sombre —
@@ -78,25 +72,14 @@
        style.css au NOUVEAU HTML : la section s empilait en un seul bloc.
        Le parametre `?v=` change l ADRESSE du fichier, donc force le retelechargement.
        A INCREMENTER a chaque modification de css/style.css ou css/fonts.css. -->
-  <link rel="stylesheet" href="css/fonts.css?v=20260821b">
-  <link rel="stylesheet" href="css/style.css?v=20260821b">
+  <link rel="stylesheet" href="css/fonts.css?v=20260821c">
+  <link rel="stylesheet" href="css/style.css?v=20260821c">
 
-  <!-- ===== DONNÉES STRUCTURÉES (JSON-LD) =====
-       Du sens explicite, lisible par une machine. C'est ce qui alimente les résultats
-       enrichis de Google ET les réponses de ChatGPT, Perplexity et Claude : un moteur de
-       réponse cite plus volontiers ce qu'il a pu identifier sans deviner.
-
-       ⚠️ RÈGLE ABSOLUE : ne jamais déclarer ici ce qui n'est pas vrai et visible sur la
-       page. Une note d'avis inventée ou une FAQ absente du corps de page fait perdre le
-       résultat enrichi, et c'est sanctionné.
-       Les questions ci-dessous sont EXACTEMENT celles de la section « Questions
-       fréquentes ». Si tu modifies l'une, modifie l'autre.
-
-       `offers` à 0 € : l'application est gratuite pour les joueurs et le restera — ce sont
-       les marques partenaires qui la financent (confirmé le 21/08/2026).
-       `datePublished` reste ABSENT tant que l'application n'est pas publiée : une date de
-       publication déclarée sur un produit qui n'existe pas encore serait fausse. À ajouter
-       le jour de l'ouverture, prévue courant septembre 2026. -->
+  <!-- Données structurées (JSON-LD).
+       ⚠️ Ne jamais déclarer ici ce qui n'est pas vrai et visible sur la page.
+       ⚠️ Les questions sont EXACTEMENT celles de la section « Questions fréquentes » :
+          modifier l'une impose de modifier l'autre.
+       `datePublished` reste absent tant que l'application n'est pas publiée. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -199,7 +182,7 @@
             "name": "Shinkatô, c'est une alternative à Habitica ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Oui. Comme Habitica, Shinkatô transforme les habitudes en jeu de rôle — mais il va plus loin : une carte à explorer, une histoire qui se découvre, des blocages à surmonter et une dimension introspective. Habitica part d'une liste de tâches sur laquelle se pose une couche de RPG ; Pixelio fait progresser un personnage en pixel art au fil des habitudes validées. Shinkatô part du jeu lui-même. L'application est en français et pensée pour le mobile."
+              "text": "Oui. Comme Habitica, Shinkatô transforme les habitudes en jeu de rôle — mais il va plus loin : une carte à explorer, une histoire qui se découvre, des blocages à surmonter et une dimension introspective. Habitica part d'une liste de tâches sur laquelle se pose une couche de jeu de rôle. Shinkatô part du jeu lui-même. L'application est en français et pensée pour le mobile."
             }
           },
           {
@@ -619,31 +602,15 @@
   </section>
 
   <!-- ===================== QUESTIONS FRÉQUENTES =====================
-       Ajoutée le 21/08/2026 après l'audit SEO, révisée le même jour avec l'auteur.
-
-       POURQUOI CETTE SECTION EXISTE, dans l'ordre d'importance :
-       1. LEVER LES OBJECTIONS AVANT DE DEMANDER L'ADRESSE — d'où sa place juste avant
-          le formulaire, et pas en bas de page.
-       2. DONNER À GOOGLE DE QUOI CLASSER. Le reste de la page parle territoire, ombres
-          et lame : c'est l'univers, mais personne ne tape ces mots. Ici on emploie le
-          vocabulaire réellement cherché — « habit tracker », « tracker d'habitudes »,
-          « suivi d'habitudes », « application gamifiée », et les noms des concurrents.
-          Relevé du 21/08/2026 : sur l'App Store français, Pixelio (studio lyonnais) se
-          nomme lui-même « Habit tracker RPG », en anglais. Le terme du milieu est anglais,
-          celui des articles français est « suivi d'habitudes ». Les deux sont ici.
-       3. PLACER LES THÈMES PSYCHOLOGIQUES — procrastination, solitude, peur de l'échec,
-          emprise des écrans. Ce sont des recherches à part entière, et c'est ce qui
-          différencie vraiment Shinkatô d'un tracker d'habitudes.
-       4. SE FAIRE CITER PAR LES IA — chaque réponse commence par LA réponse, en une ou
-          deux phrases qui gardent leur sens sorties de la page.
-
-       ⚠️ Le NOMBRE de questions est volontairement PAIR. L'affichage est sur deux
-          colonnes : en nombre impair, la dernière reste seule sur sa ligne. Ajouter une
-          question par paire, ou accepter la règle de repli prévue dans style.css.
-       ⚠️ Tout est visible, sans accordéon : un texte replié est moins bien repris.
-       ⚠️ Ces questions sont dupliquées dans le JSON-LD `FAQPage` en tête de fichier.
-          Les deux blocs sont générés ensemble — modifier l'un SANS l'autre invalide le
-          résultat enrichi et est sanctionné par Google. -->
+       ⚠️ NOMBRE PAIR obligatoire : l'affichage est sur deux colonnes, et en nombre
+          impair la dernière question reste seule sur sa ligne. Une règle de repli
+          existe dans style.css, mais elle ne doit pas servir.
+       ⚠️ Pas d'accordéon : un texte replié est moins bien repris.
+       ⚠️ Ces questions sont dupliquées dans le JSON-LD en tête de fichier. Les deux
+          blocs sont générés ensemble : modifier l'un SANS l'autre casse le résultat
+          enrichi.
+       Les raisons de fond de cette section sont dans l'Obsidian du projet,
+       pas ici — ce fichier est lisible par tout le monde. -->
   <section class="section section-faq" id="questions">
     <div class="section-head">
       <h2 class="plate plate-yellow"><span>Questions fréquentes</span></h2>
@@ -687,6 +654,7 @@
             Les habitudes se répartissent en <b>six disciplines</b> : le <b>corps</b>, l'<b>esprit</b>, la <b>santé</b>, la <b>productivité</b>, le <b>social</b> et la <b>finance</b>. Chacune progresse séparément, et tu choisis celles que tu veux faire monter.
             <br><br>
             Rien n'est figé : bouger davantage, lire, mieux dormir, avancer sur un projet, reprendre contact avec quelqu'un, tenir un budget. Les disciplines peuvent évoluer avec l'application.
+            <br><a class="faq-plus" href="habitudes/">Voir les six disciplines en détail →</a>
             </p>
           </div>
         </div>
@@ -699,6 +667,7 @@
             La plupart des applications de suivi d'habitudes s'arrêtent au tableau de bord : on coche, on compte, on regarde une courbe monter. Shinkatô ajoute <b>trois dimensions</b> qu'un tracker d'habitudes n'a pas — l'exploration, l'introspection, et le combat contre ses propres blocages.
             <br><br>
             Tes habitudes te rapportent des points qui servent à <b>explorer une carte</b>, case par case. Tu y trouves des récompenses, des obstacles à affronter, et des <b>parchemins</b> qui font avancer l'histoire de Shinkatô. Ces parchemins posent des <b>questions d'introspection</b> : en y répondant, tu tiens sans t'en rendre compte une sorte de journal de ton évolution.
+            <br><a class="faq-plus" href="habitudes/">Voir comment les habitudes te renforcent →</a>
             </p>
           </div>
         </div>
@@ -711,6 +680,7 @@
             Les obstacles prennent la forme des <b>Échos</b> : des créatures d'ombre qui symbolisent tes blocages et tes peurs, celles qui t'empêchent d'avancer. On y retrouve la <b>procrastination</b>, la <b>solitude</b>, la <b>peur de l'échec</b>, la <b>peur de se lancer</b>, l'<b>emprise des écrans</b>, la <b>mauvaise image de soi</b>.
             <br><br>
             Pour l'affronter, l'Écho t'oppose une <b>pensée limitante</b> — celle que tu te dis vraiment quand tu abandonnes — et tu choisis la réponse qui la désamorce. Le principe s'inspire des <b>thérapies cognitivo-comportementales</b> (TCC). Et même quand tu te trompes, tu apprends quelque chose : c'est ça, évoluer.
+            <br><a class="faq-plus" href="blocages/">Comprendre les Échos et le combat de phrases →</a>
             </p>
           </div>
         </div>
@@ -722,7 +692,8 @@
             <p class="faq-a">
             Oui. Comme <b>Habitica</b>, Shinkatô transforme les habitudes en jeu de rôle — mais il va plus loin : une <b>carte à explorer</b>, une <b>histoire</b> qui se découvre, des <b>blocages à surmonter</b> et une <b>dimension introspective</b>.
             <br><br>
-            Habitica part d'une liste de tâches sur laquelle se pose une couche de RPG ; <b>Pixelio</b> fait progresser un personnage en pixel art au fil des habitudes validées. Shinkatô part du jeu lui-même. L'application est en français et pensée pour le mobile.
+            Habitica part d'une liste de tâches sur laquelle se pose une couche de jeu de rôle. Shinkatô part du jeu lui-même. L'application est en français et pensée pour le mobile.
+            <br><a class="faq-plus" href="alternative-habitica/">Lire le comparatif complet →</a>
             </p>
           </div>
         </div>

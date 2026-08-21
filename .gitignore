@@ -20,3 +20,10 @@ desktop.ini
 
 _preview.html
 _apercu.png
+
+# Maquettes de pages en cours d'etude — JAMAIS publiees.
+# Ce dossier sert a naviguer dans des pages avant de decider de les ecrire pour de bon.
+# Il est ignore VOLONTAIREMENT : rien de ce qu'il contient ne doit se retrouver en ligne
+# tant que la page n'a pas ete validee et deplacee a la racine du depot.
+_preview/
+_preview-*.html

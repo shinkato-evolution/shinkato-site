@@ -2600,3 +2600,270 @@ a { color: inherit; }
 @media (max-width: 420px) {
   .faq-kaen { display: none; }
 }
+
+/* ============================================================
+   PAGES DE FOND — /habitudes/, /blocages/, /alternative-habitica/
+
+   Deux rôles :
+   1. La barre de navigation en haut, qui n'existe que pour tester le passage
+      d'une page à l'autre. Sur le vrai site, ce serait le menu du site.
+   2. Les styles de texte long (h2, h3, listes, tableaux, citations) que
+      `style.css` n'a pas : la page d'accueil n'a jamais eu de contenu rédigé
+      en continu, elle est faite de sections courtes.
+
+   ⚠️ Si ces pages sont validées et déplacées à la racine, ce fichier doit être
+   fondu dans css/style.css et la barre de navigation remplacée par le vrai menu.
+   ============================================================ */
+
+/* ---------------------------------------------- texte long */
+.prose {
+  max-width: 760px;      /* au-delà, l'œil perd la ligne suivante */
+  margin: 0 auto;
+  color: var(--blanc-60);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.prose h2 {
+  font-family: var(--font-epic);
+  font-size: 1.6rem;
+  color: var(--jaune);
+  margin: 44px 0 14px;
+  line-height: 1.25;
+}
+
+.prose h2:first-child { margin-top: 0; }
+
+.prose h3 {
+  font-family: var(--font-ui);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--blanc);
+  margin: 30px 0 10px;
+}
+
+.prose p { margin: 0 0 16px; }
+
+.prose b { color: var(--blanc); }
+
+.prose a {
+  color: var(--jaune);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 205, 15, 0.4);
+}
+
+.prose a:hover { border-bottom-color: var(--jaune); }
+
+.prose ul {
+  margin: 0 0 18px;
+  padding-left: 22px;
+}
+
+.prose li { margin-bottom: 8px; }
+
+.prose li::marker { color: var(--jaune); }
+
+/* La citation porte la phrase qu'on veut voir reprise ailleurs — c'est aussi
+   le bloc que les moteurs de réponse extraient le plus volontiers. */
+.prose blockquote {
+  margin: 22px 0;
+  padding: 16px 22px;
+  border-left: 3px solid var(--jaune);
+  background: rgba(242, 205, 15, 0.05);
+  color: var(--blanc);
+  font-style: italic;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0 24px;
+  font-size: 0.97rem;
+}
+
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(242, 205, 15, 0.18);
+  vertical-align: top;
+}
+
+.prose th {
+  color: var(--jaune);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  border-bottom-width: 2px;
+}
+
+.prose td:first-child { color: var(--blanc); }
+
+@media (max-width: 720px) {
+  .prose { font-size: 1rem; }
+  .prose h2 { font-size: 1.35rem; margin-top: 34px; }
+  .prose table { font-size: 0.88rem; }
+  .prose th, .prose td { padding: 8px 9px; }
+  .preview-flag { margin-left: 0; }
+}
+
+/* ---------------------------------------------- liens de la FAQ vers les pages
+   La regle anti-cannibalisation : la FAQ repond COURT, la page DEVELOPPE, et ce
+   lien fait la jonction. Sans lui, Google voit deux contenus proches sans savoir
+   lequel est la reference — et n'en garde parfois aucun. */
+.faq-plus {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--jaune);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 205, 15, 0.4);
+}
+
+.faq-plus:hover { border-bottom-color: var(--jaune); }
+
+/* ---------------------------------------------- bandeau « pour aller plus loin »
+   Deuxieme chemin d'acces aux pages, pour qui ne lit pas la FAQ. Place juste
+   avant le formulaire : on a fini d'expliquer, on propose d'approfondir ou de
+   s'inscrire. */
+.pages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 24px;
+  background: var(--surface-2);
+  border: 1px solid var(--bordure);
+  border-left: 4px solid var(--jaune);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.page-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--jaune);
+}
+
+.page-card-t {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--jaune);
+}
+
+.page-card-d {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--blanc-40);
+}
+
+/* La fleche apparait au survol : elle dit « ca mene ailleurs » sans alourdir
+   la carte au repos. */
+.page-card-t::after {
+  content: " →";
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.page-card:hover .page-card-t::after { opacity: 1; }
+
+/* ---------------------------------------------- titres des pages piliers
+   Le probleme : `.plate` a bien `justify-content: center`, mais quand le titre
+   passe SUR DEUX LIGNES, le texte a l'interieur retombe sur l'alignement par
+   defaut, a gauche — et l'etiquette jaune parait de travers.
+   Les titres de ces pages sont plus longs que ceux de l'accueil (ce sont des
+   questions), donc le cas arrive souvent. On centre explicitement. */
+.section-head > .plate > span,
+.plate > span {
+  text-align: center;
+}
+
+/* L'etiquette elle-meme est centree dans la page. Sur l'accueil elle reste a
+   gauche, alignee sur la colonne de contenu ; ici la page est un article, et un
+   titre d'article centre au-dessus de son texte se lit mieux. */
+main.section > .section-head > .plate {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main.section > .section-head > .section-lead {
+  text-align: center;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Le bloc final : titre + bouton, centres, sans date ni formulaire.
+   `.section-cta` centre deja son contenu, mais le bouton est un lien inline :
+   on lui donne de l'air pour qu'il ne colle pas au titre. */
+.section-cta .btn {
+  margin-top: 26px;
+}
+
+
+
+/* ---------------------------------------------- navigation de section
+   Les trois pages de fond forment un ensemble. Cette barre les relie sans
+   passer par l'accueil, et dit a Google qu'elles vont ensemble.
+   Volontairement PLUS DISCRETE que l'en-tete : elle est au second niveau de
+   la hierarchie, elle ne doit jamais lui disputer l'attention. */
+.silo-nav {
+  border-bottom: 1px solid var(--bordure);
+  background: rgba(20, 18, 14, 0.6);
+}
+
+.silo-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 26px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 13px 26px;
+  font-family: var(--font-ui);
+  font-size: 0.93rem;
+}
+
+/* L'intitule dit de quoi cet ensemble est fait. Sans lui, trois liens en ligne
+   ressemblent a un menu de plus. */
+.silo-titre {
+  color: var(--blanc-40);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-right: 6px;
+}
+
+.silo-lien {
+  color: var(--blanc-60);
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.silo-lien:hover {
+  color: var(--jaune);
+  border-bottom-color: rgba(242, 205, 15, 0.5);
+}
+
+/* La page courante : jaune et soulignee, mais NON cliquable — c'est un <span>.
+   Le curseur par defaut suffit a le faire comprendre. */
+.silo-lien.is-courant {
+  color: var(--jaune);
+  font-weight: 700;
+  border-bottom-color: var(--jaune);
+}
+
+@media (max-width: 720px) {
+  .silo-inner { gap: 4px 18px; padding: 11px 18px; font-size: 0.87rem; }
+  .silo-titre { width: 100%; margin-bottom: 2px; }
+}
