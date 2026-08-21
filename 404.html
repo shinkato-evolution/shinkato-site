@@ -34,8 +34,15 @@
        de visiteur ne part chez un tiers (RGPD). Voir css/fonts.css. -->
   <link rel="preload" href="assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/cinzel-900.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css">
+  <!-- ===== VERSION COLLEE AUX FEUILLES DE STYLE (?v=...) =====
+       Cloudflare sert les CSS avec `Cache-Control: max-age=14400` : quatre heures.
+       Le 21/08/2026, la FAQ a ete publiee avec ses regles de mise en grille, mais les
+       navigateurs qui avaient deja visite le site ont continue a appliquer l ANCIEN
+       style.css au NOUVEAU HTML : la section s empilait en un seul bloc.
+       Le parametre `?v=` change l ADRESSE du fichier, donc force le retelechargement.
+       A INCREMENTER a chaque modification de css/style.css ou css/fonts.css. -->
+  <link rel="stylesheet" href="css/fonts.css?v=20260821b">
+  <link rel="stylesheet" href="css/style.css?v=20260821b">
 </head>
 <body>
   <header class="nav">
