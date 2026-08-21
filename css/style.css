@@ -2495,3 +2495,108 @@ a { color: inherit; }
   .fight-answers { padding: 12px; }
   .answer-btn { font-size: 0.85rem; padding: 11px 13px; }
 }
+
+/* ============================================================
+   QUESTIONS FRÉQUENTES  (ajouté le 21/08/2026, audit SEO)
+   Réutilise .panel et .section-head : la carte sombre à bordure jaune est déjà posée
+   plus haut, on n'habille ici que le contenu.
+
+   Deux colonnes au-dessus de 900 px, une seule en dessous. Pas d'accordéon : un texte
+   replié est moins bien repris par les moteurs de réponse.
+   ============================================================ */
+.faq-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px 38px;
+}
+
+/* Colonne flex : c'est ce qui permet de centrer la réponse dans la hauteur restante.
+   En grille, tous les blocs d'une même rangée sont étirés à la hauteur du PLUS GRAND.
+   Sans ce réglage, la question et la réponse restaient collées en haut et tout le vide
+   s'accumulait sous le texte — inesthétique dès que deux réponses voisines n'avaient
+   pas la même longueur (retour du 21/08/2026). */
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  border-left: 3px solid var(--bordure);
+  padding-left: 18px;
+}
+
+/* Filet de sécurité : si le nombre de questions devient IMPAIR, la dernière se
+   retrouve seule dans la colonne de gauche, décentrée et bancale. Cette règle la
+   fait alors occuper toute la largeur et se centrer.
+   La FAQ est tenue en nombre pair volontairement — ceci ne doit jamais servir. */
+.faq-item:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: calc(50% - 19px);
+  margin-inline: auto;
+}
+
+.faq-q {
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--jaune);
+  margin: 0 0 12px;
+}
+
+/* La bulle de Kaen et la réponse sur une même ligne.
+
+   Deux centrages différents se jouent ici, et il faut les deux :
+   • `align-items: center` centre la BULLE sur la hauteur réelle du texte — deux lignes
+     ou douze, Kaen reste en face du milieu. Aucune hauteur fixe, aucun calcul : c'est
+     le seul moyen qui reste juste quand le texte change.
+   • `flex: 1` fait occuper à cette ligne toute la hauteur laissée libre sous la
+     question. Le couple bulle + réponse se centre alors dans cet espace, et le vide
+     se répartit moitié dessus, moitié dessous, au lieu de tomber entièrement en bas. */
+.faq-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+/* Kaen en médaillon. Le fichier assets/kaen.png le montre assis EN ENTIER : on ne
+   recadre pas l'image, on cadre en CSS sur sa tête.
+   background-size: 210% agrandit ; background-position: 48% 24% amène le visage au
+   centre du rond. Repères relevés sur l'original de 512x512 px : la tête y est centrée
+   à environ 48 % en largeur et 28 % en hauteur.
+   ⚠️ Remplacer kaen.png impose de reprendre ces deux valeurs, sinon le cadrage tombe
+   sur son torse ou sur sa lame. */
+.faq-kaen {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid var(--bordure);
+  background-color: var(--surface-2);
+  background-image: url("../assets/kaen.png");
+  background-repeat: no-repeat;
+  background-size: 210%;
+  background-position: 48% 24%;
+  box-shadow: 0 0 0 4px rgba(242, 205, 15, 0.06);
+}
+
+.faq-a {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--blanc-60);
+  margin: 0;
+}
+
+/* Sous 900 px : une colonne. À deux colonnes, chaque réponse tombait sous 200 px de
+   large et se lisait en escalier. La bulle rétrécit pour laisser le texte respirer. */
+@media (max-width: 900px) {
+  .faq-list { grid-template-columns: 1fr; gap: 24px; }
+  .faq-q { font-size: 1rem; }
+  .faq-a { font-size: 0.95rem; }
+  .faq-row { gap: 12px; }
+  .faq-kaen { width: 44px; height: 44px; }
+}
+
+/* Très petits écrans : la bulle passerait sous 40 px et Kaen deviendrait une tache.
+   On la retire plutôt que de l'afficher illisible — elle est décorative. */
+@media (max-width: 420px) {
+  .faq-kaen { display: none; }
+}
