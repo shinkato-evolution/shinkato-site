@@ -387,7 +387,7 @@
         <div class="terr-stage">
           <div class="terr-map" id="terr-map" role="group" aria-label="Carte hexagonale : investis tes PM sur un hexagone voisin"></div>
           <div class="terr-ambush" id="terr-ambush" hidden aria-hidden="true">
-            <img src="assets/game/echo.png" alt="" class="terr-ambush-echo">
+            <img src="assets/game/echo.png" alt="Écho : créature d'ombre violette aux volutes de fumée et aux yeux luminescents" class="terr-ambush-echo">
             <p class="terr-ambush-label">UN ÉCHO SURGIT</p>
           </div>
           <div class="terr-burst" id="terr-burst" hidden aria-hidden="true"></div>
@@ -464,7 +464,7 @@
             <!-- Écho : sprite en haut à droite, identité JUSTE EN DESSOUS de lui -->
             <div class="fight-echo-col">
               <div class="fight-echo" id="fight-echo">
-                <img src="assets/fight/echo_01.webp" alt="" id="fight-echo-img">
+                <img src="assets/fight/echo_01.webp" alt="Tamerai, écho de la peur de se lancer : silhouette sombre aux griffes acérées et au regard violet" id="fight-echo-img">
                 <img src="assets/fight/echo_01.webp" alt="" id="fight-echo-flash" class="fight-echo-flash">
                 <span class="fight-slash" id="fight-slash" hidden></span>
                 <img alt="" class="fight-qpop" id="fight-qpop" hidden>
@@ -515,9 +515,9 @@
         <p class="fight-vic-stamp">REPOUSSÉ</p>
         <div class="fight-star"><span id="fight-xp">+40</span><small>XP</small></div>
         <div class="fight-vic-gains">
-          <span><img src="assets/PE.png" alt="">+25 PE</span>
-          <span><img src="assets/PM.png" alt="">+8 PM</span>
-          <span><img src="assets/tanto_03.png" alt="">Éclat de lame</span>
+          <span><img src="assets/PE.png" alt="Gemme orange et dorée en pixel art, entourée d'étincelles">+25 PE</span>
+          <span><img src="assets/PM.png" alt="Orbe bleu lumineux aux motifs cosmiques et à la spirale blanche">+8 PM</span>
+          <span><img src="assets/tanto_03.png" alt="Tantô bleu parcouru d'éclairs, garde et poignée bleu foncé">Éclat de lame</span>
         </div>
         <p class="fight-vic-note">
           Dans l'application, ce butin part vraiment dans ton profil — et Tamerai revient plus fort
@@ -552,17 +552,17 @@
     </div>
     <div class="stats-row">
       <div class="stat-card reveal">
-        <img src="assets/PM.png" alt="">
+        <img src="assets/PM.png" alt="Points de Maîtrise : orbe bleu lumineux au motif cosmique">
         <h4>Points de Maîtrise</h4>
         <p>La maîtrise gagnée en tenant tes vraies habitudes. C'est avec eux que tu étends ton territoire.</p>
       </div>
       <div class="stat-card reveal">
-        <img src="assets/PE.png" alt="">
+        <img src="assets/PE.png" alt="Points d'Évolution : gemme orange et dorée en pixel art, brillante">
         <h4>Points d'Évolution</h4>
         <p>Trouvés dans les coffres et les victoires. Ils débloquent de nouvelles habitudes : ton évolution finance ton évolution.</p>
       </div>
       <div class="stat-card reveal">
-        <img src="assets/xp.png" alt="">
+        <img src="assets/xp.png" alt="Jauge d'expérience « XP » en pixel art, remplie de jaune et de vert">
         <h4>Expérience</h4>
         <p>Ton niveau raconte ton parcours. Il monte, il ne redescend jamais — comme tout ce que tu construis ici.</p>
       </div>
@@ -799,12 +799,18 @@
         Ton adresse ne servira qu'à t'annoncer la sortie. Aucun partage, aucune newsletter.
       </p>
     </form>
-    <div class="cta-characters" aria-hidden="true">
-      <img src="assets/character1.png" alt="">
-      <img src="assets/character2.png" alt="">
-      <img src="assets/character3.png" alt="">
-      <img src="assets/character4.png" alt="">
-      <img src="assets/character5.png" alt="">
+    <!-- Les cinq personnages jouables. `aria-hidden` retiré le 28/08/2026 : ces
+         illustrations MONTRENT le style graphique du jeu, elles ne sont pas un ornement.
+         Les décrire sert autant les lecteurs d'écran que la recherche d'images.
+         ⚠️ Le vocabulaire de style est VARIÉ (manga, anime, pixel art) parce qu'il est
+         VRAI de chaque image — character2 est réellement en pixel art. Ne jamais décrire
+         un style que l'image n'a pas pour attraper un mot-clé de plus. -->
+    <div class="cta-characters">
+      <img src="assets/character1.png" alt="Personnage jouable de style manga aux cheveux blancs et aux yeux verts, brandissant une lame flamboyante">
+      <img src="assets/character2.png" alt="Héros en pixel art aux cheveux bruns, veste rouge et baskets blanches, poings serrés">
+      <img src="assets/character3.png" alt="Combattant de style anime aux cheveux violets et à l'écharpe rouge, en garde">
+      <img src="assets/character4.png" alt="Héroïne animée aux cheveux blonds et à la tunique bleue, sacoche de cuir à la ceinture">
+      <img src="assets/character5.png" alt="Aventurière façon manga japonais, cheveux roses en queue-de-cheval et tantô bleu à la main">
     </div>
   </section>
 
