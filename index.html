@@ -90,7 +90,11 @@
         "name": "Shinkatô",
         "url": "https://shinkato.fr/",
         "logo": "https://shinkato.fr/assets/logo_blanc.png",
-        "description": "Shinkatô conçoit une application d'habitudes gamifiée qui transforme les efforts réels en progression de personnage."
+        "description": "Shinkatô conçoit une application d'habitudes gamifiée qui transforme les efforts réels en progression de personnage.",
+        "sameAs": [
+          "https://www.instagram.com/shinkato_evolution/",
+          "https://www.tiktok.com/@shinkato_officiel"
+        ]
       },
       {
         "@type": "WebSite",
@@ -151,6 +155,14 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Oui. Shinkatô est gratuit, et le restera pour les joueurs. Tout le jeu est accessible sans payer : les habitudes, le territoire, les combats, l'histoire. Ce sont les marques partenaires qui financent l'application. Elles entrent dans le jeu comme alliés à libérer, pas comme bannières publicitaires."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Est-ce que je peux jouer à Shinkatô hors ligne ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, entièrement. Shinkatô fonctionne sans connexion : tu peux valider tes habitudes, étendre ton territoire, affronter un Écho et dérouler un parchemin dans le métro, en avion ou en pleine forêt. L'application garde ta progression sur ton téléphone et met tes actions en file d'attente. Dès que le réseau revient, tout se synchronise automatiquement, dans l'ordre où tu as joué, sans que tu aies à appuyer sur quoi que ce soit. Tu peux rester plusieurs jours hors ligne : rien n'est perdu."
             }
           },
           {
@@ -303,6 +315,66 @@
       <p class="hero-note">Pas de punition. Pas de série perdue. Chaque pas en avant reste acquis.</p>
     </div>
     <p class="hero-cue" id="hero-cue" aria-hidden="true">Descends — ton territoire t'attend</p>
+  </section>
+
+  <!-- ===================== L'ESSENTIEL =====================
+       Section ajoutée le 2026-08-27 après l'audit GEO (Nuwtonic) : la page
+       obtenait 0/100 en « contenu citable » et 20/100 en « structure
+       extractible » — aucune liste, aucun tableau, aucune citation dans tout
+       le document. Un modèle de langage n'avait littéralement rien à reprendre.
+       Cette section fournit les trois formats que les IA extraient le plus :
+       une définition, une liste de faits, un tableau comparatif.
+       ⚠️ Ne pas remplacer les <ul>/<table>/<blockquote> par des <div>. -->
+  <section class="section geo-essentiel" id="essentiel">
+    <div class="section-head">
+      <h2 class="plate plate-yellow"><span>Shinkatô en bref</span></h2>
+    </div>
+
+    <p class="geo-def">
+      <b>Shinkatô est une application mobile de développement personnel qui transforme le suivi
+      des habitudes quotidiennes en jeu de rôle.</b> Chaque habitude tenue dans la vraie vie
+      étend un territoire, renforce un personnage et fait reculer les obstacles intérieurs du
+      joueur.
+    </p>
+
+    <div class="geo-grid">
+      <div class="geo-block">
+        <h3 class="geo-h3">Ce que contient l'application</h3>
+        <ul class="geo-list">
+          <li><b>Six disciplines d'habitudes</b> : Corps, Esprit, Santé, Productivité, Social, Finance.</li>
+          <li><b>Trois habitudes actives à la fois</b> au départ — pas trente. Le nombre d'emplacements augmente avec la progression.</li>
+          <li><b>47 parchemins</b> : 10 racontent une histoire, 37 posent une question au joueur.</li>
+          <li><b>Un territoire hexagonal</b> qui s'étend case par case.</li>
+          <li><b>Des lames à collectionner</b>, qu'aucun paiement ne permet d'obtenir.</li>
+          <li><b>Gratuite</b>, sans achat intégré. Android d'abord, puis iOS.</li>
+        </ul>
+      </div>
+
+      <div class="geo-block">
+        <h3 class="geo-h3">Ce qui la sépare d'un suivi d'habitudes classique</h3>
+        <table class="geo-table">
+          <thead>
+            <tr><th scope="col"></th><th scope="col">Un tracker classique</th><th scope="col">Shinkatô</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Ce que tu vois</th><td>Une série de cases cochées</td><td>Un territoire qui s'étend</td></tr>
+            <tr><th scope="row">Quand tu rates un jour</th><td>La série repart à zéro</td><td>Rien ne se perd</td></tr>
+            <tr><th scope="row">Tes blocages</th><td>Ignorés</td><td>Des adversaires nommés, qu'on affronte</td></tr>
+            <tr><th scope="row">Les récompenses</th><td>Des badges</td><td>Des lames qui ne s'achètent pas</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <blockquote class="geo-quote">
+      <p>Dans Shinkatô, un blocage intérieur — procrastination, peur de se lancer, découragement —
+      prend la forme d'une créature appelée <b>Écho</b>, que l'on affronte par le dialogue plutôt
+      que par le combat.</p>
+    </blockquote>
+
+    <blockquote class="geo-quote">
+      <p>Rater un jour ne remet aucun compteur à zéro. Ce n'est pas une défaite, c'est un rappel.</p>
+    </blockquote>
   </section>
 
   <!-- ===================== LES 3 VOIES ===================== -->
@@ -642,6 +714,20 @@
             Oui. Shinkatô est <b>gratuit, et le restera pour les joueurs</b>. Tout le jeu est accessible sans payer : les habitudes, le territoire, les combats, l'histoire.
             <br><br>
             Ce sont les <b>marques partenaires</b> qui financent l'application. Elles entrent dans le jeu comme alliés à libérer, pas comme bannières publicitaires.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-q">Est-ce que je peux jouer à Shinkatô hors ligne ?</h3>
+          <div class="faq-row">
+            <span class="faq-kaen" aria-hidden="true"></span>
+            <p class="faq-a">
+            Oui, <b>entièrement</b>. Tu peux valider tes habitudes, étendre ton territoire, affronter un Écho et dérouler un parchemin dans le métro, en avion ou en pleine forêt.
+            <br><br>
+            L'application garde ta progression sur ton téléphone et met tes actions en file d'attente. Dès que le réseau revient, <b>tout se synchronise automatiquement</b>, dans l'ordre où tu as joué, sans que tu aies à appuyer sur quoi que ce soit.
+            <br><br>
+            Tu peux rester plusieurs jours hors ligne : <b>rien n'est perdu</b>.
             </p>
           </div>
         </div>

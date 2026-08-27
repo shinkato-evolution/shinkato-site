@@ -2867,3 +2867,109 @@ main.section > .section-head > .section-lead {
   .silo-inner { gap: 4px 18px; padding: 11px 18px; font-size: 0.87rem; }
   .silo-titre { width: 100%; margin-bottom: 2px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   « SHINKATÔ EN BREF » — section ajoutée le 2026-08-27 après l'audit GEO.
+   La page ne contenait AUCUNE liste, AUCUN tableau et AUCUNE citation : les
+   modèles de langage n'avaient rien d'extractible. Ces trois formats sont
+   précisément ceux qu'ils reprennent le mieux.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.geo-def {
+  max-width: 62ch;
+  margin: 0 auto 2.5rem;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--blanc-60);
+  text-align: center;
+}
+.geo-def b { color: var(--blanc); }
+
+.geo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 900px) {
+  .geo-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+
+.geo-h3 {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  margin-bottom: 1rem;
+}
+
+.geo-list { list-style: none; display: grid; gap: 0.75rem; }
+.geo-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: var(--blanc-60);
+}
+.geo-list li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  color: var(--jaune);
+  font-size: 0.7rem;
+  top: 0.35em;
+}
+.geo-list b { color: var(--blanc); }
+
+.geo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.geo-table th,
+.geo-table td {
+  padding: 0.7rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--bordure);
+  vertical-align: top;
+}
+.geo-table thead th {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jaune);
+  border-bottom-color: var(--jaune);
+}
+.geo-table tbody th {
+  font-weight: 600;
+  color: var(--blanc);
+  width: 34%;
+}
+.geo-table tbody td { color: var(--blanc-40); }
+.geo-table tbody td:last-child { color: var(--blanc-60); }
+
+.geo-quote {
+  max-width: 62ch;
+  margin: 2.5rem auto 0;
+  padding: 1.1rem 0 1.1rem 1.5rem;
+  border-left: 3px solid var(--jaune);
+  background: var(--surface);
+}
+.geo-quote p {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--blanc-60);
+  font-style: italic;
+}
+.geo-quote b { color: var(--jaune); font-style: normal; }
+
+/* La table déborde sur les petits écrans : on la laisse défiler seule
+   plutôt que de faire scroller la page entière de travers. */
+@media (max-width: 560px) {
+  .geo-block:has(.geo-table) { overflow-x: auto; }
+  .geo-table { min-width: 460px; }
+}

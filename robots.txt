@@ -26,3 +26,7 @@ Disallow: /_fonts.js
 Disallow: /_og.html
 
 Sitemap: https://shinkato.fr/sitemap.xml
+
+# Résumé structuré du site à l'intention des modèles de langage.
+# Convention llmstxt.org : ce qu'est Shinkatô, ses faits vérifiables, ses pages.
+# https://shinkato.fr/llms.txt
