@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== HTTPS OBLIGATOIRE =====
+       Placé avant tout le reste : la redirection doit partir avant le premier octet
+       de style, sinon la page s'affiche en clair et le navigateur écrit « Non sécurisé ». -->
+  <script>
+    (function () {
+      var h = location.hostname;
+      if (location.protocol === 'http:' && h !== 'localhost' && h !== '127.0.0.1' && h.indexOf('192.168.') !== 0) {
+        location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
+  <title>Confidentialité de l'application — Shinkatô</title>
+  <meta name="description" content="Quelles données l'application mobile Shinkatô collecte, pourquoi, où elles sont hébergées et comment les supprimer.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" href="assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/cinzel-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=20260821c">
+  <link rel="stylesheet" href="css/style.css?v=20260821c">
+</head>
+<body>
+  <header class="nav">
+    <a class="nav-brand" href="index.html">
+      <img src="assets/logo_blanc.png" alt="Emblème Shinkatô" class="nav-logo">
+      <span class="nav-wordmark">SHINKATÔ</span>
+    </a>
+    <a href="index.html" class="btn btn-ghost btn-small">Retour à l'accueil</a>
+  </header>
+
+  <main class="legal-wrap">
+    <h1 class="legal-title">Confidentialité de l'application</h1>
+    <p class="legal-updated">Dernière mise à jour : 28 août 2026</p>
+
+    <p class="legal-intro">
+      Cette page concerne <b>l'application mobile Shinkatô</b>. Le site que tu consultes
+      collecte beaucoup moins de choses : sa propre politique est
+      <a href="confidentialite.html">ici</a>.
+    </p>
+
+    <section class="legal-section">
+      <h2>Responsable du traitement</h2>
+      <p>
+        <b>Tristan GONCALVES</b>, entrepreneur individuel exerçant sous le nom commercial
+        Shinkatô — Village, 32490 Castillon-Savès, France. SIREN 942 998 972.
+      </p>
+      <p>
+        Contact :
+        <a href="mailto:shinkato.contact@gmail.com">shinkato.contact@gmail.com</a>
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Ce que l'application collecte</h2>
+
+      <h3>Pour créer et tenir ton compte</h3>
+      <ul>
+        <li><b>Ton adresse e-mail</b> — créer le compte, se connecter, réinitialiser le mot de passe.</li>
+        <li><b>Ton mot de passe</b> — chiffré à sens unique. Nous ne pouvons pas le lire.</li>
+        <li><b>Ton pseudonyme et le personnage choisi</b> — t'identifier dans le jeu.</li>
+      </ul>
+      <p>
+        Aucun nom, prénom, date de naissance, numéro de téléphone, adresse postale ni
+        coordonnée bancaire n'est demandé ni conservé.
+      </p>
+
+      <h3>Ce que tu produis en jouant</h3>
+      <ul>
+        <li>Les habitudes que tu suis et leurs validations, avec leur date.</li>
+        <li>Ta progression : niveau, expérience, points d'énergie et de maîtrise, territoire,
+            objets, succès.</li>
+        <li><b>Tes réponses aux parchemins d'introspection</b> et ton journal de bord.</li>
+        <li>L'historique de tes gains et dépenses de monnaie de jeu, qui sert à faire
+            respecter les limites anti-triche.</li>
+      </ul>
+
+      <p>
+        <b>Au sujet de tes réponses d'introspection.</b> Elles sont enregistrées sur nos
+        serveurs pour rester disponibles quand tu changes d'appareil. Un cloisonnement au
+        niveau de la base garantit qu'<b>aucun autre joueur ne peut y accéder</b>. Nous ne
+        les lisons pas, ne les analysons pas, et ne les exploitons ni pour de la statistique
+        ni pour de la publicité. Un accès technique reste possible de notre part — comme pour
+        tout service en ligne — et ne serait exercé que sur ta demande explicite d'assistance,
+        ou sur réquisition légale.
+      </p>
+
+      <h3>En cas de plantage</h3>
+      <p>
+        L'application signale ses plantages via <b>Sentry</b>, dans une configuration
+        volontairement restreinte : le rapport contient le message d'erreur, la pile d'appel,
+        le modèle d'appareil et les versions du système et de l'application.
+        <b>Ton adresse IP n'est pas transmise</b> et <b>ton écran n'est jamais enregistré</b>.
+        Aucun suivi de performance ni de navigation n'est effectué.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Ce que l'application ne fait pas</h2>
+      <ul>
+        <li>Aucune publicité, donc aucun identifiant publicitaire.</li>
+        <li>Aucun traceur : ni Google Analytics, ni Firebase Analytics, ni SDK Facebook,
+            ni aucun outil de mesure d'audience.</li>
+        <li>Aucune vente, location ou cession de tes données, à personne.</li>
+        <li>Aucun accès à tes contacts, photos, micro, caméra, position ou fichiers.</li>
+        <li>Aucun profilage ni décision automatisée te concernant.</li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>Où tes données sont hébergées</h2>
+      <ul>
+        <li><b>Supabase</b> — base de données et authentification — <b>Irlande</b>, Union européenne.</li>
+        <li><b>Sentry</b> — rapports de plantage — <b>Allemagne</b>, Union européenne.</li>
+      </ul>
+      <p>
+        <b>Tes données ne quittent pas l'Union européenne.</b> Ces prestataires agissent comme
+        sous-traitants au sens du RGPD et n'utilisent pas tes données pour leur propre compte.
+      </p>
+      <p>
+        <b>Ce qui reste sur ton téléphone.</b> Pour fonctionner hors connexion, l'application
+        garde localement une copie de ta progression et ta session de connexion. Cette session
+        est <b>chiffrée</b> (AES-256), la clé étant conservée dans le coffre sécurisé du
+        système — Keychain sur iOS, Keystore sur Android. Ces données locales disparaissent à
+        la désinstallation.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Combien de temps nous les gardons</h2>
+      <ul>
+        <li><b>Compte et contenus associés</b> — tant que le compte existe.</li>
+        <li><b>Après une demande de suppression</b> — effacement sous 30 jours au plus.</li>
+        <li><b>Compte inactif</b> — suppression après 3 ans sans connexion, précédée d'un
+            e-mail d'avertissement.</li>
+        <li><b>Rapports de plantage</b> — 90 jours, puis suppression automatique.</li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>Tes droits</h2>
+      <p>
+        Le RGPD te donne le droit d'accéder à tes données, de les corriger, de les effacer,
+        d'en limiter l'usage, de les récupérer dans un format lisible et de t'opposer à leur
+        traitement.
+      </p>
+      <p>
+        <b>Supprimer ton compte</b> se fait directement dans l'application, ou par e-mail.
+        La marche à suivre et la liste exacte de ce qui est effacé sont détaillées sur la page
+        <a href="suppression-compte.html">Supprimer son compte</a>.
+      </p>
+      <p>
+        Pour toute question ou réclamation :
+        <a href="mailto:shinkato.contact@gmail.com">shinkato.contact@gmail.com</a>.
+        Tu peux également saisir la <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>,
+        autorité française de protection des données.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Sécurité</h2>
+      <ul>
+        <li>Communications chiffrées de bout en bout (HTTPS/TLS).</li>
+        <li>Cloisonnement au niveau de chaque ligne de la base : un compte n'accède qu'à ses
+            propres données.</li>
+        <li>Session stockée chiffrée sur l'appareil.</li>
+        <li>Mots de passe chiffrés à sens unique, jamais lisibles.</li>
+        <li>Données de l'application exclues des sauvegardes automatiques du système.</li>
+      </ul>
+      <p>
+        Aucun système n'est infaillible. En cas de violation de données présentant un risque
+        pour tes droits, tu serais informé sans délai injustifié, conformément à l'article 34
+        du RGPD.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Mineurs</h2>
+      <p>
+        L'application s'adresse aux personnes de <b>16 ans et plus</b> et n'est pas destinée
+        aux enfants. Nous ne collectons pas sciemment de données concernant un enfant de moins
+        de 15 ans. Si tu constates qu'un tel compte existe, écris-nous : il sera supprimé.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Modifications</h2>
+      <p>
+        Cette politique évoluera avec l'application. Tout changement significatif — une
+        nouvelle donnée collectée, un nouveau prestataire — sera annoncé dans l'application
+        avant son entrée en vigueur. La date de dernière mise à jour figure en haut de cette
+        page.
+      </p>
+    </section>
+  </main>
+
+  <!-- ===================== RÉSEAUX ===================== -->
+  <nav class="socials" aria-label="Réseaux sociaux de Shinkatô">
+    <span class="socials-label">Suivre l'aventure</span>
+    <a class="social" href="https://www.instagram.com/shinkato_evolution/" target="_blank" rel="noopener" aria-label="Shinkatô sur Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" focusable="false">
+        <rect x="3" y="3" width="18" height="18" rx="5.2"/>
+        <circle cx="12" cy="12" r="4.1"/>
+        <circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a class="social" href="https://www.tiktok.com/@shinkato_officiel" target="_blank" rel="noopener" aria-label="Shinkatô sur TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+        <path d="M16.5 0h-3.4v14.6a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .8.1V8.3a6.3 6.3 0 0 0-.8-.1 6.3 6.3 0 1 0 6.3 6.3V7.3a7.6 7.6 0 0 0 4.4 1.4V5.3a4.4 4.4 0 0 1-4.4-4.4V0z"/>
+      </svg>
+    </a>
+  </nav>
+  <footer class="footer">
+    <img src="assets/logo_blanc.png" alt="Shinkatô" class="footer-logo">
+    <p class="footer-tagline">Deviens le héros de ton évolution.</p>
+    <p class="footer-meta">
+      <a href="mailto:shinkato.contact@gmail.com">shinkato.contact@gmail.com</a>
+      <span aria-hidden="true">·</span>
+      <a href="index.html">Accueil</a>
+      <span aria-hidden="true">·</span>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <span aria-hidden="true">·</span>
+      © 2026 Shinkatô — Tous droits réservés
+    </p>
+  </footer>
+</body>
+</html>
