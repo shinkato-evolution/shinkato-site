@@ -45,6 +45,10 @@
     @media (min-width: 760px) {
       .hab-grille { grid-template-columns: repeat(2, 1fr); }  /* 5 rangées de 2 */
     }
+    /* Filet pour un compte IMPAIR : la dernière carte prend toute la largeur au lieu de
+       rester orpheline. Sans effet ici (dix cartes), mais la règle est la même sur les six
+       disciplines — Social et Finances en ont sept. */
+    .hab-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
     /* Carte HORIZONTALE : le visuel à gauche, le texte à droite. C'est ce qui donne
        de la largeur au texte — en colonne, la phrase se cassait tous les trois mots. */

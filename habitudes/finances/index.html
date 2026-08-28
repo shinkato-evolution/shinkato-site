@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var h = location.hostname;
+      if (location.protocol === 'http:' && h !== 'localhost' && h !== '127.0.0.1' && h.indexOf('192.168.') !== 0) {
+        location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
+  <title>Habitudes financières : suivre ses dépenses, épargner, budgéter | Shinkatô</title>
+  <meta name="description" content="Sept habitudes pour reprendre la main sur son argent : noter ses dépenses, vérifier son solde, mettre de côté, se fixer une limite. Sans tableur et sans culpabilité.">
+  <link rel="canonical" href="https://shinkato.fr/habitudes/finances/">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="preload" href="../../assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/cinzel-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/fonts.css?v=20260821c">
+  <link rel="stylesheet" href="../../css/style.css?v=20260821c">
+  <style>
+    .hab-grille { display: grid; gap: 16px; margin: 30px auto 6px; max-width: 980px; grid-template-columns: 1fr; }
+    @media (min-width: 760px) { .hab-grille { grid-template-columns: repeat(2, 1fr); } }
+    /* Sept cartes : sans cette règle, la dernière resterait seule dans sa colonne. */
+    .hab-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .hab-card { display: flex; align-items: center; gap: 18px; margin: 0; padding: 18px 20px;
+      border: 2px solid rgba(242,205,15,.28); background: rgba(255,255,255,.03);
+      transition: transform .18s ease, border-color .18s ease, background-color .18s ease; }
+    .hab-card:hover, .hab-card:focus-within { transform: translateY(-4px); border-color: var(--jaune); background: rgba(242,205,15,.07); }
+    .hab-card img { flex: 0 0 auto; width: 104px; height: 104px; image-rendering: pixelated; transition: transform .18s ease; }
+    .hab-card:hover img { transform: scale(1.07); }
+    .hab-card figcaption { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 0; }
+    .hab-plate { display: inline-block; background: var(--jaune); transform: skewX(-25deg); padding: 6px 15px; box-shadow: 4px 4px 0 rgba(0,0,0,.85); max-width: 100%; }
+    .hab-plate > span { display: inline-block; transform: skewX(25deg); font-family: var(--font-epic); font-weight: 700; font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; color: var(--noir); line-height: 1.3; }
+    .hab-txt { font-size: .95rem; line-height: 1.55; color: var(--blanc-60); }
+    @media (max-width: 430px) { .hab-card { gap: 13px; padding: 14px; } .hab-card img { width: 76px; height: 76px; } .hab-txt { font-size: .9rem; } }
+    @media (prefers-reduced-motion: reduce) { .hab-card, .hab-card img { transition: none; } .hab-card:hover, .hab-card:focus-within { transform: none; } .hab-card:hover img { transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="nav-brand" href="../../index.html">
+      <img src="../../assets/logo_blanc.png" alt="Emblème Shinkatô" class="nav-logo">
+      <span class="nav-wordmark">SHINKATÔ</span>
+    </a>
+    <nav class="nav-links" id="nav-menu" aria-label="Navigation principale">
+      <a href="../../#voies">Le jeu</a>
+      <a href="../../#territoire">Essayer la carte</a>
+      <a href="../../#combat">Affronter un obstacle</a>
+      <a href="../../#partenaires">Partenaires</a>
+    </nav>
+    <a href="../../#telecharger" class="btn btn-yellow btn-small">Rejoindre l'aventure</a>
+    <button class="nav-burger" id="nav-burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="silo-nav" aria-label="Les pages pour comprendre Shinkatô">
+    <div class="silo-inner">
+      <span class="silo-titre">Comprendre Shinkatô</span>
+      <a class="silo-lien" href="../">Les habitudes</a>
+      <a class="silo-lien" href="../../blocages/">Les blocages</a>
+      <a class="silo-lien" href="../../alternative-habitica/">Shinkatô ou Habitica</a>
+    </div>
+  </nav>
+
+  <main class="section">
+    <div class="section-head">
+      <h1 class="plate plate-yellow"><span>Habitudes financières</span></h1>
+      <p class="section-lead">
+        Reprendre la main sur son argent. Sept habitudes sans tableur, sans privation
+        et sans jugement sur ce que tu gagnes.
+      </p>
+    </div>
+
+    <div class="hab-grille">
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/finances/habit-51-depenses.png" alt="Noter ses dépenses — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Noter ses dépenses</span></span>
+          <span class="hab-txt">Une seule par jour. Ce qu'on ne note pas, on l'oublie — et on s'étonne en fin de mois.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/finances/habit-52-epargne.png" alt="Mettre de côté — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Mettre de côté</span></span>
+          <span class="hab-txt">Cinq euros dans la semaine. Le montant ne compte pas ; c'est le geste qu'on installe.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/finances/habit-53-solde.png" alt="Vérifier son solde — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Vérifier son solde</span></span>
+          <span class="hab-txt">Regarder, simplement. Éviter son compte ne le fait pas remonter, ça retarde la mauvaise nouvelle.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/finances/habit-apprendre-notion.png" alt="Apprendre une notion financière — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Apprendre une notion</span></span>
+          <span class="hab-txt">Un contenu court. Personne ne nous a appris tout ça à l'école, et ça se rattrape.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/finances/habit-60-limite.png" alt="Se fixer une limite hebdomadaire — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Se fixer une limite</span></span>
+          <span class="hab-txt">Une limite choisie à froid tient mieux qu'une bonne résolution prise devant la caisse.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/finances/habit-69-repas-semaine.png" alt="Prévoir ses repas de la semaine — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Prévoir ses repas</span></span>
+          <span class="hab-txt">Le poste où l'imprévu coûte le plus cher. Planifier, c'est arrêter d'acheter au hasard.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/finances/habit-70-charges.png" alt="Planifier ses charges à venir — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Planifier ses charges</span></span>
+          <span class="hab-txt">Assurance, impôts, abonnements. Une dépense prévue n'est pas une mauvaise surprise.</span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <div class="panel"><div class="panel-body prose">
+
+      <h2>À quoi servent les habitudes financières</h2>
+      <p>
+        Cette discipline ne te demande pas de gagner plus, ne juge pas ce que tu dépenses et ne
+        te promet pas de devenir riche. Elle traite un problème beaucoup plus banal :
+        <b>l'argent stresse surtout quand on ne sait pas où il va</b>. Le flou coûte plus cher
+        que les dépenses elles-mêmes, parce qu'il empêche de décider.
+      </p>
+
+      <h3>Savoir où ça part</h3>
+      <p>
+        <b>Noter ses dépenses</b> et <b>vérifier son solde</b> ne changent rien à ton budget le
+        premier jour — et c'est normal, ce n'est pas leur rôle. Elles servent à voir. Éviter son
+        compte bancaire ne le fait pas remonter : ça repousse simplement la mauvaise nouvelle,
+        en la laissant grossir. Une dépense notée par jour suffit à faire apparaître, en trois
+        semaines, une habitude de consommation qu'on ne soupçonnait pas.
+      </p>
+
+      <h3>Reprendre la main</h3>
+      <p>
+        <b>Mettre de côté</b> et <b>se fixer une limite</b> installent une décision prise
+        <b>à froid</b>, loin du moment de l'achat. Cinq euros dans la semaine ne construisent
+        aucune fortune, et ce n'est pas le but : c'est le geste qu'on installe, pas le montant.
+        Une limite fixée au calme tient bien mieux qu'une bonne résolution prise devant la caisse.
+      </p>
+
+      <h3>Anticiper</h3>
+      <p>
+        <b>Prévoir ses repas</b>, <b>planifier ses charges</b> et <b>apprendre une notion</b>
+        regardent devant. L'alimentation est le poste où l'imprévu coûte le plus cher — on
+        n'achète pas mal parce qu'on choisit mal, mais parce qu'on choisit au dernier moment,
+        affamé. Quant aux charges annuelles, une dépense prévue cesse d'être une mauvaise
+        surprise : elle devient une ligne dans un plan.
+      </p>
+
+      <h2>Une habitude qui se renforce — ou pas</h2>
+      <p>
+        Chaque habitude commence au <b>palier 1</b>, et il est ridiculement petit : une dépense
+        notée, cinq euros de côté, un solde vérifié. Ce n'est pas de la modestie — c'est le seul
+        format qu'on tient encore un mardi soir de novembre.
+      </p>
+      <p>
+        À force de la tenir, tu peux la <b>renforcer</b> : la dépense notée devient toutes les
+        dépenses catégorisées, les cinq euros deviennent vingt. Chaque palier franchi rend ton
+        personnage plus fort.
+      </p>
+      <p>
+        <b>Mais rien ne t'y oblige.</b> Tu peux garder une habitude au palier 1 aussi longtemps
+        que tu veux. Une habitude confortable qu'on tient un an vaut infiniment mieux qu'une
+        habitude ambitieuse abandonnée en trois semaines. C'est toi qui décides quand — ou si —
+        tu montes.
+      </p>
+
+    </div></div>
+  </main>
+
+  <section class="section section-cta">
+    <h2 class="cta-title">Commence par une seule habitude</h2>
+    <a class="btn btn-yellow" href="../../#telecharger">Rejoindre l'aventure</a>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-meta">
+      <a href="../../">Retour à l'accueil</a>
+      <span aria-hidden="true">·</span>
+      <a href="../../#questions">Questions fréquentes</a>
+      <span aria-hidden="true">·</span>
+      © 2026 Shinkatô
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var b = document.getElementById('nav-burger');
+      var m = document.getElementById('nav-menu');
+      if (!b || !m) return;
+      b.addEventListener('click', function () {
+        var ouvert = m.classList.toggle('is-open');
+        b.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var h = location.hostname;
+      if (location.protocol === 'http:' && h !== 'localhost' && h !== '127.0.0.1' && h.indexOf('192.168.') !== 0) {
+        location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
+  <title>Habitudes de productivité : priorités, Pomodoro, procrastination | Shinkatô</title>
+  <meta name="description" content="Huit habitudes contre la procrastination et la dispersion : une priorité par jour, travail sans interruption, traiter la tâche qui traîne, préparer le lendemain.">
+  <link rel="canonical" href="https://shinkato.fr/habitudes/productivite/">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="preload" href="../../assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/cinzel-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/fonts.css?v=20260821c">
+  <link rel="stylesheet" href="../../css/style.css?v=20260821c">
+  <style>
+    .hab-grille { display: grid; gap: 16px; margin: 30px auto 6px; max-width: 980px; grid-template-columns: 1fr; }
+    @media (min-width: 760px) { .hab-grille { grid-template-columns: repeat(2, 1fr); } }
+    .hab-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .hab-card { display: flex; align-items: center; gap: 18px; margin: 0; padding: 18px 20px;
+      border: 2px solid rgba(242,205,15,.28); background: rgba(255,255,255,.03);
+      transition: transform .18s ease, border-color .18s ease, background-color .18s ease; }
+    .hab-card:hover, .hab-card:focus-within { transform: translateY(-4px); border-color: var(--jaune); background: rgba(242,205,15,.07); }
+    .hab-card img { flex: 0 0 auto; width: 104px; height: 104px; image-rendering: pixelated; transition: transform .18s ease; }
+    .hab-card:hover img { transform: scale(1.07); }
+    .hab-card figcaption { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 0; }
+    .hab-plate { display: inline-block; background: var(--jaune); transform: skewX(-25deg); padding: 6px 15px; box-shadow: 4px 4px 0 rgba(0,0,0,.85); max-width: 100%; }
+    .hab-plate > span { display: inline-block; transform: skewX(25deg); font-family: var(--font-epic); font-weight: 700; font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; color: var(--noir); line-height: 1.3; }
+    .hab-txt { font-size: .95rem; line-height: 1.55; color: var(--blanc-60); }
+    @media (max-width: 430px) { .hab-card { gap: 13px; padding: 14px; } .hab-card img { width: 76px; height: 76px; } .hab-txt { font-size: .9rem; } }
+    @media (prefers-reduced-motion: reduce) { .hab-card, .hab-card img { transition: none; } .hab-card:hover, .hab-card:focus-within { transform: none; } .hab-card:hover img { transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="nav-brand" href="../../index.html">
+      <img src="../../assets/logo_blanc.png" alt="Emblème Shinkatô" class="nav-logo">
+      <span class="nav-wordmark">SHINKATÔ</span>
+    </a>
+    <nav class="nav-links" id="nav-menu" aria-label="Navigation principale">
+      <a href="../../#voies">Le jeu</a>
+      <a href="../../#territoire">Essayer la carte</a>
+      <a href="../../#combat">Affronter un obstacle</a>
+      <a href="../../#partenaires">Partenaires</a>
+    </nav>
+    <a href="../../#telecharger" class="btn btn-yellow btn-small">Rejoindre l'aventure</a>
+    <button class="nav-burger" id="nav-burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="silo-nav" aria-label="Les pages pour comprendre Shinkatô">
+    <div class="silo-inner">
+      <span class="silo-titre">Comprendre Shinkatô</span>
+      <a class="silo-lien" href="../">Les habitudes</a>
+      <a class="silo-lien" href="../../blocages/">Les blocages</a>
+      <a class="silo-lien" href="../../alternative-habitica/">Shinkatô ou Habitica</a>
+    </div>
+  </nav>
+
+  <main class="section">
+    <div class="section-head">
+      <h1 class="plate plate-yellow"><span>Habitudes de productivité</span></h1>
+      <p class="section-lead">
+        Avancer sur ce qui compte vraiment. Huit habitudes contre la dispersion et
+        la tâche qu'on repousse depuis trois semaines.
+      </p>
+    </div>
+
+    <div class="hab-grille">
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/productivite/habit-31-priorite.png" alt="Tâche prioritaire du jour — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Tâche prioritaire du jour</span></span>
+          <span class="hab-txt">Une seule. Une liste de douze tâches ne dit pas par quoi commencer — donc on ne commence pas.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/productivite/habit-32-rangement.png" alt="Rangement de l'espace de travail — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Ranger son espace</span></span>
+          <span class="hab-txt">Un bureau encombré réclame de l'attention en permanence, sans jamais le dire.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/productivite/habit-pomo.png" alt="Travail continu, méthode Pomodoro — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Travail continu</span></span>
+          <span class="hab-txt">Dix minutes sans interruption. La méthode Pomodoro, à une dose qu'on tient vraiment.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/productivite/habit-34-lendemain.png" alt="Préparer le lendemain — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Préparer le lendemain</span></span>
+          <span class="hab-txt">Cinq minutes le soir t'évitent une heure d'errance le matin.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/productivite/habit-35-tache-qui-traine.png" alt="Traiter une tâche qui traîne — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Tâche qui traîne</span></span>
+          <span class="hab-txt">Dix minutes sur ce que tu repousses. Une tâche repoussée coûte plus en y pensant qu'en la faisant.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/productivite/habit-37-mails.png" alt="Tri de mails — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Tri de mails</span></span>
+          <span class="hab-txt">Dix minutes, à un moment choisi. Une boîte ouverte toute la journée n'est pas du travail.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/productivite/habit-39-revue.png" alt="Revue de fin de journée — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Revue de fin de journée</span></span>
+          <span class="hab-txt">Qu'est-ce qui a marché, qu'est-ce qui a bloqué. Sans bilan, on répète la même journée.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/productivite/habit-61-pause.png" alt="Faire une pause — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Faire une pause</span></span>
+          <span class="hab-txt">Une vraie, en bougeant. Enchaîner sans pause ne produit pas plus, ça produit moins bien.</span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <div class="panel"><div class="panel-body prose">
+
+      <h2>À quoi servent les habitudes de productivité</h2>
+      <p>
+        Aucune de ces huit habitudes ne cherche à te faire travailler <b>plus</b>. Elles
+        s'attaquent aux trois moments où le temps disparaît sans rien produire : quand on ne
+        sait pas par quoi commencer, quand on est interrompu, et quand on repousse.
+      </p>
+
+      <h3>Décider avant de faire</h3>
+      <p>
+        <b>Tâche prioritaire du jour</b> et <b>préparer le lendemain</b> traitent la même chose :
+        la matinée passée à hésiter. Une liste de douze tâches ne dit pas par quoi commencer —
+        alors on ouvre ses mails, et la matinée est partie. Choisir <b>une</b> priorité la veille
+        supprime la décision au moment où l'on est le moins capable de la prendre.
+      </p>
+
+      <h3>Faire sans se disperser</h3>
+      <p>
+        <b>Travail continu</b>, <b>ranger son espace</b>, <b>tri de mails</b> et <b>faire une
+        pause</b> protègent l'attention pendant l'effort. Dix minutes sans interruption, c'est la
+        méthode Pomodoro ramenée à une dose qu'on tient vraiment. Une boîte de réception ouverte
+        toute la journée n'est pas du travail : c'est une interruption permanente qu'on s'inflige.
+        Et la pause n'est pas du temps perdu — enchaîner sans pause ne produit pas plus, ça
+        produit moins bien.
+      </p>
+
+      <h3>Regarder en arrière</h3>
+      <p>
+        <b>Traiter une tâche qui traîne</b> et <b>revue de fin de journée</b> ferment la boucle.
+        Une tâche repoussée coûte souvent plus cher en y pensant qu'en la faisant : dix minutes
+        suffisent à casser l'appréhension qui la faisait grossir. Et sans bilan, on rejoue la
+        même journée en espérant un autre résultat.
+      </p>
+      <p>
+        Si ce qui te bloque est plus profond qu'une question d'organisation — la peur de se
+        lancer, le perfectionnisme, le découragement — c'est le domaine des
+        <a href="../../blocages/">Échos</a>.
+      </p>
+
+      <h2>Une habitude qui se renforce — ou pas</h2>
+      <p>
+        Chaque habitude commence au <b>palier 1</b>, et il est ridiculement petit : une priorité,
+        dix minutes de travail continu, dix minutes de mails. Ce n'est pas de la modestie — c'est
+        le seul format qu'on tient encore un mardi soir de novembre.
+      </p>
+      <p>
+        À force de la tenir, tu peux la <b>renforcer</b> : les dix minutes de travail continu
+        deviennent soixante, la priorité unique devient un top 3 terminé. Chaque palier franchi
+        rend ton personnage plus fort.
+      </p>
+      <p>
+        <b>Mais rien ne t'y oblige.</b> Tu peux garder une habitude au palier 1 aussi longtemps
+        que tu veux. Une habitude confortable qu'on tient un an vaut infiniment mieux qu'une
+        habitude ambitieuse abandonnée en trois semaines. C'est toi qui décides quand — ou si —
+        tu montes.
+      </p>
+
+    </div></div>
+  </main>
+
+  <section class="section section-cta">
+    <h2 class="cta-title">Commence par une seule habitude</h2>
+    <a class="btn btn-yellow" href="../../#telecharger">Rejoindre l'aventure</a>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-meta">
+      <a href="../../">Retour à l'accueil</a>
+      <span aria-hidden="true">·</span>
+      <a href="../../#questions">Questions fréquentes</a>
+      <span aria-hidden="true">·</span>
+      © 2026 Shinkatô
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var b = document.getElementById('nav-burger');
+      var m = document.getElementById('nav-menu');
+      if (!b || !m) return;
+      b.addEventListener('click', function () {
+        var ouvert = m.classList.toggle('is-open');
+        b.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+      });
+    })();
+  </script>
+</body>
+</html>

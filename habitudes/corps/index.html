@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var h = location.hostname;
+      if (location.protocol === 'http:' && h !== 'localhost' && h !== '127.0.0.1' && h.indexOf('192.168.') !== 0) {
+        location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
+  <title>Habitudes pour le corps : marche, squats, gainage, souplesse | Shinkatô</title>
+  <meta name="description" content="Dix habitudes pour le corps, à partir de cinq minutes par jour : marcher, squats, pompes, planche, étirements, course. Sans salle de sport, sans matériel.">
+  <link rel="canonical" href="https://shinkato.fr/habitudes/corps/">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="preload" href="../../assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/cinzel-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/fonts.css?v=20260821c">
+  <link rel="stylesheet" href="../../css/style.css?v=20260821c">
+  <style>
+    .hab-grille { display: grid; gap: 16px; margin: 30px auto 6px; max-width: 980px; grid-template-columns: 1fr; }
+    @media (min-width: 760px) { .hab-grille { grid-template-columns: repeat(2, 1fr); } }
+    /* Compte IMPAIR : la dernière carte occupe toute la largeur au lieu de rester
+       orpheline dans sa colonne. Même procédé que `.faq-item` dans style.css. */
+    .hab-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .hab-card { display: flex; align-items: center; gap: 18px; margin: 0; padding: 18px 20px;
+      border: 2px solid rgba(242,205,15,.28); background: rgba(255,255,255,.03);
+      transition: transform .18s ease, border-color .18s ease, background-color .18s ease; }
+    .hab-card:hover, .hab-card:focus-within { transform: translateY(-4px); border-color: var(--jaune); background: rgba(242,205,15,.07); }
+    .hab-card img { flex: 0 0 auto; width: 104px; height: 104px; image-rendering: pixelated; transition: transform .18s ease; }
+    .hab-card:hover img { transform: scale(1.07); }
+    .hab-card figcaption { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 0; }
+    .hab-plate { display: inline-block; background: var(--jaune); transform: skewX(-25deg); padding: 6px 15px; box-shadow: 4px 4px 0 rgba(0,0,0,.85); max-width: 100%; }
+    .hab-plate > span { display: inline-block; transform: skewX(25deg); font-family: var(--font-epic); font-weight: 700; font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; color: var(--noir); line-height: 1.3; }
+    .hab-txt { font-size: .95rem; line-height: 1.55; color: var(--blanc-60); }
+    @media (max-width: 430px) { .hab-card { gap: 13px; padding: 14px; } .hab-card img { width: 76px; height: 76px; } .hab-txt { font-size: .9rem; } }
+    @media (prefers-reduced-motion: reduce) { .hab-card, .hab-card img { transition: none; } .hab-card:hover, .hab-card:focus-within { transform: none; } .hab-card:hover img { transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="nav-brand" href="../../index.html">
+      <img src="../../assets/logo_blanc.png" alt="Emblème Shinkatô" class="nav-logo">
+      <span class="nav-wordmark">SHINKATÔ</span>
+    </a>
+    <nav class="nav-links" id="nav-menu" aria-label="Navigation principale">
+      <a href="../../#voies">Le jeu</a>
+      <a href="../../#territoire">Essayer la carte</a>
+      <a href="../../#combat">Affronter un obstacle</a>
+      <a href="../../#partenaires">Partenaires</a>
+    </nav>
+    <a href="../../#telecharger" class="btn btn-yellow btn-small">Rejoindre l'aventure</a>
+    <button class="nav-burger" id="nav-burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="silo-nav" aria-label="Les pages pour comprendre Shinkatô">
+    <div class="silo-inner">
+      <span class="silo-titre">Comprendre Shinkatô</span>
+      <a class="silo-lien" href="../">Les habitudes</a>
+      <a class="silo-lien" href="../../blocages/">Les blocages</a>
+      <a class="silo-lien" href="../../alternative-habitica/">Shinkatô ou Habitica</a>
+    </div>
+  </nav>
+
+  <main class="section">
+    <div class="section-head">
+      <h1 class="plate plate-yellow"><span>Habitudes pour le corps</span></h1>
+      <p class="section-lead">
+        Bouger, se renforcer, entretenir. Dix habitudes qui commencent à cinq minutes —
+        sans salle de sport et sans matériel.
+      </p>
+    </div>
+
+    <div class="hab-grille">
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-01-marcher.png" alt="Marcher — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Marcher</span></span>
+          <span class="hab-txt">Cinq minutes. L'exercice que personne ne rate pour cause de météo, de tenue ou d'horaire.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-02-squats.png" alt="Squats — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Squats</span></span>
+          <span class="hab-txt">Cinq répétitions. Le mouvement qui te fera encore te relever d'une chaise dans trente ans.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-pompes.png" alt="Pompes — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Pompes</span></span>
+          <span class="hab-txt">Cinq pompes inclinées contre un mur. Personne ne commence au sol, et ce n'est pas grave.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-04-planche.png" alt="Planche — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Planche</span></span>
+          <span class="hab-txt">Vingt secondes. Le gainage protège le dos mieux que n'importe quel exercice d'abdominaux.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-05-etirements.png" alt="Étirements dynamiques — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Étirements dynamiques</span></span>
+          <span class="hab-txt">Deux minutes en mouvement, pas figé. C'est ce qui réveille un corps resté assis huit heures.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-06-escaliers.png" alt="Escaliers — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Escaliers</span></span>
+          <span class="hab-txt">Le seul entraînement qui ne prend aucune minute de plus dans ta journée.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-07-courir.png" alt="Courir — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Courir</span></span>
+          <span class="hab-txt">Quinze minutes. Reprendre la course échoue presque toujours parce qu'on part trop vite.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-08-mobilite-dos.png" alt="Mobilité du dos — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Mobilité du dos</span></span>
+          <span class="hab-txt">Deux minutes. Un dos ne fait pas mal parce qu'il est faible, mais parce qu'il ne bouge plus.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-09-sauts.png" alt="Saut sur place — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Saut sur place</span></span>
+          <span class="hab-txt">Trente secondes suffisent à faire monter le cœur. Le raccourci des journées sans temps.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/corps/habit-10-gainage-lateral.png" alt="Gainage latéral — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Gainage latéral</span></span>
+          <span class="hab-txt">Quinze secondes par côté. Les muscles qu'on oublie sont ceux qui tiennent la posture.</span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <div class="panel"><div class="panel-body prose">
+
+      <h2>À quoi servent les habitudes du corps</h2>
+      <p>
+        C'est la discipline qui fait le plus peur, parce qu'on l'associe à une salle de sport,
+        un abonnement et trois heures par semaine. Ici, <b>rien de tout ça</b> : aucune de ces
+        dix habitudes ne demande de matériel, de tenue, ni de sortir de chez toi. La plus longue
+        prend quinze minutes, la plus courte trente secondes.
+      </p>
+
+      <h3>Mettre le corps en mouvement</h3>
+      <p>
+        <b>Marcher</b>, <b>escaliers</b>, <b>saut sur place</b> et <b>courir</b> partagent une
+        idée simple : le problème n'est presque jamais l'intensité, c'est l'immobilité. Une
+        journée assise ne se rattrape pas par une séance héroïque le samedi. Les escaliers sont
+        le cas extrême — c'est le seul entraînement qui ne prend aucune minute de plus dans ta
+        journée, puisque tu montais de toute façon.
+      </p>
+
+      <h3>Construire de la force</h3>
+      <p>
+        <b>Squats</b>, <b>pompes</b>, <b>planche</b> et <b>gainage latéral</b> travaillent au
+        poids du corps, donc partout. Ils commencent à cinq répétitions ou vingt secondes — et
+        ce n'est pas une politesse : c'est le seuil auquel on recommence le lendemain sans se
+        chercher d'excuse. Le gainage, en particulier, protège le dos mieux que n'importe quelle
+        série d'abdominaux.
+      </p>
+
+      <h3>Entretenir la mécanique</h3>
+      <p>
+        <b>Étirements dynamiques</b> et <b>mobilité du dos</b> sont les habitudes qu'on saute
+        toujours, et celles qu'on regrette le plus tard. Un dos ne fait pas mal parce qu'il est
+        faible : il fait mal parce qu'il ne bouge plus dans toute son amplitude. Deux minutes
+        entretiennent ce que des années de position assise abîment.
+      </p>
+
+      <h2>Une habitude qui se renforce — ou pas</h2>
+      <p>
+        Chaque habitude commence au <b>palier 1</b>, et il est ridiculement petit : cinq minutes
+        de marche, cinq squats, vingt secondes de planche. Ce n'est pas de la modestie — c'est le
+        seul format qu'on tient encore un mardi soir de novembre.
+      </p>
+      <p>
+        À force de la tenir, tu peux la <b>renforcer</b> : la marche passe de cinq à quarante-cinq
+        minutes, la planche de vingt à quatre-vingt-dix secondes. Chaque palier franchi rend ton
+        personnage plus fort.
+      </p>
+      <p>
+        <b>Mais rien ne t'y oblige.</b> Tu peux garder une habitude au palier 1 aussi longtemps
+        que tu veux. Une habitude confortable qu'on tient un an vaut infiniment mieux qu'une
+        habitude ambitieuse abandonnée en trois semaines. C'est toi qui décides quand — ou si —
+        tu montes.
+      </p>
+
+    </div></div>
+  </main>
+
+  <section class="section section-cta">
+    <h2 class="cta-title">Commence par une seule habitude</h2>
+    <a class="btn btn-yellow" href="../../#telecharger">Rejoindre l'aventure</a>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-meta">
+      <a href="../../">Retour à l'accueil</a>
+      <span aria-hidden="true">·</span>
+      <a href="../../#questions">Questions fréquentes</a>
+      <span aria-hidden="true">·</span>
+      © 2026 Shinkatô
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var b = document.getElementById('nav-burger');
+      var m = document.getElementById('nav-menu');
+      if (!b || !m) return;
+      b.addEventListener('click', function () {
+        var ouvert = m.classList.toggle('is-open');
+        b.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+      });
+    })();
+  </script>
+</body>
+</html>

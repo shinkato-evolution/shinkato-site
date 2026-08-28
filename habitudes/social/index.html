@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var h = location.hostname;
+      if (location.protocol === 'http:' && h !== 'localhost' && h !== '127.0.0.1' && h.indexOf('192.168.') !== 0) {
+        location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
+  <title>Habitudes sociales : reprendre contact, complimenter, soutenir | Shinkatô</title>
+  <meta name="description" content="Sept habitudes pour entretenir ses liens : dire bonjour, écrire à quelqu'un qui compte, complimenter, soutenir le travail des autres. Une minute suffit.">
+  <link rel="canonical" href="https://shinkato.fr/habitudes/social/">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="preload" href="../../assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/cinzel-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/fonts.css?v=20260821c">
+  <link rel="stylesheet" href="../../css/style.css?v=20260821c">
+  <style>
+    .hab-grille { display: grid; gap: 16px; margin: 30px auto 6px; max-width: 980px; grid-template-columns: 1fr; }
+    @media (min-width: 760px) { .hab-grille { grid-template-columns: repeat(2, 1fr); } }
+    /* Sept cartes : sans cette règle, la dernière resterait seule dans sa colonne. */
+    .hab-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .hab-card { display: flex; align-items: center; gap: 18px; margin: 0; padding: 18px 20px;
+      border: 2px solid rgba(242,205,15,.28); background: rgba(255,255,255,.03);
+      transition: transform .18s ease, border-color .18s ease, background-color .18s ease; }
+    .hab-card:hover, .hab-card:focus-within { transform: translateY(-4px); border-color: var(--jaune); background: rgba(242,205,15,.07); }
+    .hab-card img { flex: 0 0 auto; width: 104px; height: 104px; image-rendering: pixelated; transition: transform .18s ease; }
+    .hab-card:hover img { transform: scale(1.07); }
+    .hab-card figcaption { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 0; }
+    .hab-plate { display: inline-block; background: var(--jaune); transform: skewX(-25deg); padding: 6px 15px; box-shadow: 4px 4px 0 rgba(0,0,0,.85); max-width: 100%; }
+    .hab-plate > span { display: inline-block; transform: skewX(25deg); font-family: var(--font-epic); font-weight: 700; font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; color: var(--noir); line-height: 1.3; }
+    .hab-txt { font-size: .95rem; line-height: 1.55; color: var(--blanc-60); }
+    @media (max-width: 430px) { .hab-card { gap: 13px; padding: 14px; } .hab-card img { width: 76px; height: 76px; } .hab-txt { font-size: .9rem; } }
+    @media (prefers-reduced-motion: reduce) { .hab-card, .hab-card img { transition: none; } .hab-card:hover, .hab-card:focus-within { transform: none; } .hab-card:hover img { transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="nav-brand" href="../../index.html">
+      <img src="../../assets/logo_blanc.png" alt="Emblème Shinkatô" class="nav-logo">
+      <span class="nav-wordmark">SHINKATÔ</span>
+    </a>
+    <nav class="nav-links" id="nav-menu" aria-label="Navigation principale">
+      <a href="../../#voies">Le jeu</a>
+      <a href="../../#territoire">Essayer la carte</a>
+      <a href="../../#combat">Affronter un obstacle</a>
+      <a href="../../#partenaires">Partenaires</a>
+    </nav>
+    <a href="../../#telecharger" class="btn btn-yellow btn-small">Rejoindre l'aventure</a>
+    <button class="nav-burger" id="nav-burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="silo-nav" aria-label="Les pages pour comprendre Shinkatô">
+    <div class="silo-inner">
+      <span class="silo-titre">Comprendre Shinkatô</span>
+      <a class="silo-lien" href="../">Les habitudes</a>
+      <a class="silo-lien" href="../../blocages/">Les blocages</a>
+      <a class="silo-lien" href="../../alternative-habitica/">Shinkatô ou Habitica</a>
+    </div>
+  </nav>
+
+  <main class="section">
+    <div class="section-head">
+      <h1 class="plate plate-yellow"><span>Habitudes sociales</span></h1>
+      <p class="section-lead">
+        Reprendre contact, entretenir ses liens, soutenir les autres. Sept habitudes
+        qui prennent une minute et qui changent une journée — parfois deux.
+      </p>
+    </div>
+
+    <div class="hab-grille">
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/social/habit-62-bonjour.png" alt="Dire bonjour — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Dire bonjour</span></span>
+          <span class="hab-txt">Un voisin, un collègue, un inconnu. La plus petite habitude sociale qui existe.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/social/habit-63-message.png" alt="Envoyer un message — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Envoyer un message</span></span>
+          <span class="hab-txt">À quelqu'un qui compte. Les liens ne se perdent pas sur une dispute, mais sur un silence.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/social/habit-64-avis-local.png" alt="Rédiger un avis local — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Rédiger un avis local</span></span>
+          <span class="hab-txt">Cinq minutes pour un commerçant ou un artisan. Pour eux, ça pèse énormément.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/social/habit-positif.png" alt="Être positif — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Être positif</span></span>
+          <span class="hab-txt">Sourire, garder le cap. L'humeur se transmet — la mauvaise plus vite que l'autre.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/social/habit-66-commenter.png" alt="Commenter sur les réseaux — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Commenter</span></span>
+          <span class="hab-txt">Un commentaire construit, pas un pouce levé. Encourager coûte trente secondes.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/social/habit-67-partager.png" alt="Partager le travail de quelqu'un — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Partager un travail</span></span>
+          <span class="hab-txt">Celui d'un artiste, d'un créateur, d'un ami. Un partage peut relancer quelqu'un qui doutait.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/social/habit-68-compliment.png" alt="Complimenter quelqu'un — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <span class="hab-plate"><span>Complimenter</span></span>
+          <span class="hab-txt">Sincère, et dit à voix haute. On pense beaucoup de bien qu'on ne dit jamais.</span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <div class="panel"><div class="panel-body prose">
+
+      <h2>À quoi servent les habitudes sociales</h2>
+      <p>
+        C'est la discipline la plus étrange à trouver dans une application de développement
+        personnel, et sans doute la plus utile. Les six autres te font progresser <b>toi</b>.
+        Celle-ci est la seule dont le bénéfice tombe d'abord sur quelqu'un d'autre — et revient
+        ensuite, sans qu'on l'ait cherché.
+      </p>
+
+      <h3>Aller vers les autres</h3>
+      <p>
+        <b>Dire bonjour</b>, <b>complimenter</b> et <b>être positif</b> ne demandent aucune
+        préparation, juste de franchir un pas minuscule. On pense énormément de bien des gens
+        qu'on ne leur dit jamais, par pudeur ou par peur du ridicule. Un compliment sincère au
+        bon moment reste dans la tête de quelqu'un bien plus longtemps qu'on ne l'imagine.
+      </p>
+
+      <h3>Entretenir ses liens</h3>
+      <p>
+        <b>Envoyer un message</b> à quelqu'un qui compte est l'habitude qu'on repousse le plus.
+        Les amitiés ne se perdent presque jamais sur une dispute : elles s'éteignent sur un
+        silence que personne ne décide, et que chacun croit être à l'autre de rompre. Au dernier
+        palier, tu appelles au lieu d'écrire — parce qu'une voix ne se compare pas à un texte.
+      </p>
+
+      <h3>Soutenir</h3>
+      <p>
+        <b>Rédiger un avis local</b>, <b>commenter</b> et <b>partager un travail</b> font pencher
+        la balance pour quelqu'un dont ce n'est pas ta responsabilité. Cinq minutes d'avis pour
+        un artisan pèsent bien plus lourd pour lui que pour toi. Un commentaire construit vaut
+        cent pouces levés. Et un partage peut relancer une personne qui allait arrêter.
+      </p>
+
+      <h2>Une habitude qui se renforce — ou pas</h2>
+      <p>
+        Chaque habitude commence au <b>palier 1</b>, et il est ridiculement petit : un bonjour,
+        un message, un compliment. Ce n'est pas de la modestie — c'est le seul format qu'on tient
+        encore un mardi soir de novembre.
+      </p>
+      <p>
+        À force de la tenir, tu peux la <b>renforcer</b> : le message devient un appel, le
+        compliment unique devient trois dont un à un inconnu. Chaque palier franchi rend ton
+        personnage plus fort.
+      </p>
+      <p>
+        <b>Mais rien ne t'y oblige.</b> Tu peux garder une habitude au palier 1 aussi longtemps
+        que tu veux. Une habitude confortable qu'on tient un an vaut infiniment mieux qu'une
+        habitude ambitieuse abandonnée en trois semaines. C'est toi qui décides quand — ou si —
+        tu montes.
+      </p>
+
+    </div></div>
+  </main>
+
+  <section class="section section-cta">
+    <h2 class="cta-title">Commence par une seule habitude</h2>
+    <a class="btn btn-yellow" href="../../#telecharger">Rejoindre l'aventure</a>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-meta">
+      <a href="../../">Retour à l'accueil</a>
+      <span aria-hidden="true">·</span>
+      <a href="../../#questions">Questions fréquentes</a>
+      <span aria-hidden="true">·</span>
+      © 2026 Shinkatô
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var b = document.getElementById('nav-burger');
+      var m = document.getElementById('nav-menu');
+      if (!b || !m) return;
+      b.addEventListener('click', function () {
+        var ouvert = m.classList.toggle('is-open');
+        b.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+      });
+    })();
+  </script>
+</body>
+</html>
