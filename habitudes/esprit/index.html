@@ -25,32 +25,100 @@
   <link rel="stylesheet" href="../../css/fonts.css?v=20260821c">
   <link rel="stylesheet" href="../../css/style.css?v=20260821c">
 
-  <!-- ===== STYLES DES CARTES D'HABITUDE =====
+  <!-- ===== CARTES D'HABITUDE =====
        En ligne, pas dans css/style.css : la feuille commune est servie avec quatre heures
        de cache et son `?v=` devrait être incrémenté sur TOUTES les pages à chaque retouche.
-       À fusionner quand les six disciplines seront en ligne et stabilisées. -->
+       À fusionner quand les six disciplines seront en ligne et stabilisées.
+
+       ⚠️ NOMBRE DE COLONNES — jamais `auto-fill`. Avec dix cartes, `auto-fill` produisait
+       sept cartes en haut et trois en bas selon la largeur de l'écran. Les colonnes sont
+       donc FIXÉES à des valeurs qui divisent dix : 1 (dix rangées) ou 2 (cinq rangées).
+       Aucune rangée orpheline, à aucune largeur. -->
   <style>
     .hab-grille {
-      display: grid; gap: 14px; margin: 26px 0 10px;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      display: grid;
+      gap: 16px;
+      margin: 30px auto 6px;
+      max-width: 980px;
+      grid-template-columns: 1fr;          /* 10 rangées de 1 */
     }
+    @media (min-width: 760px) {
+      .hab-grille { grid-template-columns: repeat(2, 1fr); }  /* 5 rangées de 2 */
+    }
+
+    /* Carte HORIZONTALE : le visuel à gauche, le texte à droite. C'est ce qui donne
+       de la largeur au texte — en colonne, la phrase se cassait tous les trois mots. */
     .hab-card {
-      margin: 0; padding: 12px 10px 14px; text-align: center;
-      border: 2px solid rgba(242,205,15,.30);
-      background: rgba(255,255,255,.03);
-      display: flex; flex-direction: column; gap: 8px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 0;
+      padding: 18px 20px;
+      border: 2px solid rgba(242, 205, 15, 0.28);
+      background: rgba(255, 255, 255, 0.03);
+      transition: transform .18s ease, border-color .18s ease, background-color .18s ease;
+    }
+    .hab-card:hover,
+    .hab-card:focus-within {
+      transform: translateY(-4px);
+      border-color: var(--jaune);
+      background: rgba(242, 205, 15, 0.07);
     }
     .hab-card img {
-      width: 100%; max-width: 132px; height: auto; margin: 0 auto;
-      image-rendering: pixelated;      /* planches pixel-art : pas de lissage */
+      flex: 0 0 auto;
+      width: 104px; height: 104px;
+      image-rendering: pixelated;          /* planches pixel-art : jamais lissées */
+      transition: transform .18s ease;
     }
-    .hab-card figcaption { display: flex; flex-direction: column; gap: 5px; }
-    .hab-nom {
-      font-family: 'Cinzel', Georgia, serif; font-weight: 900;
-      font-size: .96rem; color: var(--jaune, #f2cd0f); letter-spacing: .3px;
-      line-height: 1.25;
+    .hab-card:hover img { transform: scale(1.07); }
+
+    .hab-card figcaption {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;                        /* sans ça, un mot long fait déborder la carte */
     }
-    .hab-txt { font-size: .84rem; line-height: 1.45; opacity: .82; }
+
+    /* Même parallélogramme que `.plate`, en plus petit : c'est la bannière inclinée
+       du jeu. Le span est contre-incliné pour que le texte reste droit. */
+    .hab-plate {
+      display: inline-block;
+      background: var(--jaune);
+      transform: skewX(-25deg);
+      padding: 6px 15px;
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.85);
+      max-width: 100%;
+    }
+    .hab-plate > span {
+      display: inline-block;
+      transform: skewX(25deg);
+      font-family: var(--font-epic);
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--noir);
+      line-height: 1.3;
+    }
+
+    .hab-txt {
+      font-size: .95rem;
+      line-height: 1.55;
+      color: var(--blanc-60);
+    }
+
+    @media (max-width: 430px) {
+      .hab-card { gap: 13px; padding: 14px; }
+      .hab-card img { width: 76px; height: 76px; }
+      .hab-txt { font-size: .9rem; }
+    }
+    /* Un survol qui déplace la carte gêne les personnes sensibles au mouvement. */
+    @media (prefers-reduced-motion: reduce) {
+      .hab-card, .hab-card img { transition: none; }
+      .hab-card:hover, .hab-card:focus-within { transform: none; }
+      .hab-card:hover img { transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -82,100 +150,97 @@
   </nav>
 
   <main class="section">
+    <!-- ⚠️ Pas de `.panel` d'introduction ici. Un panneau qui ne contient QU'UN paragraphe
+         paraît mal centré : `.panel-body` a 34 px de marge haute contre 28 en bas, plus les
+         16 px du paragraphe — l'œil voit l'asymétrie. Le texte d'introduction vit donc dans
+         `.section-lead`, et le premier panneau arrive après les cartes, bien rempli. -->
     <div class="section-head">
       <h1 class="plate plate-yellow"><span>Habitudes pour l'esprit</span></h1>
       <p class="section-lead">
-        Dix habitudes qui commencent à une minute par jour — et qui montent avec toi.
+        L'attention, la mémoire, le rapport à tes propres pensées. Dix habitudes qui
+        commencent à une minute par jour — et qui montent avec toi.
       </p>
     </div>
-
-    <div class="panel"><div class="panel-body prose">
-      <p>
-        La discipline <b>Esprit</b> rassemble ce qui se travaille dans le calme : l'attention,
-        la mémoire, le rapport à tes propres pensées. Ce sont les habitudes les moins
-        spectaculaires de Shinkatô, et souvent celles qui changent le plus de choses.
-      </p>
-    </div></div>
 
     <div class="hab-grille">
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-11-respiration.png" alt="Respiration consciente — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Respiration consciente</b>
-          <span class="hab-txt">Le geste le plus rapide pour se calmer. Sans matériel, n'importe où.</span>
+          <span class="hab-plate"><span>Respiration consciente</span></span>
+          <span class="hab-txt">Le geste le plus rapide qui existe pour se calmer. Ni matériel, ni endroit, ni personne — un couloir suffit.</span>
         </figcaption>
       </figure>
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-12-meditation.png" alt="Méditation — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Méditation</b>
-          <span class="hab-txt">Deux minutes, pas trente. Personne n'y arrive à vingt au début.</span>
+          <span class="hab-plate"><span>Méditation</span></span>
+          <span class="hab-txt">Deux minutes, pas trente. Personne n'y arrive à vingt au début — c'est pour ça que tout le monde abandonne.</span>
         </figcaption>
       </figure>
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-13-journal.png" alt="Journal mental — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Journal mental</b>
-          <span class="hab-txt">Une phrase tient un an. Une page tient neuf jours.</span>
+          <span class="hab-plate"><span>Journal mental</span></span>
+          <span class="hab-txt">Une phrase par jour tient un an. Une page par jour tient neuf jours. Ce qui est écrit arrête de tourner la nuit.</span>
         </figcaption>
       </figure>
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-14-gratitude.png" alt="Gratitude — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Gratitude</b>
-          <span class="hab-txt">Remarquer ce qui s'est bien passé. L'attention ne le fait pas seule.</span>
+          <span class="hab-plate"><span>Gratitude</span></span>
+          <span class="hab-txt">Remarquer une chose qui s'est bien passée. L'attention se pose seule sur ce qui a raté, jamais sur le reste.</span>
         </figcaption>
       </figure>
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-15-lecture.png" alt="Lecture réflexive — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Lecture réflexive</b>
-          <span class="hab-txt">Une page par jour, c'est douze livres dans l'année.</span>
+          <span class="hab-plate"><span>Lecture réflexive</span></span>
+          <span class="hab-txt">Une page, c'est deux minutes. La difficulté n'a jamais été de lire — elle a toujours été de recommencer.</span>
         </figcaption>
       </figure>
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-16-silence.png" alt="Silence volontaire — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Silence volontaire</b>
-          <span class="hab-txt">Contre la fatigue mentale : une minute sans écran ni fond sonore.</span>
+          <span class="hab-plate"><span>Silence volontaire</span></span>
+          <span class="hab-txt">Une journée ordinaire ne laisse aucune minute sans son. La fatigue du soir vient souvent de là.</span>
         </figcaption>
       </figure>
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-17-visualisation.png" alt="Visualisation — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Visualisation</b>
-          <span class="hab-txt">Voir la scène avant de la vivre. Un outil de sportif.</span>
+          <span class="hab-plate"><span>Visualisation</span></span>
+          <span class="hab-txt">Voir la scène avant de la vivre : l'entretien, la séance, la conversation difficile. Un outil de sportif.</span>
         </figcaption>
       </figure>
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-18-observation.png" alt="Observation d'une pensée — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Observation d'une pensée</b>
-          <span class="hab-txt">Contre les pensées en boucle : les nommer au lieu de les subir.</span>
+          <span class="hab-plate"><span>Observation d'une pensée</span></span>
+          <span class="hab-txt">« Je pense que je vais échouer » n'est pas « je vais échouer ». Nommer une pensée lui retire sa force.</span>
         </figcaption>
       </figure>
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-19-concentration.png" alt="Concentration sans distraction — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Concentration sans distraction</b>
-          <span class="hab-txt">Une minute sans toucher son téléphone. Essaie avant de sourire.</span>
+          <span class="hab-plate"><span>Concentration</span></span>
+          <span class="hab-txt">Une minute sans toucher ton téléphone paraît dérisoire — jusqu'au moment où tu essaies vraiment.</span>
         </figcaption>
       </figure>
 
       <figure class="hab-card">
         <img src="../../assets/habitudes/esprit/habit-20-mot.png" alt="Apprendre un mot ou concept — illustration pixel art" loading="lazy" width="300" height="300">
         <figcaption>
-          <b class="hab-nom">Apprendre un mot</b>
-          <span class="hab-txt">Un mot par jour. Un mot qu'on n'a pas est une pensée qu'on ne peut pas former.</span>
+          <span class="hab-plate"><span>Apprendre un mot</span></span>
+          <span class="hab-txt">Un mot par jour, c'est 365 dans l'année. Un mot qu'on n'a pas, c'est une pensée qu'on ne peut pas former.</span>
         </figcaption>
       </figure>
 
@@ -186,22 +251,21 @@
       <h2>Chaque habitude monte en quatre paliers</h2>
       <p>
         Une habitude ne reste pas figée. Chacune commence <b>ridiculement petit</b> — une minute,
-        une phrase, une page — puis se renforce en <b>quatre paliers</b> que tu débloques quand
-        tu t'y sens prêt. La méditation part de deux minutes et va jusqu'à quinze. La gratitude
-        part d'une ligne et finit par te faire remercier quelqu'un pour de vrai.
+        une phrase, une page — puis se renforce en <b>quatre paliers</b> que tu débloques quand tu
+        t'y sens prêt. La méditation part de deux minutes et va jusqu'à quinze. La gratitude part
+        d'une ligne et finit par te faire remercier quelqu'un pour de vrai.
       </p>
       <p>
         Ce n'est pas de la modestie : une minute est le seul format qu'on tient encore un mardi
-        soir de novembre. Et un palier franchi rend ton personnage plus fort — l'effort réel
+        soir de novembre. Et chaque palier franchi rend ton personnage plus fort — ton effort réel
         décide de ta force au combat.
       </p>
 
       <h2>Trois à la fois, jamais dix</h2>
       <p>
         Tu ne prends pas ces dix habitudes. Tu commences avec <b>une seule</b> ; un deuxième
-        emplacement s'ouvre au niveau 2, un troisième au niveau 5. Trois au maximum — parce
-        qu'une liste de dix habitudes n'est pas un projet, c'est une façon élégante d'échouer
-        sur les dix.
+        emplacement s'ouvre au niveau 2, un troisième au niveau 5. Trois au maximum — parce qu'une
+        liste de dix habitudes n'est pas un projet, c'est une façon élégante d'échouer sur les dix.
       </p>
 
       <h2>Rater un jour ne casse rien</h2>
@@ -219,17 +283,17 @@
         avancer, aucune récompense qui s'achète avec de l'argent réel.
       </p>
       <p>
-        Une application qui prétend t'aider à te concentrer et qui te coupe avec une publicité
-        se contredit. Shinkatô se finance par ses marques partenaires, intégrées à l'univers —
-        jamais en te vendant ton propre temps d'attention.
+        Une application qui prétend t'aider à te concentrer et qui te coupe avec une publicité se
+        contredit. Shinkatô se finance par ses marques partenaires, intégrées à l'univers — jamais
+        en te vendant ton propre temps d'attention.
       </p>
 
       <h2>Les autres disciplines</h2>
       <p>
         Cinq autres domaines progressent en parallèle, chacun avec ses propres habitudes :
-        <b>Corps</b>, <b>Santé</b>, <b>Productivité</b>, <b>Social</b> et <b>Finance</b>.
-        Vue d'ensemble sur la page <a href="../">Sur quelles habitudes progresser</a>. Et si tu
-        veux comprendre ce que tu affrontes en chemin : <a href="../../blocages/">les blocages</a>.
+        <b>Corps</b>, <b>Santé</b>, <b>Productivité</b>, <b>Social</b> et <b>Finance</b>. Vue
+        d'ensemble sur la page <a href="../">Sur quelles habitudes progresser</a>. Et pour
+        comprendre ce que tu affrontes en chemin : <a href="../../blocages/">les blocages</a>.
       </p>
 
     </div></div>
