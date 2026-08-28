@@ -14,7 +14,7 @@
     })();
   </script>
   <title>Habitudes pour l'esprit : méditation, concentration, gratitude | Shinkatô</title>
-  <meta name="description" content="Dix habitudes pour l'esprit, à partir d'une minute par jour : méditation, concentration, gratitude, journal, observation des pensées. Chacune monte en quatre paliers.">
+  <meta name="description" content="Dix habitudes pour l'esprit, à partir d'une minute par jour : méditation, concentration, gratitude, journal, lecture. Gratuit, sans publicité.">
   <link rel="canonical" href="https://shinkato.fr/habitudes/esprit/">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
@@ -25,51 +25,32 @@
   <link rel="stylesheet" href="../../css/fonts.css?v=20260821c">
   <link rel="stylesheet" href="../../css/style.css?v=20260821c">
 
-  <!-- ===== STYLES PROPRES AUX PAGES DE DISCIPLINE =====
-       Volontairement EN LIGNE plutôt que dans css/style.css : le fichier commun est servi
-       avec quatre heures de cache et son paramètre `?v=` devrait être incrémenté sur TOUTES
-       les pages du site à chaque retouche. À la veille d'une soumission au Play Store, on
-       ne touche pas à une feuille de style partagée pour six pages nouvelles.
-       À fusionner dans style.css quand les six disciplines seront en ligne et stabilisées. -->
+  <!-- ===== STYLES DES CARTES D'HABITUDE =====
+       En ligne, pas dans css/style.css : la feuille commune est servie avec quatre heures
+       de cache et son `?v=` devrait être incrémenté sur TOUTES les pages à chaque retouche.
+       À fusionner quand les six disciplines seront en ligne et stabilisées. -->
   <style>
-    .hab-liste { display: grid; gap: 14px; margin: 22px 0 8px; }
-    .hab {
+    .hab-grille {
+      display: grid; gap: 14px; margin: 26px 0 10px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    .hab-card {
+      margin: 0; padding: 12px 10px 14px; text-align: center;
       border: 2px solid rgba(242,205,15,.30);
       background: rgba(255,255,255,.03);
+      display: flex; flex-direction: column; gap: 8px;
     }
-    .hab[open] { border-color: rgba(242,205,15,.62); }
-    .hab > summary {
-      cursor: pointer; list-style: none; padding: 14px 16px;
-      display: flex; align-items: baseline; gap: 12px;
+    .hab-card img {
+      width: 100%; max-width: 132px; height: auto; margin: 0 auto;
+      image-rendering: pixelated;      /* planches pixel-art : pas de lissage */
     }
-    .hab > summary::-webkit-details-marker { display: none; }
+    .hab-card figcaption { display: flex; flex-direction: column; gap: 5px; }
     .hab-nom {
       font-family: 'Cinzel', Georgia, serif; font-weight: 900;
-      font-size: 1.06rem; color: var(--jaune, #f2cd0f); letter-spacing: .4px;
+      font-size: .96rem; color: var(--jaune, #f2cd0f); letter-spacing: .3px;
+      line-height: 1.25;
     }
-    .hab-mini { font-size: .93rem; opacity: .72; }
-    /* Chevron : tourne à l'ouverture. `aria-hidden` inutile, c'est du CSS pur. */
-    .hab > summary::after {
-      content: '▸'; margin-left: auto; color: var(--jaune, #f2cd0f);
-      transition: transform .18s ease; font-size: 1.1rem;
-    }
-    .hab[open] > summary::after { transform: rotate(90deg); }
-    .hab-corps { padding: 0 16px 16px; }
-    .hab-corps p { margin: 0 0 12px; }
-    .hab-paliers { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
-    .hab-paliers li {
-      display: flex; gap: 10px; align-items: baseline;
-      font-size: .95rem; padding: 7px 10px;
-      background: rgba(0,0,0,.28); border-left: 2px solid rgba(242,205,15,.45);
-    }
-    .hab-pal-n {
-      font-family: 'Cinzel', Georgia, serif; font-weight: 900;
-      color: var(--jaune, #f2cd0f); min-width: 1.6em;
-    }
-    @media (max-width: 520px) {
-      .hab > summary { flex-direction: column; gap: 3px; }
-      .hab > summary::after { display: none; }
-    }
+    .hab-txt { font-size: .84rem; line-height: 1.45; opacity: .82; }
   </style>
 </head>
 <body>
@@ -109,257 +90,166 @@
     </div>
 
     <div class="panel"><div class="panel-body prose">
-
       <p>
-        La discipline <b>Esprit</b> rassemble ce qui se travaille dans le calme : l'attention, la
-        mémoire, le rapport à tes propres pensées. Ce sont les habitudes les moins spectaculaires
-        de Shinkatô, et souvent celles qui changent le plus de choses.
+        La discipline <b>Esprit</b> rassemble ce qui se travaille dans le calme : l'attention,
+        la mémoire, le rapport à tes propres pensées. Ce sont les habitudes les moins
+        spectaculaires de Shinkatô, et souvent celles qui changent le plus de choses.
+      </p>
+    </div></div>
+
+    <div class="hab-grille">
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-11-respiration.png" alt="Respiration consciente — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Respiration consciente</b>
+          <span class="hab-txt">Le geste le plus rapide pour se calmer. Sans matériel, n'importe où.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-12-meditation.png" alt="Méditation — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Méditation</b>
+          <span class="hab-txt">Deux minutes, pas trente. Personne n'y arrive à vingt au début.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-13-journal.png" alt="Journal mental — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Journal mental</b>
+          <span class="hab-txt">Une phrase tient un an. Une page tient neuf jours.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-14-gratitude.png" alt="Gratitude — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Gratitude</b>
+          <span class="hab-txt">Remarquer ce qui s'est bien passé. L'attention ne le fait pas seule.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-15-lecture.png" alt="Lecture réflexive — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Lecture réflexive</b>
+          <span class="hab-txt">Une page par jour, c'est douze livres dans l'année.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-16-silence.png" alt="Silence volontaire — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Silence volontaire</b>
+          <span class="hab-txt">Contre la fatigue mentale : une minute sans écran ni fond sonore.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-17-visualisation.png" alt="Visualisation — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Visualisation</b>
+          <span class="hab-txt">Voir la scène avant de la vivre. Un outil de sportif.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-18-observation.png" alt="Observation d'une pensée — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Observation d'une pensée</b>
+          <span class="hab-txt">Contre les pensées en boucle : les nommer au lieu de les subir.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-19-concentration.png" alt="Concentration sans distraction — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Concentration sans distraction</b>
+          <span class="hab-txt">Une minute sans toucher son téléphone. Essaie avant de sourire.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="hab-card">
+        <img src="../../assets/habitudes/esprit/habit-20-mot.png" alt="Apprendre un mot ou concept — illustration pixel art" loading="lazy" width="300" height="300">
+        <figcaption>
+          <b class="hab-nom">Apprendre un mot</b>
+          <span class="hab-txt">Un mot par jour. Un mot qu'on n'a pas est une pensée qu'on ne peut pas former.</span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <div class="panel"><div class="panel-body prose">
+
+      <h2>Chaque habitude monte en quatre paliers</h2>
+      <p>
+        Une habitude ne reste pas figée. Chacune commence <b>ridiculement petit</b> — une minute,
+        une phrase, une page — puis se renforce en <b>quatre paliers</b> que tu débloques quand
+        tu t'y sens prêt. La méditation part de deux minutes et va jusqu'à quinze. La gratitude
+        part d'une ligne et finit par te faire remercier quelqu'un pour de vrai.
       </p>
       <p>
-        Chacune commence <b>ridiculement petit</b>. Une minute. Une phrase. Une page. Ce n'est pas
-        de la modestie : c'est le seul format qu'on tient un mardi soir de novembre. Chaque habitude
-        monte ensuite en <b>quatre paliers</b>, et c'est toi qui décides quand passer au suivant.
+        Ce n'est pas de la modestie : une minute est le seul format qu'on tient encore un mardi
+        soir de novembre. Et un palier franchi rend ton personnage plus fort — l'effort réel
+        décide de ta force au combat.
       </p>
-      <p>
-        Dans le jeu, chaque validation te rapporte des <b>Points de Maîtrise</b> pour étendre ton
-        territoire, et renforce ta lame face aux <a href="../../blocages/">Échos</a> — les blocages
-        que tu affrontes. Ton effort réel décide de ta force.
-      </p>
-
-      <h2>Les dix habitudes de l'Esprit</h2>
-      <p class="hab-mini">Clique sur une habitude pour voir ses paliers.</p>
-
-      <div class="hab-liste">
-
-        <details class="hab">
-          <summary><span class="hab-nom">Respiration consciente</span><span class="hab-mini">1 minute pour redescendre</span></summary>
-          <div class="hab-corps">
-            <p>
-              Quand le stress monte, le souffle se raccourcit sans qu'on le remarque. Reprendre la
-              main dessus une minute suffit à faire retomber la pression — c'est le geste le plus
-              rapide qui existe pour se calmer, et il ne demande ni matériel, ni endroit, ni personne.
-              Tu peux le faire dans un couloir, avant un appel, ou juste avant de dormir.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>1 minute de respiration consciente.</li>
-              <li><span class="hab-pal-n">II</span>3 minutes de respiration consciente.</li>
-              <li><span class="hab-pal-n">III</span>5 minutes de respiration consciente.</li>
-              <li><span class="hab-pal-n">IV</span>10 minutes de respiration consciente.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="hab">
-          <summary><span class="hab-nom">Méditation</span><span class="hab-mini">2 minutes, pas trente</span></summary>
-          <div class="hab-corps">
-            <p>
-              La plupart des gens abandonnent la méditation parce qu'ils commencent à vingt minutes
-              et concluent qu'ils « n'y arrivent pas ». Personne n'y arrive à vingt minutes au
-              début. Ici tu commences à <b>deux</b>. L'esprit qui part dans tous les sens n'est pas
-              un échec : le revenir, c'est exactement l'exercice.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>Méditer 2 minutes.</li>
-              <li><span class="hab-pal-n">II</span>Méditer 5 minutes.</li>
-              <li><span class="hab-pal-n">III</span>Méditer 10 minutes.</li>
-              <li><span class="hab-pal-n">IV</span>Méditer 15 minutes.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="hab">
-          <summary><span class="hab-nom">Journal mental</span><span class="hab-mini">Une phrase suffit</span></summary>
-          <div class="hab-corps">
-            <p>
-              Tenir un journal échoue presque toujours pour la même raison : on croit devoir écrire
-              une page. Une phrase par jour tient sur un an ; une page par jour tient neuf jours.
-              Écrire ce qu'on a en tête le sort de la tête — et ce qui est posé sur le papier
-              arrête de tourner en boucle la nuit.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>Écrire 1 phrase dans ton journal.</li>
-              <li><span class="hab-pal-n">II</span>Écrire 3 lignes dans ton journal.</li>
-              <li><span class="hab-pal-n">III</span>Écrire 5 lignes dans ton journal.</li>
-              <li><span class="hab-pal-n">IV</span>Écrire 10 minutes dans ton journal.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="hab">
-          <summary><span class="hab-nom">Gratitude</span><span class="hab-mini">Une chose, chaque jour</span></summary>
-          <div class="hab-corps">
-            <p>
-              Le journal de gratitude a mauvaise réputation, parce qu'on le confond avec de la
-              pensée positive forcée. Ce n'est pas ça. Il s'agit de remarquer une chose qui s'est
-              réellement bien passée — l'attention se pose spontanément sur ce qui a raté, et
-              rarement sur le reste. Au dernier palier, tu remercies la personne concernée : c'est
-              là que l'exercice cesse d'être un carnet et devient un lien.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>Noter 1 gratitude du jour.</li>
-              <li><span class="hab-pal-n">II</span>Noter 3 gratitudes du jour.</li>
-              <li><span class="hab-pal-n">III</span>Noter 3 gratitudes et le pourquoi de chacune.</li>
-              <li><span class="hab-pal-n">IV</span>Noter 3 gratitudes et remercier une des personnes concernées.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="hab">
-          <summary><span class="hab-nom">Lecture réflexive</span><span class="hab-mini">Une page par jour</span></summary>
-          <div class="hab-corps">
-            <p>
-              Se remettre à lire ne se décide pas en achetant six livres. Une page, c'est deux
-              minutes, et c'est assez pour rouvrir le livre demain — la difficulté n'a jamais été
-              de lire, elle a toujours été de recommencer. Une page par jour, c'est une douzaine de
-              livres dans l'année.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>Lire 1 page.</li>
-              <li><span class="hab-pal-n">II</span>Lire 5 pages.</li>
-              <li><span class="hab-pal-n">III</span>Lire 10 pages.</li>
-              <li><span class="hab-pal-n">IV</span>Lire 20 minutes en pleine attention.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="hab">
-          <summary><span class="hab-nom">Silence volontaire</span><span class="hab-mini">Couper le bruit, exprès</span></summary>
-          <div class="hab-corps">
-            <p>
-              Une journée ordinaire ne laisse aucune minute sans son : musique, notifications,
-              vidéos, conversations. La fatigue mentale de fin de journée vient rarement du travail
-              seul — elle vient de l'absence totale de pause. Une minute de silence choisi, sans
-              écran et sans fond sonore, est un vrai repos pour l'attention.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>1 minute de silence volontaire.</li>
-              <li><span class="hab-pal-n">II</span>3 minutes de silence volontaire.</li>
-              <li><span class="hab-pal-n">III</span>5 minutes de silence volontaire.</li>
-              <li><span class="hab-pal-n">IV</span>10 minutes de silence volontaire.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="hab">
-          <summary><span class="hab-nom">Visualisation</span><span class="hab-mini">Voir avant de faire</span></summary>
-          <div class="hab-corps">
-            <p>
-              Se représenter précisément une action avant de la faire réduit l'appréhension au
-              moment de s'y mettre — c'est un outil de sportif, pas une méthode ésotérique. Une
-              minute à voir la scène se dérouler : l'entretien, la séance, la conversation difficile.
-              Ce qu'on a déjà vu une fois fait moins peur.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>1 minute de visualisation positive.</li>
-              <li><span class="hab-pal-n">II</span>3 minutes de visualisation positive.</li>
-              <li><span class="hab-pal-n">III</span>5 minutes de visualisation positive.</li>
-              <li><span class="hab-pal-n">IV</span>10 minutes de visualisation positive.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="hab">
-          <summary><span class="hab-nom">Observation d'une pensée</span><span class="hab-mini">Regarder, sans se battre</span></summary>
-          <div class="hab-corps">
-            <p>
-              C'est l'habitude la plus proche de ce que fait Shinkatô dans le jeu. Une pensée qui
-              revient en boucle perd de sa force dès qu'on la nomme au lieu de la subir : « je pense
-              que je vais échouer » n'est pas la même chose que « je vais échouer ». Aux paliers
-              suivants tu ajoutes l'émotion attachée, puis tu la reformules plus justement — c'est
-              exactement le mouvement des <a href="../../blocages/">duels contre les Échos</a>.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>Observer et noter 1 pensée.</li>
-              <li><span class="hab-pal-n">II</span>Noter 1 pensée et l'émotion qui l'accompagne.</li>
-              <li><span class="hab-pal-n">III</span>Noter 3 pensées et leurs émotions.</li>
-              <li><span class="hab-pal-n">IV</span>Noter 3 pensées et les reformuler plus justement.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="hab">
-          <summary><span class="hab-nom">Concentration sans distraction</span><span class="hab-mini">Une minute, vraiment une</span></summary>
-          <div class="hab-corps">
-            <p>
-              Se concentrer ne se décide pas, ça se réapprend. Une minute sans toucher son téléphone
-              paraît dérisoire — jusqu'au moment où on essaie. Le but n'est pas de tenir longtemps
-              tout de suite, c'est de sentir le moment exact où la main part vers l'écran. C'est ce
-              moment-là qu'on apprend à voir venir.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>1 minute sans aucune distraction.</li>
-              <li><span class="hab-pal-n">II</span>3 minutes sans aucune distraction.</li>
-              <li><span class="hab-pal-n">III</span>5 minutes sans aucune distraction.</li>
-              <li><span class="hab-pal-n">IV</span>10 minutes sans aucune distraction.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="hab">
-          <summary><span class="hab-nom">Apprendre un mot ou concept</span><span class="hab-mini">Un par jour, retenu</span></summary>
-          <div class="hab-corps">
-            <p>
-              Un mot par jour, c'est trois cent soixante-cinq mots dans l'année — et un mot qu'on
-              n'a pas ne sert pas qu'à parler : il sert à penser une chose qu'on ne pouvait pas
-              formuler avant. Les paliers t'obligent à l'employer, parce qu'un mot lu s'oublie et
-              qu'un mot dit reste.
-            </p>
-            <ul class="hab-paliers">
-              <li><span class="hab-pal-n">I</span>Apprendre 1 mot ou concept nouveau.</li>
-              <li><span class="hab-pal-n">II</span>Apprendre 1 mot et écrire une phrase avec.</li>
-              <li><span class="hab-pal-n">III</span>Apprendre 1 mot et l'employer à l'oral dans la journée.</li>
-              <li><span class="hab-pal-n">IV</span>Apprendre 3 mots ou concepts nouveaux.</li>
-            </ul>
-          </div>
-        </details>
-
-      </div>
 
       <h2>Trois à la fois, jamais dix</h2>
       <p>
-        Tu ne prends pas ces dix habitudes. Tu commences avec <b>une seule</b>, un deuxième
-        emplacement s'ouvre au niveau 2, un troisième au niveau 5. Trois au maximum — parce qu'une
-        liste de dix habitudes n'est pas un projet, c'est une façon élégante d'échouer sur les dix.
+        Tu ne prends pas ces dix habitudes. Tu commences avec <b>une seule</b> ; un deuxième
+        emplacement s'ouvre au niveau 2, un troisième au niveau 5. Trois au maximum — parce
+        qu'une liste de dix habitudes n'est pas un projet, c'est une façon élégante d'échouer
+        sur les dix.
       </p>
 
       <h2>Rater un jour ne casse rien</h2>
       <p>
         Aucune série ne se brise, aucun compteur ne repart à zéro, aucun message ne te fait la
-        morale. Ce que tu as gagné reste gagné. C'est un choix de conception, pas un oubli :
-        la punition fait abandonner, elle n'a jamais fait revenir personne.
+        morale. Ce que tu as gagné reste gagné. C'est un choix de conception : la punition fait
+        abandonner, elle n'a jamais fait revenir personne.
+      </p>
+
+      <h2>Gratuit — et sans publicité</h2>
+      <p>
+        « Gratuit » veut souvent dire « payé autrement » : des bannières entre deux écrans, une
+        vidéo de trente secondes pour continuer, une monnaie qu'on finit par acheter.
+        <b>Rien de tout ça ici.</b> Aucune publicité, aucun bandeau, aucune vidéo à regarder pour
+        avancer, aucune récompense qui s'achète avec de l'argent réel.
+      </p>
+      <p>
+        Une application qui prétend t'aider à te concentrer et qui te coupe avec une publicité
+        se contredit. Shinkatô se finance par ses marques partenaires, intégrées à l'univers —
+        jamais en te vendant ton propre temps d'attention.
       </p>
 
       <h2>Les autres disciplines</h2>
       <p>
         Cinq autres domaines progressent en parallèle, chacun avec ses propres habitudes :
         <b>Corps</b>, <b>Santé</b>, <b>Productivité</b>, <b>Social</b> et <b>Finance</b>.
-        Vue d'ensemble sur la page <a href="../">Sur quelles habitudes progresser</a>.
+        Vue d'ensemble sur la page <a href="../">Sur quelles habitudes progresser</a>. Et si tu
+        veux comprendre ce que tu affrontes en chemin : <a href="../../blocages/">les blocages</a>.
       </p>
 
     </div></div>
-
-    <div class="section-head" style="margin-top:34px">
-      <h2 class="cta-title">Commence par une seule</h2>
-      <p class="section-lead">
-        Shinkatô sort courant septembre 2026. Laisse ton adresse : tu sauras le jour de l'ouverture.
-      </p>
-      <a href="../../#telecharger" class="btn btn-yellow">Être prévenu au lancement</a>
-    </div>
   </main>
 
+  <section class="section section-cta">
+    <h2 class="cta-title">Commence par une seule habitude</h2>
+    <a class="btn btn-yellow" href="../../#telecharger">Rejoindre l'aventure</a>
+  </section>
+
   <footer class="footer">
-    <img src="../../assets/logo_blanc.png" alt="Shinkatô" class="footer-logo">
-    <p class="footer-tagline">Deviens le héros de ton évolution.</p>
     <p class="footer-meta">
-      <a href="mailto:shinkato.contact@gmail.com">shinkato.contact@gmail.com</a>
+      <a href="../../">Retour à l'accueil</a>
       <span aria-hidden="true">·</span>
-      <a href="../../index.html">Accueil</a>
+      <a href="../../#questions">Questions fréquentes</a>
       <span aria-hidden="true">·</span>
-      <a href="../../mentions-legales.html">Mentions légales</a>
-      <span aria-hidden="true">·</span>
-      © 2026 Shinkatô — Tous droits réservés
+      © 2026 Shinkatô
     </p>
   </footer>
+
   <script>
     // Menu replié — repris de js/main.js, réduit au strict nécessaire.
     // `aria-expanded` est la seule information qu'un lecteur d'écran reçoit sur
