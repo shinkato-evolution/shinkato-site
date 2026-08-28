@@ -40,9 +40,23 @@
        Esprit en haut, Santé en bas, les quatre autres sur les flancs. */
     .hexa { display: block; width: 100%; max-width: 470px; height: auto; margin: 26px auto 8px; }
     .hexa-cadre { fill: none; stroke: rgba(242,205,15,.22); stroke-width: 2; }
-    .som { color: var(--c); cursor: pointer; }
+
+    /* ⚠️ SPÉCIFICITÉ — la cause du bug du 28/08/2026. `style.css` porte
+       `.prose a { color: var(--jaune) }`, soit (0,2,0). Un simple `.som` vaut (0,1,0)
+       et perdait : les six sommets sortaient tous en jaune. `.prose a.som` vaut (0,3,0)
+       et reprend la main. Le soulignement hérité de `.prose a` est retiré aussi. */
+    .prose a.som, .som {
+      color: var(--c);
+      cursor: pointer;
+      border-bottom: 0;
+    }
+
+    /* Fond OPAQUE sous l'icône : sans lui, le grand hexagone et le fond de page se
+       voient au travers du sommet. La couleur de la discipline est ensuite posée
+       PAR-DESSUS, en calque translucide — d'où deux polygones et non un seul. */
+    .som-fond { fill: #1d1d1d; }
     .som-hex {
-      fill: currentColor; fill-opacity: .14;
+      fill: currentColor; fill-opacity: .18;
       stroke: currentColor; stroke-width: 2.5;
       transition: fill-opacity .18s ease;
     }
@@ -57,7 +71,7 @@
        remplissage et le halo, qui ne déplacent rien. */
     .som { transition: filter .18s ease; }
     .som:hover, .som:focus-visible { filter: drop-shadow(0 0 10px var(--c)); outline: none; }
-    .som:hover .som-hex, .som:focus-visible .som-hex { fill-opacity: .42; }
+    .som:hover .som-hex, .som:focus-visible .som-hex { fill-opacity: .48; }
     @media (prefers-reduced-motion: reduce) {
       .som, .som-hex { transition: none; }
     }
@@ -120,7 +134,7 @@
         <!-- ── POINTE HAUTE — Esprit ────────────────────────────────────────── -->
         <a href="esprit/" class="som" style="--c:#3b6fd1" aria-label="Habitudes pour l'esprit">
           <g transform="translate(220,83)">
-            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <polygon class="som-fond" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/><polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
             <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
               <path d="M16 5c-3.5 0-6 2.4-6 5 0 1.1.3 1.9.9 2.7-1.2.8-1.9 2-1.9 3.4 0 1.3.6 2.4 1.6 3.2-.4.7-.6 1.4-.6 2.2 0 2.5 2.2 4.5 5 4.5 1.2 0 2.3-.4 3-1"/>
               <path d="M16 5c3.5 0 6 2.4 6 5 0 1.1-.3 1.9-.9 2.7 1.2.8 1.9 2 1.9 3.4 0 1.3-.6 2.4-1.6 3.2.4.7.6 1.4.6 2.2 0 2.5-2.2 4.5-5 4.5"/>
@@ -133,7 +147,7 @@
         <!-- ── HAUT-DROITE — Corps ──────────────────────────────────────────── -->
         <a href="corps/" class="som" style="--c:#d8392b" aria-label="Habitudes pour le corps">
           <g transform="translate(334.3,149)">
-            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <polygon class="som-fond" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/><polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
             <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
               <rect x="2" y="13" width="3" height="6" rx="0.6"/><rect x="27" y="13" width="3" height="6" rx="0.6"/>
               <rect x="5" y="11" width="3" height="10" rx="0.8"/><rect x="24" y="11" width="3" height="10" rx="0.8"/>
@@ -146,7 +160,7 @@
         <!-- ── BAS-DROITE — Productivité ────────────────────────────────────── -->
         <a href="productivite/" class="som" style="--c:#e08a2c" aria-label="Habitudes de productivité">
           <g transform="translate(334.3,281)">
-            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <polygon class="som-fond" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/><polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
             <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
               <circle cx="16" cy="16" r="10"/><circle cx="16" cy="16" r="5.5"/>
               <circle cx="16" cy="16" r="1.6" fill="currentColor"/>
@@ -159,7 +173,7 @@
         <!-- ── POINTE BASSE — Santé ─────────────────────────────────────────── -->
         <a href="sante/" class="som" style="--c:#3a9d5d" aria-label="Habitudes pour la santé">
           <g transform="translate(220,347)">
-            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <polygon class="som-fond" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/><polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
             <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
               <path d="M16 27s-9-5.4-9-12.3C7 11 9.8 8.5 13 8.5c1.6 0 3 .8 3 .8s1.4-.8 3-.8c3.2 0 6 2.5 6 6.2C25 21.6 16 27 16 27z"/>
               <path d="M10 15h3l1.5-3 2 6 1.5-3h5"/>
@@ -171,7 +185,7 @@
         <!-- ── BAS-GAUCHE — Finances ────────────────────────────────────────── -->
         <a href="finances/" class="som" style="--c:#8a5a3b" aria-label="Habitudes financières">
           <g transform="translate(105.7,281)">
-            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <polygon class="som-fond" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/><polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
             <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
               <path d="M16 4 L26 11 L22 26 L10 26 L6 11 Z"/><path d="M16 4 L16 26M6 11 L26 11"/>
               <path d="M10 11 L16 4 L22 11"/>
@@ -183,7 +197,7 @@
         <!-- ── HAUT-GAUCHE — Social ─────────────────────────────────────────── -->
         <a href="social/" class="som" style="--c:#f2cd0f" aria-label="Habitudes sociales">
           <g transform="translate(105.7,149)">
-            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <polygon class="som-fond" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/><polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
             <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
               <circle cx="11" cy="12" r="3.2"/><circle cx="21" cy="12" r="3.2"/>
               <path d="M5 24c0-3 2.7-5.2 6-5.2s6 2.2 6 5.2"/><path d="M15 24c0-3 2.7-5.2 6-5.2s6 2.2 6 5.2"/>
