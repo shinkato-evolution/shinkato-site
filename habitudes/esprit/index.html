@@ -39,24 +39,26 @@
        Le même hexagone que sur /habitudes/, posé au-dessus du titre et le chevauchant.
        Sans nom : « Habitudes pour l'esprit » est juste dessous, le répéter n'apporte rien.
 
-       ⚠️ Z-INDEX — `.section-head > .plate` porte déjà `z-index: 2` dans style.css.
-       L'écusson reste donc à 1 : la plaque passe DEVANT lui, et le titre reste
-       parfaitement lisible malgré le chevauchement. C'est tout l'intérêt.
-       ⚠️ La marge basse NÉGATIVE est ce qui fait remonter la plaque sous l'hexagone. */
+       ⚠️ Z-INDEX — `.section-head > .plate` porte `z-index: 2` dans style.css.
+       L'écusson est à 3 : il passe DEVANT la plaque jaune. C'est voulu — il mord sur
+       le parallélogramme au lieu d'être mordu par lui.
+       ⚠️ La marge basse NÉGATIVE règle le recouvrement. Remontée de 6 px par rapport
+       au premier essai (-28 → -22) : l'écusson étant désormais au premier plan, chaque
+       pixel de recouvrement en plus est un pixel de titre en moins. */
     .disc-ecusson {
       --c: #3b6fd1;                    /* Esprit — DISC_COLOR dans l'app */
       color: var(--c);
       display: block;
       width: 96px; height: auto;
-      margin: 0 auto -28px;
-      position: relative; z-index: 1;
+      margin: 0 auto -22px;
+      position: relative; z-index: 3;
     }
     .disc-ecusson .ec-fond { fill: #1d1d1d; }        /* opaque : rien ne transparaît */
     .disc-ecusson .ec-hex  { fill: currentColor; fill-opacity: .18;
                              stroke: currentColor; stroke-width: 3; }
     .disc-ecusson .ec-ico  { fill: none; stroke: currentColor; stroke-width: 1.8;
                              stroke-linecap: round; stroke-linejoin: round; }
-    @media (max-width: 520px) { .disc-ecusson { width: 78px; margin-bottom: -22px; } }
+    @media (max-width: 520px) { .disc-ecusson { width: 78px; margin-bottom: -17px; } }
 
     .hab-grille {
       display: grid;
