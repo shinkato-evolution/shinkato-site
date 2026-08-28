@@ -35,6 +35,13 @@
        donc FIXÉES à des valeurs qui divisent dix : 1 (dix rangées) ou 2 (cinq rangées).
        Aucune rangée orpheline, à aucune largeur. -->
   <style>
+    /* Le blanc entre la barre « Comprendre Shinkatô » et l'écusson était trop large.
+       `style.css` donne `padding: 110px 5vw` à `.section` ; on retire 16 px EN HAUT,
+       et sur cette page seulement — `main.section` (0,1,1) l'emporte sur `.section`
+       (0,1,0), et cette feuille en ligne passe de toute façon après la feuille commune.
+       ⚠️ Ne pas toucher au padding latéral (5vw) ni au bas : ils servent partout. */
+    main.section { padding-top: 94px; }
+
     /* ===== ÉCUSSON DE DISCIPLINE =====
        Le même hexagone que sur /habitudes/, posé au-dessus du titre et le chevauchant.
        Sans nom : « Habitudes pour l'esprit » est juste dessous, le répéter n'apporte rien.
