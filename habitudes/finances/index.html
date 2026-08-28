@@ -23,6 +23,35 @@
   <link rel="stylesheet" href="../../css/fonts.css?v=20260821c">
   <link rel="stylesheet" href="../../css/style.css?v=20260821c">
   <style>
+    /* Le blanc entre la barre « Comprendre Shinkatô » et l'écusson était trop large.
+       `style.css` donne `padding: 110px 5vw` à `.section` ; on retire 16 px EN HAUT,
+       et sur cette page seulement — `main.section` (0,1,1) l'emporte sur `.section`
+       (0,1,0), et cette feuille en ligne passe de toute façon après la feuille commune.
+       ⚠️ Ne pas toucher au padding latéral (5vw) ni au bas : ils servent partout. */
+    main.section { padding-top: 94px; }
+
+    /* ===== ÉCUSSON DE DISCIPLINE =====
+       Le même hexagone que sur /habitudes/, posé au-dessus du titre et le chevauchant.
+       Sans nom : le titre juste dessous le dit déjà.
+
+       ⚠️ Z-INDEX — `.section-head > .plate` porte `z-index: 2` dans style.css.
+       L'écusson est à 3 : il passe DEVANT la plaque jaune et mord sur elle.
+       ⚠️ Chaque pixel de recouvrement en plus est un pixel de titre en moins :
+       -22 px est le réglage validé sur la page Esprit. */
+    .disc-ecusson {
+      --c: #8a5a3b;                    /* Finances — DISC_COLOR dans l'app */
+      color: var(--c);
+      display: block;
+      width: 96px; height: auto;
+      margin: 0 auto -22px;
+      position: relative; z-index: 3;
+    }
+    .disc-ecusson .ec-fond { fill: #1d1d1d; }        /* opaque : rien ne transparaît */
+    .disc-ecusson .ec-hex  { fill: currentColor; fill-opacity: .18;
+                             stroke: currentColor; stroke-width: 3; }
+    .disc-ecusson .ec-ico  { fill: none; stroke: currentColor; stroke-width: 1.8;
+                             stroke-linecap: round; stroke-linejoin: round; }
+    @media (max-width: 520px) { .disc-ecusson { width: 78px; margin-bottom: -17px; } }
     .hab-grille { display: grid; gap: 16px; margin: 30px auto 6px; max-width: 980px; grid-template-columns: 1fr; }
     @media (min-width: 760px) { .hab-grille { grid-template-columns: repeat(2, 1fr); } }
     /* Sept cartes : sans cette règle, la dernière resterait seule dans sa colonne. */
@@ -70,6 +99,16 @@
 
   <main class="section">
     <div class="section-head">
+      <!-- Écusson décoratif : le titre juste dessous dit déjà « Finances ».
+           `aria-hidden` pour ne pas le faire annoncer deux fois. -->
+      <svg class="disc-ecusson" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+        <polygon class="ec-fond" points="50,4 89.8,27 89.8,73 50,96 10.2,73 10.2,27"/>
+        <polygon class="ec-hex"  points="50,4 89.8,27 89.8,73 50,96 10.2,73 10.2,27"/>
+        <g class="ec-ico" transform="translate(23.75 23.75) scale(1.625)">
+          <path d="M16 4 L26 11 L22 26 L10 26 L6 11 Z"/><path d="M16 4 L16 26M6 11 L26 11"/>
+          <path d="M10 11 L16 4 L22 11"/>
+        </g>
+      </svg>
       <h1 class="plate plate-yellow"><span>Habitudes financières</span></h1>
       <p class="section-lead">
         Reprendre la main sur son argent. Sept habitudes sans tableur, sans privation
