@@ -35,6 +35,29 @@
        donc FIXÉES à des valeurs qui divisent dix : 1 (dix rangées) ou 2 (cinq rangées).
        Aucune rangée orpheline, à aucune largeur. -->
   <style>
+    /* ===== ÉCUSSON DE DISCIPLINE =====
+       Le même hexagone que sur /habitudes/, posé au-dessus du titre et le chevauchant.
+       Sans nom : « Habitudes pour l'esprit » est juste dessous, le répéter n'apporte rien.
+
+       ⚠️ Z-INDEX — `.section-head > .plate` porte déjà `z-index: 2` dans style.css.
+       L'écusson reste donc à 1 : la plaque passe DEVANT lui, et le titre reste
+       parfaitement lisible malgré le chevauchement. C'est tout l'intérêt.
+       ⚠️ La marge basse NÉGATIVE est ce qui fait remonter la plaque sous l'hexagone. */
+    .disc-ecusson {
+      --c: #3b6fd1;                    /* Esprit — DISC_COLOR dans l'app */
+      color: var(--c);
+      display: block;
+      width: 96px; height: auto;
+      margin: 0 auto -28px;
+      position: relative; z-index: 1;
+    }
+    .disc-ecusson .ec-fond { fill: #1d1d1d; }        /* opaque : rien ne transparaît */
+    .disc-ecusson .ec-hex  { fill: currentColor; fill-opacity: .18;
+                             stroke: currentColor; stroke-width: 3; }
+    .disc-ecusson .ec-ico  { fill: none; stroke: currentColor; stroke-width: 1.8;
+                             stroke-linecap: round; stroke-linejoin: round; }
+    @media (max-width: 520px) { .disc-ecusson { width: 78px; margin-bottom: -22px; } }
+
     .hab-grille {
       display: grid;
       gap: 16px;
@@ -159,6 +182,17 @@
          16 px du paragraphe — l'œil voit l'asymétrie. Le texte d'introduction vit donc dans
          `.section-lead`, et le premier panneau arrive après les cartes, bien rempli. -->
     <div class="section-head">
+      <!-- Écusson décoratif : le titre juste dessous dit déjà « Esprit ».
+           `aria-hidden` pour ne pas le faire annoncer deux fois. -->
+      <svg class="disc-ecusson" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+        <polygon class="ec-fond" points="50,4 89.8,27 89.8,73 50,96 10.2,73 10.2,27"/>
+        <polygon class="ec-hex"  points="50,4 89.8,27 89.8,73 50,96 10.2,73 10.2,27"/>
+        <g class="ec-ico" transform="translate(23.75 23.75) scale(1.625)">
+          <path d="M16 5c-3.5 0-6 2.4-6 5 0 1.1.3 1.9.9 2.7-1.2.8-1.9 2-1.9 3.4 0 1.3.6 2.4 1.6 3.2-.4.7-.6 1.4-.6 2.2 0 2.5 2.2 4.5 5 4.5 1.2 0 2.3-.4 3-1"/>
+          <path d="M16 5c3.5 0 6 2.4 6 5 0 1.1-.3 1.9-.9 2.7 1.2.8 1.9 2 1.9 3.4 0 1.3-.6 2.4-1.6 3.2.4.7.6 1.4.6 2.2 0 2.5-2.2 4.5-5 4.5"/>
+          <line x1="16" y1="5" x2="16" y2="26"/><path d="M13 11h2M17 14h3M12 17h3M18 20h2"/>
+        </g>
+      </svg>
       <h1 class="plate plate-yellow"><span>Habitudes pour l'esprit</span></h1>
       <p class="section-lead">
         L'attention, la mémoire, le rapport à tes propres pensées. Dix habitudes qui
