@@ -29,49 +29,41 @@
   }
   </script>
 
-  <!-- ===== RUCHE DES SIX DISCIPLINES =====
-       Reprend l'hexagone du profil joueur : même forme (pointe en haut, six sommets à
-       -90 + 60k degrés, cf. `discHexPoints`), mêmes couleurs et mêmes icônes que
-       `DisciplineIcon.tsx` — la source de vérité de l'app.
+  <!-- ===== L'HEXAGONE DES SIX DISCIPLINES =====
+       UN seul hexagone, une discipline à chaque pointe — comme le profil joueur.
+       Mêmes couleurs et mêmes icônes que `DisciplineIcon.tsx`, la source de vérité de l'app.
        En ligne plutôt que dans style.css : la feuille commune est servie avec quatre heures
        de cache et son `?v=` devrait être incrémenté sur toutes les pages du site. -->
   <style>
-    .disc-ruche {
-      list-style: none; padding: 0;
-      margin: 30px auto 14px;
-      display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 14px;
-      max-width: 344px;                 /* 2 par rangée sur mobile */
+    /* UN SEUL hexagone, une discipline à chaque pointe — comme le profil joueur.
+       Sommets à -90 + 60k degrés (pointe en haut), rayon 132 autour de (220, 215) :
+       Esprit en haut, Santé en bas, les quatre autres sur les flancs. */
+    .hexa { display: block; width: 100%; max-width: 470px; height: auto; margin: 26px auto 8px; }
+    .hexa-cadre { fill: none; stroke: rgba(242,205,15,.22); stroke-width: 2; }
+    .som { color: var(--c); cursor: pointer; }
+    .som-hex {
+      fill: currentColor; fill-opacity: .14;
+      stroke: currentColor; stroke-width: 2.5;
+      transition: fill-opacity .18s ease;
     }
-    .disc-ruche > li { margin: 0; width: 158px; }
-    /* Le décalage d'une case sur deux donne le rythme d'une ruche. Appliqué au SEUL
-       élément du milieu de chaque rangée de trois — décaler tous les pairs désalignerait
-       les rangées entre elles. */
-    @media (min-width: 700px) {
-      .disc-ruche { max-width: 530px; padding-bottom: 28px; }
-      .disc-ruche > li:nth-child(3n+2) { transform: translateY(28px); }
+    .som-ico { fill: none; stroke: currentColor; stroke-width: 1.8;
+               stroke-linecap: round; stroke-linejoin: round; }
+    .som-nom {
+      fill: currentColor; font-family: var(--font-epic); font-weight: 700;
+      font-size: 15px; letter-spacing: .07em; text-transform: uppercase;
     }
-    .disc {
-      color: var(--c);                  /* pilote tout le SVG via `currentColor` */
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      text-decoration: none; border: 0;
-      transition: transform .18s ease;
-    }
-    .disc svg { width: 100%; height: auto; display: block; transition: filter .18s ease; }
-    .disc:hover, .disc:focus-visible { transform: translateY(-5px); }
-    .disc:hover svg, .disc:focus-visible svg { filter: drop-shadow(0 0 9px var(--c)); }
-    .disc:hover .disc-hex-fond, .disc:focus-visible .disc-hex-fond { fill-opacity: .32; }
-    .disc-hex-fond { fill-opacity: .13; transition: fill-opacity .18s ease; }
-    .disc-nom {
-      font-family: var(--font-epic); font-weight: 700;
-      font-size: .92rem; letter-spacing: .06em; text-transform: uppercase;
-      color: var(--c);
-    }
-    .disc-nb { font-size: .78rem; color: var(--blanc-60); opacity: .72; }
+    /* Pas de `transform` au survol : les sommets sont déjà positionnés par une
+       transformation, en empiler une seconde les ferait sauter. On joue sur le
+       remplissage et le halo, qui ne déplacent rien. */
+    .som { transition: filter .18s ease; }
+    .som:hover, .som:focus-visible { filter: drop-shadow(0 0 10px var(--c)); outline: none; }
+    .som:hover .som-hex, .som:focus-visible .som-hex { fill-opacity: .42; }
     @media (prefers-reduced-motion: reduce) {
-      .disc, .disc svg { transition: none; }
-      .disc:hover, .disc:focus-visible { transform: none; }
+      .som, .som-hex { transition: none; }
     }
+    /* Le texte d'un SVG rétrécit avec lui : à 330 px de large, le viewBox de 440 est
+       réduit d'un quart, et 15 px n'en font plus que 11. On compense sur petit écran. */
+    @media (max-width: 460px) { .som-nom { font-size: 20px; } }
   </style>
 </head>
 <body>
@@ -119,79 +111,89 @@
       <p>Tes habitudes se rangent dans six domaines, qui progressent séparément :</p>
       <!-- Chaque discipline a sa page : c'est le maillage interne qui porte le
            regroupement thématique. Cette page est le hub, les six sont ses filles.
-           Les hexagones, couleurs et icônes viennent de `DisciplineIcon.tsx`. -->
-      <ul class="disc-ruche">
+           Couleurs et icônes reprises de `DisciplineIcon.tsx`, la source de vérité de l'app. -->
+      <svg class="hexa" viewBox="0 0 440 470" role="group" aria-label="Les six disciplines de Shinkatô">
 
-        <li><a class="disc" href="corps/" style="--c:#d8392b">
-          <svg viewBox="0 0 100 100" role="img" aria-label="Discipline Corps">
-            <polygon class="disc-hex-fond" points="50,2 91.6,26 91.6,74 50,98 8.4,74 8.4,26" fill="currentColor" stroke="currentColor" stroke-width="3"/>
-            <g transform="translate(22.5 22.5) scale(1.71875)" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="13" width="3" height="6" rx="0.6"/><rect x="27" y="13" width="3" height="6" rx="0.6"/>
-              <rect x="5" y="11" width="3" height="10" rx="0.8"/><rect x="24" y="11" width="3" height="10" rx="0.8"/>
-              <line x1="8" y1="16" x2="24" y2="16"/>
-            </g>
-          </svg>
-          <span class="disc-nom">Corps</span><span class="disc-nb">10 habitudes</span>
-        </a></li>
+        <!-- Le grand hexagone qui relie les six pointes. Centre (220, 215), rayon 132. -->
+        <polygon class="hexa-cadre" points="220,83 334.3,149 334.3,281 220,347 105.7,281 105.7,149"/>
 
-        <li><a class="disc" href="esprit/" style="--c:#3b6fd1">
-          <svg viewBox="0 0 100 100" role="img" aria-label="Discipline Esprit">
-            <polygon class="disc-hex-fond" points="50,2 91.6,26 91.6,74 50,98 8.4,74 8.4,26" fill="currentColor" stroke="currentColor" stroke-width="3"/>
-            <g transform="translate(22.5 22.5) scale(1.71875)" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <!-- ── POINTE HAUTE — Esprit ────────────────────────────────────────── -->
+        <a href="esprit/" class="som" style="--c:#3b6fd1" aria-label="Habitudes pour l'esprit">
+          <g transform="translate(220,83)">
+            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
               <path d="M16 5c-3.5 0-6 2.4-6 5 0 1.1.3 1.9.9 2.7-1.2.8-1.9 2-1.9 3.4 0 1.3.6 2.4 1.6 3.2-.4.7-.6 1.4-.6 2.2 0 2.5 2.2 4.5 5 4.5 1.2 0 2.3-.4 3-1"/>
               <path d="M16 5c3.5 0 6 2.4 6 5 0 1.1-.3 1.9-.9 2.7 1.2.8 1.9 2 1.9 3.4 0 1.3-.6 2.4-1.6 3.2.4.7.6 1.4.6 2.2 0 2.5-2.2 4.5-5 4.5"/>
               <line x1="16" y1="5" x2="16" y2="26"/><path d="M13 11h2M17 14h3M12 17h3M18 20h2"/>
             </g>
-          </svg>
-          <span class="disc-nom">Esprit</span><span class="disc-nb">10 habitudes</span>
-        </a></li>
+            <text class="som-nom" y="58" text-anchor="middle">Esprit</text>
+          </g>
+        </a>
 
-        <li><a class="disc" href="sante/" style="--c:#3a9d5d">
-          <svg viewBox="0 0 100 100" role="img" aria-label="Discipline Santé">
-            <polygon class="disc-hex-fond" points="50,2 91.6,26 91.6,74 50,98 8.4,74 8.4,26" fill="currentColor" stroke="currentColor" stroke-width="3"/>
-            <g transform="translate(22.5 22.5) scale(1.71875)" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 27s-9-5.4-9-12.3C7 11 9.8 8.5 13 8.5c1.6 0 3 .8 3 .8s1.4-.8 3-.8c3.2 0 6 2.5 6 6.2C25 21.6 16 27 16 27z"/>
-              <path d="M10 15h3l1.5-3 2 6 1.5-3h5"/>
+        <!-- ── HAUT-DROITE — Corps ──────────────────────────────────────────── -->
+        <a href="corps/" class="som" style="--c:#d8392b" aria-label="Habitudes pour le corps">
+          <g transform="translate(334.3,149)">
+            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
+              <rect x="2" y="13" width="3" height="6" rx="0.6"/><rect x="27" y="13" width="3" height="6" rx="0.6"/>
+              <rect x="5" y="11" width="3" height="10" rx="0.8"/><rect x="24" y="11" width="3" height="10" rx="0.8"/>
+              <line x1="8" y1="16" x2="24" y2="16"/>
             </g>
-          </svg>
-          <span class="disc-nom">Santé</span><span class="disc-nb">10 habitudes</span>
-        </a></li>
+            <text class="som-nom" y="58" text-anchor="middle">Corps</text>
+          </g>
+        </a>
 
-        <li><a class="disc" href="productivite/" style="--c:#e08a2c">
-          <svg viewBox="0 0 100 100" role="img" aria-label="Discipline Productivité">
-            <polygon class="disc-hex-fond" points="50,2 91.6,26 91.6,74 50,98 8.4,74 8.4,26" fill="currentColor" stroke="currentColor" stroke-width="3"/>
-            <g transform="translate(22.5 22.5) scale(1.71875)" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <!-- ── BAS-DROITE — Productivité ────────────────────────────────────── -->
+        <a href="productivite/" class="som" style="--c:#e08a2c" aria-label="Habitudes de productivité">
+          <g transform="translate(334.3,281)">
+            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
               <circle cx="16" cy="16" r="10"/><circle cx="16" cy="16" r="5.5"/>
               <circle cx="16" cy="16" r="1.6" fill="currentColor"/>
               <path d="M16 3v3M16 26v3M3 16h3M26 16h3"/>
             </g>
-          </svg>
-          <span class="disc-nom">Productivité</span><span class="disc-nb">8 habitudes</span>
-        </a></li>
+            <text class="som-nom" y="58" text-anchor="middle">Productivité</text>
+          </g>
+        </a>
 
-        <li><a class="disc" href="social/" style="--c:#f2cd0f">
-          <svg viewBox="0 0 100 100" role="img" aria-label="Discipline Social">
-            <polygon class="disc-hex-fond" points="50,2 91.6,26 91.6,74 50,98 8.4,74 8.4,26" fill="currentColor" stroke="currentColor" stroke-width="3"/>
-            <g transform="translate(22.5 22.5) scale(1.71875)" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="12" r="3.2"/><circle cx="21" cy="12" r="3.2"/>
-              <path d="M5 24c0-3 2.7-5.2 6-5.2s6 2.2 6 5.2"/><path d="M15 24c0-3 2.7-5.2 6-5.2s6 2.2 6 5.2"/>
+        <!-- ── POINTE BASSE — Santé ─────────────────────────────────────────── -->
+        <a href="sante/" class="som" style="--c:#3a9d5d" aria-label="Habitudes pour la santé">
+          <g transform="translate(220,347)">
+            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
+              <path d="M16 27s-9-5.4-9-12.3C7 11 9.8 8.5 13 8.5c1.6 0 3 .8 3 .8s1.4-.8 3-.8c3.2 0 6 2.5 6 6.2C25 21.6 16 27 16 27z"/>
+              <path d="M10 15h3l1.5-3 2 6 1.5-3h5"/>
             </g>
-          </svg>
-          <span class="disc-nom">Social</span><span class="disc-nb">7 habitudes</span>
-        </a></li>
+            <text class="som-nom" y="58" text-anchor="middle">Santé</text>
+          </g>
+        </a>
 
-        <li><a class="disc" href="finances/" style="--c:#8a5a3b">
-          <svg viewBox="0 0 100 100" role="img" aria-label="Discipline Finances">
-            <polygon class="disc-hex-fond" points="50,2 91.6,26 91.6,74 50,98 8.4,74 8.4,26" fill="currentColor" stroke="currentColor" stroke-width="3"/>
-            <g transform="translate(22.5 22.5) scale(1.71875)" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <!-- ── BAS-GAUCHE — Finances ────────────────────────────────────────── -->
+        <a href="finances/" class="som" style="--c:#8a5a3b" aria-label="Habitudes financières">
+          <g transform="translate(105.7,281)">
+            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
               <path d="M16 4 L26 11 L22 26 L10 26 L6 11 Z"/><path d="M16 4 L16 26M6 11 L26 11"/>
               <path d="M10 11 L16 4 L22 11"/>
             </g>
-          </svg>
-          <span class="disc-nom">Finances</span><span class="disc-nb">7 habitudes</span>
-        </a></li>
+            <text class="som-nom" y="58" text-anchor="middle">Finances</text>
+          </g>
+        </a>
 
-      </ul>
+        <!-- ── HAUT-GAUCHE — Social ─────────────────────────────────────────── -->
+        <a href="social/" class="som" style="--c:#f2cd0f" aria-label="Habitudes sociales">
+          <g transform="translate(105.7,149)">
+            <polygon class="som-hex" points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"/>
+            <g class="som-ico" transform="translate(-20,-20) scale(1.25)">
+              <circle cx="11" cy="12" r="3.2"/><circle cx="21" cy="12" r="3.2"/>
+              <path d="M5 24c0-3 2.7-5.2 6-5.2s6 2.2 6 5.2"/><path d="M15 24c0-3 2.7-5.2 6-5.2s6 2.2 6 5.2"/>
+            </g>
+            <text class="som-nom" y="58" text-anchor="middle">Social</text>
+          </g>
+        </a>
+
+      </svg>
+
       <p>
         Tu choisis lesquelles faire monter. Rien n'est imposé — et chaque discipline
         ci-dessus détaille ses habitudes une par une, avec ce à quoi elles servent vraiment.
