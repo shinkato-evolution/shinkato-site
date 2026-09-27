@@ -15,8 +15,8 @@
   <meta property="og:description" content="Dans Shinkatô, tes blocages prennent la forme de créatures d'ombre qu'on affronte par des phrases. Le principe s'appuie sur les TCC et la thérapie narrative.">
   <meta property="og:image" content="https://shinkato.fr/assets/og-cover.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon.png">
-  <link rel="stylesheet" href="../css/fonts.css?v=20260821c">
-  <link rel="stylesheet" href="../css/style.css?v=20260821c">
+  <link rel="stylesheet" href="../css/fonts.css?v=20260828a">
+  <link rel="stylesheet" href="../css/style.css?v=20260828a">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -108,6 +108,11 @@
       par de l'optimisme forcé. À un « à quoi bon », on ne répond pas par de la technique.</p>
 
       <h3>Les registres de réponse</h3>
+      <!-- ⚠️ `.table-scroll` est OBLIGATOIRE autour d'un tableau à trois colonnes :
+           sa largeur minimale est d'environ 420 px, il débordait de 101 px sur un
+           écran de 320 et faisait dézoomer la page entière. Cf. css/style.css,
+           section « RESPONSIVE — passe du 28/08/2026 ». -->
+      <div class="table-scroll">
       <table>
         <tr><th>Registre</th><th>Efficace contre</th><th>D'où ça vient</th></tr>
         <tr><td>Restructuration</td><td>Catastrophisme, généralisation</td><td>TCC — Aaron Beck, David Burns</td></tr>
@@ -117,6 +122,7 @@
         <tr><td>Recentrage</td><td>Comparaison aux autres</td><td>Leon Festinger</td></tr>
         <tr><td>Défusion</td><td>Pensée qui tourne en boucle</td><td>ACT — Steven Hayes</td></tr>
       </table>
+      </div>
       <p>Se tromper fait partie du combat. Une mauvaise réponse coûte des points de vie —
       elle t'apprend surtout <b>quel registre ne marche pas sur cet obstacle-là</b>.</p>
 

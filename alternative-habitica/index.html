@@ -15,8 +15,8 @@
   <meta property="og:description" content="Habitica part d'une liste de tâches, Shinkatô part du jeu : carte à explorer, histoire, et combats contre ses propres blocages. Comparatif honnête.">
   <meta property="og:image" content="https://shinkato.fr/assets/og-cover.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon.png">
-  <link rel="stylesheet" href="../css/fonts.css?v=20260821c">
-  <link rel="stylesheet" href="../css/style.css?v=20260821c">
+  <link rel="stylesheet" href="../css/fonts.css?v=20260828a">
+  <link rel="stylesheet" href="../css/style.css?v=20260828a">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -113,7 +113,10 @@
       <a href="../habitudes/">Voir comment les habitudes fonctionnent →</a></p>
 
       <h2>En un tableau</h2>
-      <div style="overflow-x:auto">
+      <!-- `.table-scroll` remplace le `style="overflow-x:auto"` posé à la main : même
+           effet, plus les ombres de bord qui signalent qu'il reste du contenu à droite.
+           Cf. css/style.css, section « RESPONSIVE — passe du 28/08/2026 ». -->
+      <div class="table-scroll">
       <table>
         <tr><th></th><th>Habitica</th><th>Shinkatô</th></tr>
         <tr><td>Point de départ</td><td>Liste de tâches</td><td><b>Jeu de rôle</b></td></tr>

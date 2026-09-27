@@ -118,6 +118,9 @@ a { color: inherit; }
    trop bas dans le bandeau — constaté le 18/08/2026 sur « TON TERRITOIRE » et
    « TES STATS ». Le centrage par flex ignore la ligne de base et centre la boîte
    du texte, ce qui est ce que l'œil attend. */
+/* ⚠️ `max-width` : le skewX(-25deg) élargit la boîte VISIBLE d'environ un demi-fois
+   sa hauteur de chaque côté (tan 25° ≈ 0,47). Une plaque qui remplit exactement son
+   parent ressort donc quand même. Les 20 px réservés ici couvrent ce débord. */
 .plate {
   display: inline-flex;
   align-items: center;
@@ -125,18 +128,30 @@ a { color: inherit; }
   transform: skewX(-25deg);
   padding: 10px 30px;
   box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.9);
+  max-width: calc(100% - 20px);
 }
 
+/* ⚠️ Police : MONTSERRAT (`--font-ui`), pas Cinzel — décision du 28/08/2026.
+   Les bannières inclinées reprennent la typo des boutons (« ESSAYER SANS RIEN
+   INSTALLER »), qui est ce que l'œil reconnaît comme le titre de la marque sur le
+   site. Cinzel reste la police des titres longs des pages de fond (`.prose h2`) et
+   des pages légales. Ne pas remettre `--font-epic` ici sans arbitrage.
+
+   ⚠️ `white-space: normal` et NON `nowrap` : en nowrap, « SUR QUELLES HABITUDES
+   PROGRESSER » occupait 369 px et débordait de 49 px sur un écran de 320. La
+   largeur minimale d'un texte en nowrap l'emporte sur tout `max-width`. */
 .plate > span {
   display: inline-block;
   transform: skewX(25deg);
-  font-family: var(--font-epic);
+  font-family: var(--font-ui);
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-size: 1rem;
-  line-height: 1;          /* sans ça, l'interligne du corps de page décale encore */
-  white-space: nowrap;
+  line-height: 1.15;       /* 1 exact rognait les accents quand le titre passe à 2 lignes */
+  white-space: normal;
+  text-align: center;
+  overflow-wrap: break-word;
 }
 
 .plate-yellow { background: var(--jaune); }
@@ -188,10 +203,11 @@ a { color: inherit; }
   padding: 9px 26px;
 }
 
+/* Même police que `.plate > span` : Montserrat, pas Cinzel (28/08/2026). */
 .panel-title > span {
   display: inline-block;
   transform: skewX(25deg);
-  font-family: var(--font-epic);
+  font-family: var(--font-ui);
   font-weight: 700;
   font-size: 1rem;
   letter-spacing: 0.14em;
@@ -317,11 +333,16 @@ a { color: inherit; }
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
+/* ⚠️ `margin-right: -0.32em` compense l'interlettrage APRÈS le dernier Ô : un
+   `letter-spacing` s'ajoute derrière chaque lettre, y compris la dernière. Sans cette
+   compensation, « SHINKATÔ » débordait de 11 px de sa propre boîte et décalait vers la
+   droite tout ce qui suit dans la barre. Mesuré le 28/08/2026 à 1280 px. */
 .nav-wordmark {
   font-family: var(--font-epic);
   font-weight: 900;
   font-size: 1.15rem;
   letter-spacing: 0.32em;
+  margin-right: -0.32em;
   color: var(--blanc);
   transition: color 0.25s ease, letter-spacing 0.25s ease;
 }
@@ -385,7 +406,52 @@ a { color: inherit; }
   text-transform: uppercase;
   text-decoration: none;
   color: var(--blanc-60);
+  white-space: nowrap;
   transition: color 0.15s ease;
+}
+
+/* ⚠️ Défaut PRÉ-EXISTANT (déjà présent avant les correctifs du 28/08/2026), repéré en
+   vérifiant l'alignement de la barre : entre 861 et 1345 px de large (le cas d'un
+   ordinateur portable en fenêtre NON maximisée — 900 à 1280 px est très courant),
+   les quatre liens à 32 px d'écart n'avaient pas la place de tenir sur une ligne :
+   « AFFRONTER UN OBSTACLE » passait à deux lignes, désaligné du reste de la barre.
+
+   Une première tentative (resserrer gap + police) a été insuffisante entre 861 et
+   1024 px : à 861 px il manquait encore 178 px, et forcer `nowrap` sans resserrer
+   assez a fait déborder toute la page au lieu de faire retomber le texte à la ligne
+   — pire que le défaut d'origine. Correction retenue : dans cette tranche, la barre
+   bascule sur le MÊME menu compact que le téléphone (déjà vérifié fonctionnel),
+   au lieu d'essayer de faire tenir quatre liens qui n'ont pas la place. Les règles
+   ci-dessous dupliquent volontairement celles de `@media (max-width: 860px)`
+   plus bas : les fusionner reviendrait à élargir CE bloc à 1345 px, entraînant avec
+   lui `.voies-grid`, `.section`, etc. — un changement plus large que ce point précis. */
+@media (min-width: 861px) and (max-width: 1345px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 6px 5vw 14px;
+    background: #100e0a;
+    border-bottom: 1px solid var(--bordure);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  .nav-links.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-links a {
+    display: block;
+    font-size: 0.92rem;
+    letter-spacing: 0.08em;
+    padding: 15px 4px;
+    border-bottom: 1px solid rgba(242, 205, 15, 0.12);
+    color: var(--blanc);
+  }
+  .nav-links a:last-child { border-bottom: none; }
+  .nav-burger { display: flex; flex: 0 0 auto; }
 }
 
 .nav-links a:hover { color: var(--jaune); }
@@ -1973,6 +2039,22 @@ a { color: inherit; }
 
 .cta-actions { margin-top: 36px; }
 
+.cta-store-badge { height: 64px; width: auto; }
+
+.cta-stores-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.cta-store-soon {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  color: var(--blanc-60);
+}
+
 /* ---------- Formulaire « Être prévenu au lancement » ---------- */
 
 .cta-form { margin: 36px auto 0; max-width: 720px; }
@@ -2017,7 +2099,18 @@ a { color: inherit; }
    :invalid seul — on n'alerte donc qu'une fois le champ quitté ou le formulaire soumis. */
 .cta-input:not(:placeholder-shown):not(:focus):invalid { border-color: var(--rouge); }
 
-.cta-form .btn { flex: 0 0 auto; cursor: pointer; }
+/* ⚠️ `align-self: stretch` explicite : sans lui, le bouton restait à sa hauteur
+   naturelle (49 px) à côté d'un champ de 75 px, et se calait EN BAS de la ligne —
+   26 px d'écart entre le haut du champ et le haut du bouton sur ordinateur.
+   C'est le second « bloc décalé » remonté le 28/08/2026. */
+.cta-form .btn {
+  flex: 0 0 auto;
+  cursor: pointer;
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Piège à robots : hors écran, jamais lu par un lecteur d'écran, jamais atteint au clavier. */
 .cta-honey {
@@ -2352,14 +2445,37 @@ a { color: inherit; }
      se réduire. Un `width: 100%` ne sert à rien face à `white-space: nowrap` —
      la largeur minimale du contenu l'emporte toujours. */
 
-  /* 1. Les boutons du hero. `nowrap` bloque le repli, et le skewX(-8deg) élargit
-        encore la boîte d'environ 7 px de chaque côté : on lui laisse la place. */
-  .hero-ctas .btn {
+  /* 1. TOUS les boutons, pas seulement ceux du hero. `nowrap` bloque le repli, et le
+        skewX(-8deg) élargit encore la boîte d'environ 7 px de chaque côté.
+
+        ⚠️ Élargi de `.hero-ctas .btn` à `.btn` le 28/08/2026 : la règle ne visait que
+        le hero, si bien que « ÊTRE PRÉVENU AU LANCEMENT » (336 px de texte) sortait
+        de son bouton sur TOUT écran de 390 px ou moins — 54 px de trop à 320. Même
+        symptôme sur « VALIDER L'HABITUDE » et « DEVENIR PARTENAIRE ». */
+  .btn {
     white-space: normal;
     letter-spacing: 0.1em;
     padding: 14px 18px;
-    max-width: calc(100% - 18px);
+    max-width: 100%;
   }
+
+  /* ⚠️ `max-width: calc(100% - 18px)` NE DOIT PAS être généralisé — c'était une
+     régression du 28/08, corrigée le jour même. Ces 18 px de retrait sont faits pour
+     un bouton CENTRÉ dans le hero (ils compensent le débord du skew). Appliqués à un
+     bouton de formulaire, qui est étiré sur toute la largeur, ils le rendaient 18 px
+     plus court que le champ juste au-dessus, calé à gauche : le bouton « ÊTRE PRÉVENU
+     AU LANCEMENT » finissait 13 px avant le bord droit du champ. C'est précisément le
+     « bloc décalé » remonté par le testeur. Le retrait reste donc réservé au hero. */
+  .hero-ctas .btn { max-width: calc(100% - 18px); }
+
+  /* Un bouton de formulaire suit EXACTEMENT la largeur de son champ : ce sont deux
+     bords qui doivent s'aligner à l'œil, pas deux éléments indépendants. */
+  .cta-form .btn,
+  .partners-form .btn { width: 100%; max-width: 100%; align-self: stretch; }
+
+  /* Le bouton de la barre collante garde son propre gabarit : il vit à côté du logo
+     et du menu, pas dans une colonne. On le laisse sur une ligne, en plus petit. */
+  .nav > .btn { padding: 12px 14px; max-width: none; width: auto; }
 
   /* 2. La ligne « 進化 SHINKA — ÉVOLUTION · 刀 TÔ — LAME » : 0.3em d'interlettrage
         la poussait à 368 px, ce qui élargissait tout le bloc du hero. */
@@ -2373,7 +2489,16 @@ a { color: inherit; }
         leur `translateX(-50%)` : « CARTE D'EXPANSION » partait alors à moitié hors
         de l'écran, illisible. Régression introduite le 18/08 et corrigée le même
         jour — le sélecteur doit rester tel quel. */
-  .panel-title:not(.panel-title-center) { left: 14px; }
+  /* ⚠️ `transform` DOIT être réécrit en même temps que `left`, sinon régression.
+     Mesuré le 28/08/2026 : la règle `@media (max-width: 1024px)` plus haut donne
+     `left: 50%` + `translateX(-50%)` à `.dialogue-card .panel-title`. Ici on
+     remettait `left: 14px` SANS toucher au transform : l'étiquette « KAEN » gardait
+     son recul de la moitié de sa largeur et se posait à **-12 px**, à moitié hors
+     de l'écran, sur TOUS les téléphones jusqu'à 430 px de large. */
+  .panel-title:not(.panel-title-center) {
+    left: 14px;
+    transform: skewX(-25deg);
+  }
   .panel-title { padding: 7px 16px; }
   .panel-title > span { font-size: 0.8rem; letter-spacing: 0.08em; }
 
@@ -2867,3 +2992,115 @@ main.section > .section-head > .section-lead {
   .silo-inner { gap: 4px 18px; padding: 11px 18px; font-size: 0.87rem; }
   .silo-titre { width: 100%; margin-bottom: 2px; }
 }
+
+/* ============================================================
+   RESPONSIVE — passe du 28/08/2026 (retours d'un testeur sur un autre téléphone)
+
+   Le symptôme rapporté — « les titres et les contenus sont décalés par rapport aux
+   fenêtres » — ne se voyait pas sur un Pixel 8 (412 px de large), qui est le plus
+   large des téléphones courants. Il apparaissait dès 390 px et devenait grossier
+   à 360 et 320 px.
+
+   Mesures avant correction (Chromium, `document.scrollWidth` contre `innerWidth`) :
+
+   | Page                    | 320 px  | 360 px  | 390 px  | 412 px  |
+   |-------------------------|---------|---------|---------|---------|
+   | /blocages/              | +101 px | +64 px  | +36 px  | +15 px  |
+   | /habitudes/             | +49 px  | +11 px  | ok      | ok      |
+   | /                       | +38 px  | +1 px   | ok      | ok      |
+   | /alternative-habitica/  | +7 px   | ok      | ok      | ok      |
+   | /confidentialite.html   | +34 px  | ok      | ok      | ok      |
+
+   ⚠️ Un débordement ne se voit pas toujours comme une barre de défilement : avec
+   `width=device-width`, le navigateur DÉZOOME la page entière pour faire rentrer le
+   contenu. Sur /blocages/ la fenêtre de mise en page passait à 422 px sur un écran
+   de 320 — tout le texte rapetissait d'un tiers. C'est ce que le testeur a vu.
+   ============================================================ */
+
+/* ---------- Tableaux des pages de fond (/blocages/, /alternative-habitica/) ----------
+   Trois colonnes de texte ont une largeur minimale d'environ 420 px : aucun
+   `width: 100%` ne les fera tenir dans 320. On les laisse défiler seuls, comme
+   `.legal-table` le fait déjà — le reste de la page reste immobile.
+
+   Le conteneur est posé dans le HTML (`<div class="table-scroll">`) : sans élément
+   parent, `overflow-x` sur un `<table>` oblige à le passer en `display: block`, ce
+   qui casse l'alignement des colonnes entre elles. */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 20px 0 24px;
+  /* Ombres de bord : elles disent qu'il reste du contenu à droite. Sans ce signal,
+     un tableau coupé net passe pour un bug d'affichage. */
+  background:
+    linear-gradient(to right, rgba(16, 14, 10, 1) 30%, rgba(16, 14, 10, 0)) left / 24px 100% no-repeat,
+    linear-gradient(to left,  rgba(16, 14, 10, 1) 30%, rgba(16, 14, 10, 0)) right / 24px 100% no-repeat,
+    radial-gradient(farthest-side at 0 50%, rgba(242, 205, 15, 0.28), transparent) left / 12px 100% no-repeat,
+    radial-gradient(farthest-side at 100% 50%, rgba(242, 205, 15, 0.28), transparent) right / 12px 100% no-repeat;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.table-scroll > table { margin: 0; min-width: 420px; }
+
+/* ---------- Titre des pages légales ----------
+   « Politique de confidentialité » mesurait 338 px pour une colonne de 288 :
+   il sortait du cadre à 320 px. Une taille fluide règle le cas sans rien changer
+   au rendu sur ordinateur. */
+.legal-title {
+  font-size: clamp(1.5rem, 7vw, 2.3rem);
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* ---------- Barre collante sur les écrans les plus étroits ----------
+   À 320 px, l'addition ne tombait pas : emblème 44 + bouton 204 + menu 44, plus
+   deux espaces et 32 px de marges = 344 px pour 320 disponibles.
+   ⚠️ On ne descend PAS sous 0.75rem (12 px) : c'est le plancher de lisibilité tenu
+   partout ailleurs dans ce fichier. On récupère la place sur les marges. */
+@media (max-width: 380px) {
+  .nav { padding: 10px 12px; gap: 6px; }
+  .nav > .btn {
+    font-size: 0.75rem;
+    padding: 12px 10px;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo { width: 32px; }
+  .nav-burger { width: 40px; }
+
+  /* La plaque de titre a déjà `max-width` ; on resserre encore son remplissage pour
+     qu'elle passe à une seule ligne le plus longtemps possible. */
+  .plate { padding: 9px 16px; }
+  .plate > span { font-size: 0.76rem; letter-spacing: 0.08em; }
+  .section { padding: 64px 5vw; }
+}
+
+/* ---------- Échelle des polices des formulaires et des CTA ----------
+   Constat du 28/08/2026, mesuré de 320 à 1280 px : le texte des formulaires ne
+   bougeait PAS d'un pixel sur toute la plage. Étiquette 13,8 px, champ 17,3 px,
+   note 15 px, chapeau de section 17,8 px — identiques sur un écran de 320 et sur un
+   écran de 1280. Les grands titres, eux, avaient déjà leur `clamp()`.
+
+   ⚠️ On utilise `clamp()` et NON des paliers `@media`. Un palier crée une marche : à
+   359 px le texte a une taille, à 360 px une autre, alors que les téléphones réels se
+   répartissent sur toute la plage (320, 344, 360, 375, 390, 412, 430…). `clamp()`
+   suit la largeur en continu, et c'est déjà ce que font `.hero-title` et `.cta-title`.
+
+   ⚠️ Le champ de saisie ne descend JAMAIS sous 1rem (16 px) : sous ce seuil, Safari
+   iOS zoome automatiquement sur le champ au moment de la mise au point, ce qui
+   déplace toute la page sous le doigt du visiteur. */
+.cta-form-label { font-size: clamp(0.75rem, 2.6vw, 0.86rem); }
+.cta-input      { font-size: clamp(1rem, 3.2vw, 1.08rem); }
+.cta-form-note  { font-size: clamp(0.85rem, 2.8vw, 0.94rem); }
+.section-lead   { font-size: clamp(1rem, 3.4vw, 1.11rem); }
+
+/* L'interlettrage des étiquettes coupait « VOTRE ADRESSE E-MAIL » en deux lignes,
+   avec une césure sur le trait d'union : « VOTRE ADRESSE E- » / « MAIL ». */
+@media (max-width: 420px) {
+  .cta-form-label { letter-spacing: 0.08em; }
+}
+
+/* ---------- Filet de sécurité ----------
+   `overflow-x: hidden` sur le body MASQUE un débordement au lieu de le corriger, et
+   c'est ce qui avait laissé passer tous les cas ci-dessus. On garde le masque, mais
+   on ajoute la vraie contrainte : rien ne dépasse la largeur de son parent.
+   Les médias (images, vidéos, iframes) sont les récidivistes habituels. */
+img, video, iframe, canvas, svg { max-width: 100%; }

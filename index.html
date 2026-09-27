@@ -226,7 +226,7 @@
             "name": "Quand est-ce que Shinkatô sort ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "L'ouverture est prévue courant septembre 2026. La date exacte est annoncée en priorité aux personnes inscrites sur cette page. L'adresse e-mail laissée ne sert qu'à cette annonce : aucune newsletter, aucun partage."
+              "text": "Shinkatô est sorti le 23 septembre 2026 sur le Play Store, disponible à l'adresse https://play.google.com/store/apps/details?id=com.shinkato.evolution. La version App Store est en cours de préparation."
             }
           },
           {
@@ -773,9 +773,11 @@
           <div class="faq-row">
             <span class="faq-kaen" aria-hidden="true"></span>
             <p class="faq-a">
-            L'ouverture est prévue <b>courant septembre 2026</b>.
+            Shinkatô est sorti le <b>23 septembre 2026</b> sur le Play Store. Il est disponible à l'adresse suivante :
             <br><br>
-            La date exacte est annoncée en priorité aux personnes inscrites sur cette page. L'adresse e-mail laissée ne sert qu'à cette annonce : aucune newsletter, aucun partage.
+            <a href="https://play.google.com/store/apps/details?id=com.shinkato.evolution" target="_blank" rel="noopener">play.google.com/store/apps/details?id=com.shinkato.evolution</a>
+            <br><br>
+            La version App Store est en cours de préparation.
             </p>
           </div>
         </div>
@@ -801,26 +803,22 @@
   <!-- ===================== TÉLÉCHARGER ===================== -->
   <section class="section section-cta" id="telecharger">
     <img src="assets/logo_blanc.png" alt="" class="cta-emblem" aria-hidden="true">
-    <h2 class="cta-title">Sois là le jour de l'ouverture</h2>
+    <h2 class="cta-title">Shinkatô est disponible</h2>
     <p class="cta-sub">
-      Tu viens d'en voir deux minutes. Bientôt, tu pourras y vivre.<br>
-      Laisse ton adresse : tu sauras le jour où Shinkatô ouvre, et tu commenceras avec les premiers.
+      Rejoins l'aventure dès maintenant.
     </p>
-    <!-- Inscription à l'annonce de sortie.
-         L'envoi part vers Supabase (voir js/contact.js) : pas de rechargement de page,
-         pas de service tiers, et la liste reste dans ta propre base. -->
-    <form class="cta-form" >
-      <input type="text" name="_honey" class="cta-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label class="cta-form-label" for="email-lancement">Ton adresse e-mail</label>
-      <div class="cta-form-row">
-        <input class="cta-input" type="email" id="email-lancement" name="email"
-               placeholder="toi@exemple.com" required autocomplete="email">
-        <button class="btn btn-yellow" type="submit">Être prévenu au lancement</button>
-      </div>
-      <p class="cta-form-note">
-        Ton adresse ne servira qu'à t'annoncer la sortie. Aucun partage, aucune newsletter.
-      </p>
-    </form>
+    <!-- Lien direct vers la fiche Play Store — le badge est l'image officielle Google,
+         hébergée par Google elle-même (pas de copie locale à maintenir).
+         Rangée centrée : badge Play Store à gauche, mention App Store à droite en attendant
+         le bouton équivalent. -->
+    <div class="cta-actions cta-stores-row">
+      <a href="https://play.google.com/store/apps/details?id=com.shinkato.evolution"
+         target="_blank" rel="noopener" aria-label="Télécharger Shinkatô sur Google Play">
+        <img src="https://play.google.com/intl/fr_fr/badges/static/images/badges/fr_badge_web_generic.png"
+             alt="Disponible sur Google Play" class="cta-store-badge">
+      </a>
+      <span class="cta-store-soon">La version App Store arrive bientôt</span>
+    </div>
     <!-- Les cinq personnages jouables. `aria-hidden` retiré le 28/08/2026 : ces
          illustrations MONTRENT le style graphique du jeu, elles ne sont pas un ornement.
          Les décrire sert autant les lecteurs d'écran que la recherche d'images.
